@@ -1,8 +1,0 @@
-ERR6634978_1.fastq.gz  ERR6635069_1.fastq.gz  ERR6635285_1.fastq.gz  ERR6635384_1.fastq.gz  ERR6635420_1.fastq.gz
-ERR6634978_2.fastq.gz  ERR6635069_2.fastq.gz  ERR6635285_2.fastq.gz  ERR6635384_2.fastq.gz  ERR6635420_2.fastq.gz
-ERR6635013_1.fastq.gz  ERR6635079_1.fastq.gz  ERR6635323_1.fastq.gz  ERR6635386_1.fastq.gz  ERR6635423_1.fastq.gz
-ERR6635013_2.fastq.gz  ERR6635079_2.fastq.gz  ERR6635323_2.fastq.gz  ERR6635386_2.fastq.gz  ERR6635423_2.fastq.gz
-ERR6635032_1.fastq.gz  ERR6635123_1.fastq.gz  ERR6635343_1.fastq.gz  ERR6635399_1.fastq.gz  ERR6635429_1.fastq.gz
-ERR6635032_2.fastq.gz  ERR6635123_2.fastq.gz  ERR6635343_2.fastq.gz  ERR6635399_2.fastq.gz  ERR6635429_2.fastq.gz
-ERR6635067_1.fastq.gz  ERR6635263_1.fastq.gz  ERR6635381_1.fastq.gz  ERR6635414_1.fastq.gz  ERR6635437_1.fastq.gz
-ERR6635067_2.fastq.gz  ERR6635263_2.fastq.gz  ERR6635381_2.fastq.gz  ERR6635414_2.fastq.gz  ERR6635437_2.fastq.gz
