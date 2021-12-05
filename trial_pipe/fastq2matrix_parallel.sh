@@ -18,24 +18,33 @@ cd ~/$RAW
 ls | grep -E '_1' | cut -f 1 -d "_" > sample_name.txt
 cd ~/$PIPELINE
 
-cat ~/$RAW/sample_name.txt | parallel -j 1 "~/$PIPELINE/fastq2matrix.sh {}"
+cat ~/$RAW/sample_name.txt | parallel -j 5 "~/$PIPELINE/fastq2matrix.sh {}"
 
 cd ~/$PROCESSED/pool_f4m/
 
 #Merging VCF files #can this merge_vcf python file be found this way since we are not in its directory
 echo "***Merging VCF files***"
-merge_vcfs.py import --sample-file ~/$RAW/sample_name.txt --ref ~/$REFGENOME --prefix trial --vcf-dir #only run once, because it merges all samples
+merge_vcfs.py import --sample-file ~/$RAW/sample_name.txt --ref ~/$REFGENOME --prefix trial --vcf-dir .
+#only run once, because it merges all samples
 
 #Join genotyping
 echo "***Joining genotyping***"
 merge_vcfs.py genotype --ref ~/$REFGENOME --prefix trial
 
+vcf_file=$(ls | grep '^trial\.[0-9_]*\.genotyped\.vcf\.gz$')
+
 #Convert to VCF format
 echo "***Converting to desirable format***"
-bcftools query -f '%POS\t%REF\t%ALT[\t%GT]\n' trial.2020_06_24.genotyped.vcf.gz | head #output into a table formated VCF format
+bcftools query -f '%POS\t%REF\t%ALT[\t%GT]\n' $vcf_file | head #output into a table formated VCF format
 
 #convert to fasta format
 echo "***Converting to fasta format"
-vcf2fasta.py --vcf trial.vcf.gz --ref ~/$REFGENOME
+vcf2fasta.py --vcf $vcf_file --ref ~/$REFGENOME
 
-#Next - Use iqtree to visualise
+iqtree_file = $(ls | grep '^trial\.[0-9_]*\.genotyped\.snps\.fa$')
+
+#Next - Use iqtree to visualise (faster than raxml) -using a maximum-likelihood (ML) approach.
+iqtree -s $iqtree_file -m GTR+G+ASC -nt AUTO
+
+#slower alternative
+#raxmlHPC -m GTRGAMMA -s H1N1.flu.2009.fas -n H1N1.flu.2009.ML -p 11334 -k -f a -x 13243 -N 100
