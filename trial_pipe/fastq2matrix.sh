@@ -17,8 +17,6 @@ cd ~/$PROCESSED/sep_f4m/$1
 echo "***Maping out variant***"
 fastq2vcf.py all --read1 ~/$RAW/$1_1.fastq.gz --read2 ~/$RAW/$1_2.fastq.gz --ref ~/$REFGENOME --prefix $1
 
-#stq2vcf.py all --read1 ~/$RAW/ERR6634978_1.fastq.gz --read2 ~/$RAW/ERR6634978_2.fastq.gz --ref ~/$REFGENOME --prefix ERR6634978
-
 #End of process for this file
 echo "======End of process for $1======"
 cp ~/$PROCESSED/sep_f4m/$1/* ~/$PROCESSED/pool_f4m
