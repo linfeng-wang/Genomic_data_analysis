@@ -15,9 +15,15 @@ mkdir ~/$PROCESSED/freebayesVCF
 cd ~/$PROCESSED/freebayesVCF
 
 #Converting bam to vcf file
-echo 'converting .bam to vcf for sample' $1 
-freebayes -f ~/$REFGENOME ~/$1.mkdup.bam > ~/$PROCESSED/freebayesVCF/$1.vcf
+echo 'converting .bam to .vcf for sample' $1 
+freebayes -f ~/$REFGENOME ~/$PROCESSED/pool_f4m/$1.mkdup.bam > ~/$PROCESSED/freebayesVCF/$1.vcf
+
+
+#freebayes -f ~/$REFGENOME ~/$PROCESSED/pool_f4m/ERR6634978.mkdup.bam > ~/$PROCESSED/freebayesVCF/ERR6634978.vcf
 
 #Quality filtering
 echo 'Quality filtering' $1 
-vcftools --vcf $1.vcf --minQ 20 --recode --recode-INFO-all --out $1_q20
+vcftools --vcf ~/$PROCESSED/freebayesVCF/$1.vcf --minQ 20 --recode --recode-INFO-all --out $1_q20
+
+# ERR6634978.g.vcf.gz
+
