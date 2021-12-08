@@ -41,9 +41,10 @@ bcftools query -f '%POS\t%REF\t%ALT[\t%GT]\n' $vcf_file | head #output into a ta
 echo "***Converting to fasta format"
 vcf2fasta.py --vcf $vcf_file --ref ~/$REFGENOME
 
-iqtree_file = $(ls | grep '^trial\.[0-9_]*\.genotyped\.snps\.fa$')
+iqtree_file=$(ls | grep '^trial\.[0-9_]*\.genotyped\.snps\.fa$')
 
 #Next - Use iqtree to visualise (faster than raxml) -using a maximum-likelihood (ML) approach.
+echo "Trying to use iqtree to visualise"
 iqtree -s $iqtree_file -m GTR+G+ASC -nt AUTO
 
 #slower alternative
