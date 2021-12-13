@@ -25,5 +25,4 @@ freebayes -f ~/$REFGENOME ~/$PROCESSED/pool_f4m/$1.mkdup.bam > ~/$PROCESSED/free
 echo 'Quality filtering' $1 
 vcftools --vcf ~/$PROCESSED/freebayesVCF/$1.vcf --minQ 20 --recode --recode-INFO-all --out $1_q20
 
-# ERR6634978.g.vcf.gz
 

@@ -2,13 +2,14 @@
 
 #BASE='data/trial'
 RAW='data/trial/raw_fastq'
-#PROCESSED='data/trial/processed'
+PROCESSED='data/trial/processed'
 PIPELINE='pipelines/Genomic_data_analysis/trial_pipe'
 
-#indexing reference genome
+#activating environment
 eval "$(conda shell.bash hook)"
 conda activate mapping
 
+#indexing reference genome
 echo "***indexing reference genome***"  #-- performed only once, hence preventing indexing at different rate when using >1 threads
 bwa index ~/refgenome/MTB-h37rv_asm19595v2-eg18.fa #<-done only once, hence preventing indexing at different rate when using >1 threads
 
