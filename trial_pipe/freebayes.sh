@@ -1,10 +1,10 @@
 #freebayes bam to vcf conversion
-#local path: cd ~/trial_tb_philippines/trial pipelines/Genomic_data_analysis/trial_pipe
+#local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe
 
 RAW='../../../data/raw_fastq'
 PROCESSED='../../../data/processed'
 REFGENOME='../../../refgenome/MTB-h37rv_asm19595v2-eg18.fa'
-PIPELINE='~/trial_tb_philippines/trial pipelines/Genomic_data_analysis/trial_pipe'
+PIPELINE='~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe'
 
 
 #activating variant_detection enviroment

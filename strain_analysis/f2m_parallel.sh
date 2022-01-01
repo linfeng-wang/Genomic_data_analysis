@@ -1,10 +1,10 @@
 #fast2matrix parallel file running script
-#local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe
+#local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis
 
-RAW='../../../data/raw_fastq'
-PROCESSED='../../../data/processed'
-REFGENOME='../../../refgenome/MTB-h37rv_asm19595v2-eg18.fa'
-PIPELINE='~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe'
+RAW='/mnt/storage7/lwang/trial_tb_philippines/data/wgsim/wgsim_150bp_0.05mutation'
+PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/data/processed/wgsim/wgsim_150bp_0.05mutation'
+REFGENOME='/mnt/storage7/lwang/trial_tb_philippines/refgenome/MTB-h37rv_asm19595v2-eg18.fa'
+PIPELINE='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis'
 
 ##activating fast2matrix enviroment
 echo "===activating fast2matrix enviroment==="
@@ -12,12 +12,14 @@ eval "$(conda shell.bash hook)"
 conda activate fastq2matrix
 
 #create a file with all the name of the samples
+cd $RAW
 ls | grep -E '_1' | cut -f 1 -d "_" > $RAW/sample_name.txt
-cd ~/$PIPELINE
+cd $PIPELINE
 
-cat $RAW/sample_name.txt | parallel -j 5 "$PIPELINE/fastq2matrix.sh {}"
+cat $RAW/sample_name.txt | parallel -j 5 "$PIPELINE/f2m.sh {}"
 
-cd $PROCESSED/pool_f4m/
+mkdir -p $PROCESSED
+cd $PROCESSED
 
 #Merging VCF files #can this merge_vcf python file be found this way since we are not in its directory
 echo "***Merging VCF files***"
