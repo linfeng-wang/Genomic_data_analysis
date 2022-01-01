@@ -1,11 +1,11 @@
 # mappping&variant detection parallel file running script
-#local path: cd ~/trial_tb_philippines/trial pipelines/Genomic_data_analysis/trial_pipe
+#local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe
 
 
 RAW='../../../data/raw_fastq'
 PROCESSED='../../../data/processed'
 REFGENOME='../../../refgenome/MTB-h37rv_asm19595v2-eg18.fa'
-PIPELINE='~/trial_tb_philippines/trial pipelines/Genomic_data_analysis/trial_pipe'
+PIPELINE='trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe'
 
 
 
@@ -24,7 +24,7 @@ ls | grep -E '_1' | cut -f 1 -d "_" > sample_name.txt
 eval "$(conda shell.bash hook)"
 conda activate base
 
-cd $PIPELINE
+cd ~/$PIPELINE
 
 cat $RAW/sample_name.txt | parallel -j 5 "$PIPELINE/mapping.sh {}"
 
