@@ -8,8 +8,8 @@ declare mut_rate=0.05
 declare -i sample_num=10
 ########################
 
-RAW='/mnt/storage7/lwang/trial_tb_philippines/data/wgsim/wgsim_150bp_0.05mutation'
-PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/data/processed/wgsim/wgsim_150bp_0.05mutation'
+RAW='/mnt/storage7/lwang/trial_tb_philippines/data/seqtk/ERR6634978_ERR6635032'
+PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/data/processed/wgsim/'
 REFGENOME='/mnt/storage7/lwang/trial_tb_philippines/refgenome/MTB-h37rv_asm19595v2-eg18.fa'
 PIPELINE='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis'
 
@@ -19,9 +19,10 @@ eval "$(conda shell.bash hook)"
 conda activate variant_detection
 
 #creating a new file in the data folder
-mkdir $RAW/../wgsim
-mkdir $RAW/../wgsim/wgsim_${read_len}bp_${mut_rate}mutation   #change this folder name when creating new files
+mkdir PROCESSED/wgsim_${read_len}bp_${mut_rate}mutation   #change this folder name when creating new files
 cd $RAW/../wgsim/wgsim_${read_len}bp_${mut_rate}mutation
+
+# echo '' > README.
 
 #creating wgsim simulated files
 for ((i=1; i<=$sample_num; i++)); do
