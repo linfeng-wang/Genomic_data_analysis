@@ -1,8 +1,8 @@
 #fast2matrix parallel file running script
 #local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis
 
-RAW='/mnt/storage7/lwang/trial_tb_philippines/data/wgsim/wgsim_150bp_0.05mutation'
-PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/data/processed/wgsim/wgsim_150bp_0.05mutation'
+RAW='/mnt/storage7/lwang/trial_tb_philippines/data/seqtk'
+PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk'
 REFGENOME='/mnt/storage7/lwang/trial_tb_philippines/refgenome/MTB-h37rv_asm19595v2-eg18.fa'
 PIPELINE='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis'
 
@@ -13,7 +13,7 @@ conda activate fastq2matrix
 
 #create a file with all the name of the samples
 cd $RAW
-ls | grep -E '_1' | cut -f 1 -d "_" > $RAW/sample_name.txt
+ls | grep -E '_1.fastq.gz' | cut -f 1 -d "_" > $RAW/sample_name.txt
 cd $PIPELINE
 
 cat $RAW/sample_name.txt | parallel -j 5 "$PIPELINE/f2m.sh {}"
