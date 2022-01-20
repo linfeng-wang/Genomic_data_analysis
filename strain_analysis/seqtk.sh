@@ -2,10 +2,10 @@
 declare sample1_name='ERR6634978'
 declare sample2_name='ERR6635032'
 
-declare proportion='0100'
+declare proportion='1000'
 
-declare i num_read_sample1=0
-declare i num_read_sample2=3800000
+declare i num_read_sample1=3800000
+declare i num_read_sample2=0
 
 #file paths
 RAW='/mnt/storage7/lwang/trial_tb_philippines/data/raw_fastq'
@@ -46,7 +46,6 @@ seqtk sample -s100 $SAMPLE2_READ2 $num_read_sample2 >> $sample1_name-$sample2_na
 pigz $sample1_name-$sample2_name-${proportion}_1.fastq
 pigz $sample1_name-$sample2_name-${proportion}_2.fastq
 
-echo '***Programme finished***'
 
 echo 'Input: num_read_sample1=' $num_read_sample1 >> log.txt
 echo 'Input: num_read_sample2=' $num_read_sample2 >> log.txt
@@ -57,3 +56,5 @@ echo $(zcat $sample1_name-$sample2_name-${proportion}_1.fastq.gz|wc -l)/4|bc >> 
 echo 'Ouput:' $sample1_name-$sample2_name-${proportion}_2.fastq >> log.txt
 echo $(zcat $sample1_name-$sample2_name-${proportion}_2.fastq.gz|wc -l)/4|bc >> log.txt
 echo ' ' >> log.txt
+
+echo '***Programme finished***'
