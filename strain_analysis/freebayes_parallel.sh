@@ -15,8 +15,8 @@ echo '===activating variant_detection enviroment==='
 eval "$(conda shell.bash hook)"
 conda activate variant_detection 
 
-mkdir -p $PROCESSED/freebayesVCF
-cd $PROCESSED/freebayesVCF
+mkdir -p $PROCESSED/freebayesVCF/q20
+cd $PROCESSED/freebayesVCF/q20
 
 
 cat $RAW/sample_name.txt | parallel -j 5 "$PIPELINE/freebayes.sh {}"
