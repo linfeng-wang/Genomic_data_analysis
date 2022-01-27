@@ -1,7 +1,7 @@
 #generate strain variant json file using tb-profiler
 #local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis
 
-RAW='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF'
+RAW='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/q20'
 PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/json_result'
 REFGENOME='/mnt/storage7/lwang/trial_tb_philippines/refgenome/MTB-h37rv_asm19595v2-eg18.fa'
 PIPELINE='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis'
@@ -18,4 +18,4 @@ cd $RAW
 
 #generating json file
 echo '***generating json file from *tb-profiler vcf_profile* command***'
-find . -name '*.vcf.gz' -exec tb-profiler vcf_profile {} \;
+find . -name '*.recode.vcf.gz' -exec tb-profiler vcf_profile {} \;
