@@ -2,10 +2,10 @@
 declare sample1_name='ERR6634978'
 declare sample2_name='ERR6635032'
 
-declare proportion='1000'
+declare proportion='9505' #change output file name
 
-declare i num_read_sample1=3800000
-declare i num_read_sample2=0
+declare i num_read_sample1=3610000 #change number of reads to get from sample1
+declare i num_read_sample2=190000 #change number of reads to get from sample2
 
 #file paths
 RAW='/mnt/storage7/lwang/trial_tb_philippines/data/raw_fastq'
@@ -57,4 +57,4 @@ echo 'Ouput:' $sample1_name-$sample2_name-${proportion}_2.fastq >> log.txt
 echo $(zcat $sample1_name-$sample2_name-${proportion}_2.fastq.gz|wc -l)/4|bc >> log.txt
 echo ' ' >> log.txt
 
-echo '***Programme finished***'
+echo '***Programme finished***' ${proportion}
