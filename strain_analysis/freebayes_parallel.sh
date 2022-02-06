@@ -1,5 +1,5 @@
 #freebayes bam->vcf conversion parallel file running script
-#local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe
+#local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis
 
 
 RAW='/mnt/storage7/lwang/trial_tb_philippines/data/seqtk'
@@ -15,8 +15,8 @@ echo '===activating variant_detection enviroment==='
 eval "$(conda shell.bash hook)"
 conda activate variant_detection 
 
-mkdir -p $PROCESSED/freebayesVCF/q20
-cd $PROCESSED/freebayesVCF/q20
+mkdir -p $PROCESSED/freebayesVCF
+cd $PROCESSED/freebayesVCF
 
 
 cat $RAW/sample_name.txt | parallel -j 5 "$PIPELINE/freebayes.sh {}"
