@@ -1,3 +1,2 @@
 # Genomic_data_analysis
-Lido Rotation1 genomic data analysis
-ML + Pipeline
+Un-used, personal practice to make mini pipeline
