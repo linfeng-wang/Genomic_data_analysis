@@ -12,12 +12,14 @@ Models for strain calling and drug resistance profiling
 Python 3.10.0 
 
 <h2>Artificial_miture_creation</h2>
-Script used to create in silico artifical Multi-strain infection sample
-order of runing
-    <ol>seqtk.sh</ol>
-    <ol>f2m_parallel.sh</ol>
-    <ol>freebayes_parallel.sh</ol>
-    <ol>jsonfile_gen.sh</ol>
-    <h3> Don't forger to change paths for each file before running
+Script used to create in silico artifical Multi-strain infection sample order of runing
+    <ol>
+    <li>seqtk.sh</li>
+    <li>f2m_parallel.sh</li>
+    <li>freebayes_parallel.sh</li>
+    <li>jsonfile_gen.sh</li>
+    </ol>
+    <h3> Don't forger to change paths for each file before running</h3>
 
 <h2>in silico aritifical created testing sample</h2>
+Some artifically generated mixture sample.
