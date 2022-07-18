@@ -12,7 +12,7 @@ Models for strain calling and drug resistance profiling
 Python 3.10.0 
 
 <h2>Artificial_mixture_creation</h2>
-Script used to create in silico artifical Multi-strain infection sample order of runing
+Script used to create in silico artifical Multi-strain infection sample order of runing (strain_analysis folder)
     <ol>
     <li>seqtk.sh</li>
     <li>f2m_parallel.sh</li>
