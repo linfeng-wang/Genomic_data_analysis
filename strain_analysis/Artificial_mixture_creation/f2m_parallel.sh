@@ -21,7 +21,8 @@ cat $RAW/sample_name.txt | parallel -j 5 "$PIPELINE/f2m.sh {}"
 mkdir -p $PROCESSED
 cd $PROCESSED
 
-#Merging VCF files #can this merge_vcf python file be found this way since we are not in its directory
+#Merging VCF files  
+#this merge_vcf python file can be found this way since we are not in its directory
 echo "***Merging VCF files***"
 merge_vcfs.py import --sample-file $RAW/sample_name.txt --ref $REFGENOME --prefix trial --vcf-dir .
 #only run once, because it merges all samples
