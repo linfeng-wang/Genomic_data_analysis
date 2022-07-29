@@ -19,7 +19,7 @@ Script used to create in silico artifical Multi-strain infection sample order of
     <li>freebayes_parallel.sh</li>
     <li>jsonfile_gen.sh</li>
     </ol>
-    <h3> Don't forger to change paths for each file before running</h3>
+    <h3> Don't forget to change paths for each file before running</h3>
 
 <h2>in silico aritifical created testing sample</h2>
 Some artifically generated mixture sample.
