@@ -1,5 +1,5 @@
-#this is to view the info and extract sublin info from the json file
-
+#this is to view the info and extract sublin info from the json file 
+#created - 08.08.2022
 #%%
 from icecream import ic
 import numpy as np
@@ -36,17 +36,53 @@ for x in json_names:
     json_results = json.load(open(FILE_PATH))
     sublin = json_results["sublin"]
     sublin = sublin.split(',')
-    sublin = [i for i in sublin]
     if len(sublin) > 1:
         print("=======Mix infection!=======")
-    sublineages.append(sublin)
+    sublineages.append(sublin[0])
 
 # %%
-sublineages_unique = set(sublineages)
-sublin_count = {}
-for x in sublineages_unique:
-    sublin_count[x] = sublineages.count(x)
+def uniq_lin(lin_):
+    lin_unique = set(lin_)
+    lin_count = {}
+    for x in lin_unique:
+        lin_count[x] = lin_.count(x)
+
+    return lin_count, lin_unique
 
 # %%
-sublin_count
+sublin_count, sublin_unique = uniq_lin(sublineages)
+# print(sublin_count,sublin_unique)
+
+#%%
+mix_infect = 0
+main_lineages = []
+for x in json_names:
+    FILE_PATH = os.path.join(FOLDER_PATH, x)
+    json_results = json.load(open(FILE_PATH))
+    mainlin = json_results["main_lin"]
+    mainlin = mainlin.split(',')
+    if len(mainlin) > 1:
+        print("=======Mix infection!=======")
+        mix_infect = 1
+    main_lineages.append(mainlin[0])
+
+print("mix_infect:",mix_infect)
+
+
+# %%
+mainlin_count, mainlin_unique = uniq_lin(main_lineages)
+print(mainlin_count)
+
+# %%
+labels = []
+sizes = []
+for x, y in mainlin_count.items():
+    labels.append(x)
+    sizes.append(y)
+
+fig = go.Figure(data=[go.Pie(labels=labels,
+                             values=sizes)])
+fig.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,)
+fig.show()
+
 # %%
