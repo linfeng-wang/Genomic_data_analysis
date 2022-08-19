@@ -1,6 +1,8 @@
 #this is to view the info and extract sublin info from the json file 
 #created - 08.08.2022
 #%%
+from ast import And, main
+from unittest import result
 from icecream import ic
 import numpy as np
 import pandas as pd
@@ -11,6 +13,7 @@ import os
 import json
 import subprocess
 import itertools
+from statistics import mean
 
 #%% extract file names
 with open('tb-json_names.csv', 'w') as f:
@@ -29,21 +32,38 @@ with open(NAME_FILE, "r") as f:
         json_names.append(data_line[0])
 
 
-# %%
+#%%
+def minorStrainFreq(json_results):
+    sublin = {}
+    for x in json_results['lineage']:
+        lineage = x['lin'].split(".")[0]
+        if lineage in sublin.keys():
+            sublin[lineage].append(x['frac'])
+        else:
+            sublin[lineage] = []
+            sublin[lineage].append(x['frac'])
+
+    for key, value in sublin.items(): #key-lineage, value-frac
+        sublin[key] = mean(value)
+    sublin = dict(sorted(sublin.items(), key=lambda item: item[1], reverse=True)) #get decending order so that we can know which is which corresponding to the model prediction
+    # contamination = len(sublin) > 2 #report that there is likely contamination
+    return min(sublin.values())
+
+# %% sublineage mixinfection data import from json files (tb-p output)
 sublineages = []
-mixed_infection = []
+mixed_infection_sub = []
 mixed_infection_count = 0
+minor_allele_freq = []
 for x in json_names:
     FILE_PATH = os.path.join(FOLDER_PATH, x)
     json_results = json.load(open(FILE_PATH))
     sublin = json_results["sublin"]
     sublin = sublin.split(';')
-    if len(sublin) > 1:
+    if len(sublin) > 1 and sublin[-1] != '':
         # print("=======Mix infection!=======")
+        minor_allele_freq.append(minorStrainFreq(json_results))
         mixed_infection_count += 1
-        mixed_infection.append(sublin)
-        sublineages.append(sublin[0])
-        sublineages.append(sublin[1])
+        mixed_infection_sub.append(sublin)
 
     sublineages.append(sublin[0])
 
@@ -53,13 +73,9 @@ else:
     print("No mixed infection detected")
 
 
-#%%
-mixed_infection_count
-
-
 #%% creating flat list so that number of each sublineage can be counted
-mixed_infection
-flat_mixed_infection = [item for sublist in mixed_infection for item in sublist]
+mixed_infection_sub
+flat_mixed_infection = [item for sublist in mixed_infection_sub for item in sublist]
 
 # %%
 def uniq_lin(lin_):
@@ -70,44 +86,51 @@ def uniq_lin(lin_):
 
     return lin_count, lin_unique
 
-#%%
-sublin_count, sublin_unique = uniq_lin(flat_mixed_infection)
-# print(sublin_count,sublin_unique)
 
-#%%
-print(sublin_count)
-
-#%% main_lineage count
+# %% mainlineage mixinfection data import from json files (tb-p output)
 mix_infect = 0
+mixed_infection_main =[]
 main_lineages = []
+minor_allele_freq = []
+
 for x in json_names:
     FILE_PATH = os.path.join(FOLDER_PATH, x)
     json_results = json.load(open(FILE_PATH))
+    minor_allele_freq.append(minorStrainFreq(json_results))
     mainlin = json_results["main_lin"]
-    mainlin = mainlin.split(',')
-    if len(mainlin) > 1:
+    mainlin = mainlin.split(';')
+    if len(mainlin) > 1 and mainlin[-1] != '':
         print("=======Mix infection!=======")
         mix_infect = 1
-    main_lineages.append(mainlin[0])
+        mixed_infection_main.append(mainlin)
+    main_lineages.append(mainlin)
 
 print("mix_infect:",mix_infect)
 
 
 # %%
-mainlin_count, mainlin_unique = uniq_lin(main_lineages)
+mainlin_count, mainlin_unique = uniq_lin(list(np.concatenate(mixed_infection_main)))
 print(mainlin_count)
 
+sublin_count, sublin_unique = uniq_lin(list(np.concatenate(mixed_infection_sub)))
+
+#%%
+sublin_count
 # %%
 def piechart(lin_count, highest=True):
+    total = sum(lin_count.values())
     if highest:
         lin_count = dict(sorted(lin_count.items(), key=lambda item: item[1], reverse=True))
+        rest_count = list(lin_count.values())[10:-1]
         lin_count = dict(itertools.islice(lin_count.items(),10))
+        lin_count["Rest"] = sum(rest_count)
 
     labels = []
     sizes = []
     for x, y in lin_count.items():
         labels.append(x)
-        sizes.append(y)
+        sizes.append(y/total)
+    # print(lin_count)
 
     fig = go.Figure(data=[go.Pie(labels=labels,
                                 values=sizes)])
@@ -117,14 +140,49 @@ def piechart(lin_count, highest=True):
 # %%
 piechart(sublin_count)
 
-# %% sublineages that are most prevalently involved in sublineages
-sort_sublin_count = dict(sorted(sublin_count.items(), key=lambda item: item[1], reverse=True))
-
-#%%
-sort_sublin_count[:5]
 # %%
-first_two_items = dict(itertools.islice(sort_sublin_count.items(),2))
+piechart(mainlin_count)
+# %%
+def minorStrainHist(lin_count, highest=True):
+    total = sum(lin_count.values())
+    if highest:
+        lin_count = dict(sorted(lin_count.items(), key=lambda item: item[1], reverse=True))
+        rest_count = list(lin_count.values())[10:-1]
+        lin_count = dict(itertools.islice(lin_count.items(),10))
+        lin_count["Rest"] = sum(rest_count)
+
+    labels = []
+    sizes = []
+    for x, y in lin_count.items():
+        labels.append(x)
+        sizes.append(y/total)
+    # print(lin_count)
+
+    fig = go.Figure(data=[go.Pie(labels=labels,
+                                values=sizes)])
+    fig.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,)
+    fig.show()
+
+
+
 
 # %%
-first_two_items
+def minorAFreq_graph(freqs):
+    fig = go.Figure()
+    fig.add_trace(go.Histogram(x = freqs))
+
+    fig.update_layout(
+        title="Alternative allele GMM distribution",
+        xaxis_title="Alternative SNP freqency",
+        yaxis_title="Count",
+        font=dict(
+            family="Courier New, monospace",
+            size=18,
+            color="RebeccaPurple"
+        )
+    )
+    fig.show()
+# %%
+minorAFreq_graph(minor_allele_freq)# %%
+
 # %%

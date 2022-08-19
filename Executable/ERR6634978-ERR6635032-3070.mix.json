@@ -1,12 +1,12 @@
 {
   "lineage1": {
     "streptomycin": 1.0,
-    "isoniazid": 0.9999999997989613,
-    "rifampicin": 0.9999999974652594
+    "isoniazid": 0.9999999998162061,
+    "rifampicin": 0.9999999976757719
   },
   "lineage4": {
     "ethambutol": 1.0,
-    "isoniazid": 0.9999999999998439,
-    "rifampicin": 0.999999916644052
+    "isoniazid": 0.9999999999997948,
+    "rifampicin": 0.9999998998536799
   }
 }

@@ -16,9 +16,6 @@ import os
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
-# from cb91visuals import *
-import gc
-import pipe
 from icecream import ic
 from uuid import uuid4
 import sys
@@ -27,30 +24,30 @@ import sys
 import tb_profiler 
 import gmm_model
 
-#%%
+#%% testing
 # json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
 # vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
 
 #%%
-
 parser = argparse.ArgumentParser(description='Mixed_infection_GMM',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("-vcf", "--vcf", help='VCF file')
 parser.add_argument("-json", "--json", help='tb-profiler output json file')
+parser.add_argument("-g", "--graph", help='alternative snp frequency histogram', action='store_true')
 
 args = parser.parse_args()
 
+graph_option = args.graph
 json_file = args.json
 vcf_file = args.vcf
 
 #%%
-
 tb_pred_result, contamination = tb_profiler.tb_pred(json_file)
 dr_dict = tb_profiler.tb_dr(json_file)
 
 if contamination:
     sys.exit(f"Programme halted, there is a contamination! in {vcf_file}")
 
-gmm_pred_result, model = gmm_model.model_pred(vcf_file, tail_cutoff = list(tb_pred_result.values())[1])
+gmm_pred_result, model = gmm_model.model_pred(vcf_file, tail_cutoff = list(tb_pred_result.values())[1], graph = graph_option)
 
 mse = gmm_model.mse_cal(tb_pred_result, gmm_pred_result)
 
@@ -87,8 +84,6 @@ print("=======================================================================")
 print(name)
 print(dr_output)
 print("=======================================================================")
-
-
 
 
 
