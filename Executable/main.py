@@ -1,5 +1,7 @@
+#must input mixed infection cells
 #%%
 import argparse
+from statistics import mode
 import numpy as np
 # import pathogenprofiler as pp
 from sklearn.mixture import GaussianMixture
@@ -33,23 +35,47 @@ parser = argparse.ArgumentParser(description='Mixed_infection_GMM',formatter_cla
 parser.add_argument("-vcf", "--vcf", help='VCF file')
 parser.add_argument("-json", "--json", help='tb-profiler output json file')
 parser.add_argument("-g", "--graph", help='alternative snp frequency histogram', action='store_true')
+parser.add_argument("-o", "--output", help='output path')
+
 
 args = parser.parse_args()
 
 graph_option = args.graph
 json_file = args.json
 vcf_file = args.vcf
+output_path = args.output
 
 #%%
 tb_pred_result, contamination = tb_profiler.tb_pred(json_file)
 dr_dict = tb_profiler.tb_dr(json_file)
 
 if contamination:
-    sys.exit(f"Programme halted, there is a contamination! in {vcf_file}")
+    sys.exit(f"Programme stoped, there is a contamination! in {vcf_file}")
+if len(tb_pred_result)<2:
+    sys.exit(f"Programme stoped, no mixed infection in {vcf_file}")
 
-gmm_pred_result, model = gmm_model.model_pred(vcf_file, tail_cutoff = list(tb_pred_result.values())[1], graph = graph_option)
+print("***********************")
+print(f"Programme continued, mixed infection detected in {vcf_file}")
+print("***********************")
+
+gmm_pred_result, model = gmm_model.model_pred(vcf_file, tail_cutoff = list(tb_pred_result.values())[1], graph = graph_option, output_path=output_path)
 
 mse = gmm_model.mse_cal(tb_pred_result, gmm_pred_result)
+
+model_means_ = np.concatenate(model.means_)
+model_covariances_ = np.concatenate(np.concatenate(model.covariances_))
+model_covariances_ = np.sqrt(model_covariances_/2 ) #standard deviation
+
+if model_means_[0] >= model_means_[1]:
+    m_mean = model_means_
+    m_covar = model_covariances_
+else:
+    model_means_[0] < model_means_[1]
+    m_mean = [model_means_[1], model_means_[0]]
+    m_covar = [model_covariances_[1] ,model_covariances_[0]]  
+
+strain1_bound = [m_mean[0]+m_covar[0], m_mean[0]-m_covar[0]] #1 std interval upper and lower bound for model predicted proportion for both strains
+strain2_bound = [m_mean[1]+m_covar[1], m_mean[1]-m_covar[1]]
 
 #%%
 strains = list(tb_pred_result.keys())
@@ -70,12 +96,30 @@ strains[0] = dict(sorted(strains[0].items(), key=lambda item: item[1], reverse=T
 strains[1] = dict(sorted(strains[1].items(), key=lambda item: item[1], reverse=True))
 
 #%%
-dr_output = {list(tb_pred_result.keys())[0]:strains[0],
-            list(tb_pred_result.keys())[1]:strains[1]}
+dr_output = {list(tb_pred_result.keys())[0]:
+                {"tb_pred" : list(tb_pred_result.values())[0],
+                "gmm_pred_UB" : strain1_bound[0],
+                "gmm_pred_LB" : strain1_bound[1],
+                "resistance" : strains[0]
+                },
+
+            list(tb_pred_result.keys())[1]:
+                {"tb_pred" : list(tb_pred_result.values())[1],
+                "gmm_pred_UB" : strain2_bound[0],
+                "gmm_pred_LB" : strain2_bound[1],
+                "resistance" : strains[1]
+                },
+            
+            "Unknown50-50DR" : unknown,
+            "gmm_tb-profiler_MSE": mse
+}
+        
+
+            # list(tb_pred_result.keys())[1]:strains[1]}
 
 name = vcf_file.split('/')[-1].split('.vcf')[0]
 
-output_file = "".join([name, ".mix.json"])
+output_file = "".join([output_path,"/",name, ".mix.json"])
 
 with open(output_file, 'w') as f:
     json.dump(dr_output, f, indent=2)
@@ -119,3 +163,5 @@ print("=======================================================================")
 
 
 # %%
+#command to run
+# python /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable/main.py -vcf /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz -json /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json -g -o /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable_eval
