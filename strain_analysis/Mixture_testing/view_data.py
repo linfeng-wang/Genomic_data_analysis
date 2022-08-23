@@ -1,7 +1,6 @@
 #this is to view the info and extract sublin info from the json file 
 #created - 08.08.2022
 #%%
-from ast import And, main
 from unittest import result
 from icecream import ic
 import numpy as np

@@ -10,27 +10,33 @@ from unittest import result
 #%%
 #function that inputs get the lineage fraction info tb-profiler output json file
 def tb_pred(json_file):
+    failed = 0
     sublin = {}
     json_results = json.load(open(json_file))
-    for x in json_results['lineage']:
-        lineage = x['lin'].split(".")[0]
-#add lineage-frac to dictionary if the lineage don't exist, add it first
-        if lineage in sublin.keys(): 
-            sublin[lineage].append(x['frac'])
-        else:
-            sublin[lineage] = []
-            sublin[lineage].append(x['frac'])
+    sublin = json_results["sublin"]
+    sublin = sublin.split(';')
+    if len(sublin) == 2 and sublin[-1] != '':
+        sublin_dict = {}
+        for x in json_results['lineage']:
+            if x['lin'] == sublin[0] or x['lin'] == sublin[1]:
+                lineage = x['lin']
+    #add lineage-frac to dictionary if the lineage don't exist, add it first
+                sublin_dict[lineage] = x['frac']
 
-    for key, value in sublin.items():
-        sublin[key] = mean(value)
-    sublin = dict(sorted(sublin.items(), key=lambda item: item[1], reverse=True)) #get decending order so that we can know which is which corresponding to the model prediction
-    contamination = len(sublin) > 2 #report that there is likely contamination
+        sublin_dict = dict(sorted(sublin_dict.items(), key=lambda item: item[1], reverse=True)) #get decending order so that we can know which is which corresponding to the model prediction
+    
+    elif len(sublin) > 2:
+        failed = 1 #report that there is likely contamination or single strain infection
+        sublin_dict = {}
+    else:
+        failed = 2
+        sublin_dict = {}
 
-    return sublin, contamination
+    return sublin_dict, failed
 
-# result, contamination = tb_pred(json_file)
-# #%%
-# print(result)
+# result, failed = tb_pred(json_file)
+# # #%%
+# print(result, failed)
 
 # %%
 #function that get the drug resistance info tb-profiler output json file

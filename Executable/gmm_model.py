@@ -29,6 +29,7 @@ from uuid import uuid4
 
 #%% test
 # vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
+vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR2864229.g.vcf.gz' #file used creating the model
 
 #%%
 def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
@@ -46,6 +47,8 @@ def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
     scatter = []
     with open(f"temp/{uuid_file}", 'r') as f:
         for line in f: #get the relevant info including position, alt/ref snp count info
+            print("testestestes")
+            print(line)
             row = line.strip().split()
             ads = [int(x) for x in row[4].split(",")]
             afs = [x/sum(ads) for x in ads]
@@ -54,6 +57,7 @@ def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
             pos.append(int(row[0]))
             freqs.append([afs[1]])
             scatter.append(ads)
+        print(freqs[:6])
 
         # freqs = [[0.7],[0.6],[0.4]]    
         gm = GaussianMixture(n_components=2, random_state=0).fit(np.array(freqs).reshape(-1, 1))
@@ -134,8 +138,18 @@ def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
     else:
         return [mu1, mu0], gm
 
+#Test
+model_pred(vcf_file, tail_cutoff=0, graph = True)
+
 #%%test
-# model_pred(vcf_file, tail_cutoff=0, graph = True)
 # %%
 def mse_cal(tb_prof, gmm_result):
     return mean_squared_error(list(tb_prof.values()), gmm_result)
+
+
+#%% test
+# bcftools view -c 1 -m2 -M2 -T ^/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable/new_exclusion.bed ERR2503421.g.vcf.gz | bcftools query -f '%POS\\t%REF\\t%ALT[\\t%GT\\t%AD\\n]' | head -1
+#bcftools view -c 1 -m2 -M2 -T DRR014508.g.vcf.gz
+
+# bcftools view -c 1 -m2 -M2 -T ^/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable/new_exclusion.bed ../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz | bcftools query -f '%POS\\t%REF\\t%ALT[\\t%GT\\t%AD\\n]'
+

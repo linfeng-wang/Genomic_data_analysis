@@ -46,17 +46,17 @@ vcf_file = args.vcf
 output_path = args.output
 
 #%%
-tb_pred_result, contamination = tb_profiler.tb_pred(json_file)
+tb_pred_result, failed = tb_profiler.tb_pred(json_file)
 dr_dict = tb_profiler.tb_dr(json_file)
 
-if contamination:
-    sys.exit(f"Programme stoped, there is a contamination! in {vcf_file}")
-if len(tb_pred_result)<2:
+if failed == 1:
+    sys.exit(f"Programme stoped, contamination! in {vcf_file}")
+elif failed == 2:
     sys.exit(f"Programme stoped, no mixed infection in {vcf_file}")
-
-print("***********************")
-print(f"Programme continued, mixed infection detected in {vcf_file}")
-print("***********************")
+else:
+    print("***********************")
+    print(f"Programme continued, mixed infection detected in {vcf_file}")
+    print("***********************")
 
 gmm_pred_result, model = gmm_model.model_pred(vcf_file, tail_cutoff = list(tb_pred_result.values())[1], graph = graph_option, output_path=output_path)
 
@@ -96,20 +96,22 @@ strains[0] = dict(sorted(strains[0].items(), key=lambda item: item[1], reverse=T
 strains[1] = dict(sorted(strains[1].items(), key=lambda item: item[1], reverse=True))
 
 #%%
-dr_output = {list(tb_pred_result.keys())[0]:
-                {"tb_pred" : list(tb_pred_result.values())[0],
+dr_output = {"lineage": [
+                {
+                "lin" : list(tb_pred_result.keys())[0],
+                "tb_pred" : list(tb_pred_result.values())[0],
                 "gmm_pred_UB" : strain1_bound[0],
                 "gmm_pred_LB" : strain1_bound[1],
-                "resistance" : strains[0]
+                "resistance_pred" : strains[0]
                 },
-
-            list(tb_pred_result.keys())[1]:
-                {"tb_pred" : list(tb_pred_result.values())[1],
+                {
+                "lin" : list(tb_pred_result.keys())[1],
+                "tb_pred" : list(tb_pred_result.values())[1],
                 "gmm_pred_UB" : strain2_bound[0],
                 "gmm_pred_LB" : strain2_bound[1],
-                "resistance" : strains[1]
-                },
-            
+                "resistance_pred" : strains[1]
+                }
+],
             "Unknown50-50DR" : unknown,
             "gmm_tb-profiler_MSE": mse
 }
