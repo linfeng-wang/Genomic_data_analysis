@@ -21,6 +21,7 @@ import pandas as pd
 from icecream import ic
 from uuid import uuid4
 import sys
+from pathlib import Path
 
 #%%
 import tb_profiler 
@@ -31,8 +32,10 @@ import gmm_model
 # vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
 
 #%%
+output_path = None
+
 parser = argparse.ArgumentParser(description='Mixed_infection_GMM',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument("-vcf", "--vcf", help='VCF file')
+parser.add_argument("-vcf", "--vcf", help='VCF (gatk) file')
 parser.add_argument("-json", "--json", help='tb-profiler output json file')
 parser.add_argument("-g", "--graph", help='alternative snp frequency histogram', action='store_true')
 parser.add_argument("-o", "--output", help='output path')
@@ -121,7 +124,14 @@ dr_output = {"lineage": [
 
 name = vcf_file.split('/')[-1].split('.vcf')[0]
 
-output_file = "".join([output_path,"/",name, ".mix.json"])
+if output_path == None:
+    cwd = os.path.dirname(__file__)
+    Path(f"{cwd}/mixture_results/profiles").mkdir(parents=True, exist_ok=True)
+    output_file = "".join([f"{cwd}/mixture_results/profiles","/",name, ".mix.json"])
+
+else:
+    Path(f"{output_path}/mixture_results/profiles").mkdir(parents=True, exist_ok=True)
+    output_file = "".join([f"{output_path}/mixture_results/profiles","/",name, ".mix.json"])
 
 with open(output_file, 'w') as f:
     json.dump(dr_output, f, indent=2)
@@ -167,3 +177,7 @@ print("=======================================================================")
 # %%
 #command to run
 # python /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable/main.py -vcf /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz -json /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json -g -o /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable_eval
+
+
+# python /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable/main.py -vcf /mnt/storage7//jody/tb_ena/per_sample/ERR2864229.gatk.vcf.gz -json /mnt/storage7/jody/tb_ena/tbprofiler/latest/results/ERR2864229.results.json -g -o /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable_eval
+

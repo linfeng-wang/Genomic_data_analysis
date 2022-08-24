@@ -23,32 +23,35 @@ import gc
 import pipe
 from icecream import ic
 from uuid import uuid4
+from pathlib import Path
+
 
 #%%
 #this model outputs the strain info depending if one value is still larger than the threshold after substracting the other prob value from it - not as good as not using it
 
 #%% test
 # vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
-vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR2864229.g.vcf.gz' #file used creating the model
+# vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR2864229.gatk.vcf.gz' #file used creating the model
 
 #%%
 def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
-    if not os.path.exists("temp"):
-        os.mkdir("temp")
+    cwd = os.path.dirname(__file__) #this is used to get the folder location of the script so that new_exculsion file can be accessed
+
+    if not os.path.exists(f"{cwd}/temp"):
+        os.mkdir(f"{cwd}/temp")
+
     uuid_ = uuid4() #create random naming so that the script can be run in parallel
     uuid_file = "".join([str(uuid_), ".csv"])
 
-    cwd = os.path.dirname(__file__) #this is used to get the folder location of the script so that new_exculsion file can be accessed
 
-    with open(f"temp/{uuid_file}", 'w') as f:
+    with open(f"{cwd}/temp/{uuid_file}", 'w') as f:
         subprocess.run(f"bcftools view -c 1 -m2 -M2 -T ^{cwd}/new_exclusion.bed %s | bcftools query -f '%%POS\\t%%REF\\t%%ALT[\\t%%GT\\t%%AD\\n]'" % vcf_file, shell=True, stdout=f, text=True)
     pos = []
     freqs = []
     scatter = []
-    with open(f"temp/{uuid_file}", 'r') as f:
+    with open(f"{cwd}/temp/{uuid_file}", 'r') as f:
         for line in f: #get the relevant info including position, alt/ref snp count info
-            print("testestestes")
-            print(line)
+
             row = line.strip().split()
             ads = [int(x) for x in row[4].split(",")]
             afs = [x/sum(ads) for x in ads]
@@ -57,7 +60,6 @@ def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
             pos.append(int(row[0]))
             freqs.append([afs[1]])
             scatter.append(ads)
-        print(freqs[:6])
 
         # freqs = [[0.7],[0.6],[0.4]]    
         gm = GaussianMixture(n_components=2, random_state=0).fit(np.array(freqs).reshape(-1, 1))
@@ -119,19 +121,17 @@ def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
         output_file = "".join([name, ".gmm_fig.png"])
 
         if output_path == None:
-            if not os.path.exists("images"):
-                os.mkdir("images")
-            fig.write_image(f"images/{output_file}")
+            Path(f"{cwd}/mixture_results/images").mkdir(parents=True, exist_ok=True)
+            fig.write_image(f"{cwd}/mixture_results/images/{output_file}")
         else:
-            if not os.path.exists(f"{output_path}/images"):
-                os.mkdir(f"{output_path}/images")
-            fig.write_image(f"{output_path}/images/{output_file}")
+            Path(f"{output_path}/mixture_results/images").mkdir(parents=True, exist_ok=True)
+            fig.write_image(f"{output_path}/mixture_results/images/{output_file}")
 
 
         # fig.show()
 
     # os.remove(os.path.join("/__pycache__", uuid_file))
-    os.remove(f"./temp/{uuid_file}")
+    os.remove(f"{cwd}/temp/{uuid_file}")
 
     if mu0 > mu1:
         return [mu0, mu1], gm #make sure the descending order corresponds to the output of tb_profiler.tb_pred()
@@ -139,9 +139,9 @@ def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
         return [mu1, mu0], gm
 
 #Test
-model_pred(vcf_file, tail_cutoff=0, graph = True)
+# model_pred(vcf_file, tail_cutoff=0, graph = True)
 
-#%%test
+
 # %%
 def mse_cal(tb_prof, gmm_result):
     return mean_squared_error(list(tb_prof.values()), gmm_result)
@@ -153,3 +153,4 @@ def mse_cal(tb_prof, gmm_result):
 
 # bcftools view -c 1 -m2 -M2 -T ^/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable/new_exclusion.bed ../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz | bcftools query -f '%POS\\t%REF\\t%ALT[\\t%GT\\t%AD\\n]'
 
+# bcftools view -c 1 -m2 -M2 -T ^/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable/new_exclusion.bed /mnt/storage7//jody/tb_ena/per_sample/ERR2864229.gatk.vcf.gz | bcftools query -f '%POS\\t%REF\\t%ALT[\\t%GT\\t%AD\\n]' | head -1
