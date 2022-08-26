@@ -1,0 +1,22 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage1.1.1.1",
+      "tb_pred": 0.9223907225691347,
+      "gmm_pred_UB": 0.9134266569398114,
+      "gmm_pred_LB": 0.8722965121655403,
+      "resistance_pred": {}
+    },
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.06834170854271357,
+      "gmm_pred_UB": 0.2545224456767511,
+      "gmm_pred_LB": 0.10882004725313593,
+      "resistance_pred": {
+        "streptomycin": 0.9999999999965308
+      }
+    }
+  ],
+  "Unknown50-50DR": {},
+  "gmm_tb-profiler_MSE": 0.006857777078830615
+}

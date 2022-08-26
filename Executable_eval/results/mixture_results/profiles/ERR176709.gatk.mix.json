@@ -1,0 +1,22 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage3.1.1",
+      "tb_pred": 0.6614481409001957,
+      "gmm_pred_UB": 0.5879798177109291,
+      "gmm_pred_LB": 0.5467183638222258,
+      "resistance_pred": {
+        "isoniazid": 0.9999860417357803
+      }
+    },
+    {
+      "lin": "lineage4.3.4.2.1",
+      "tb_pred": 0.39243498817966904,
+      "gmm_pred_UB": 0.4731114702662139,
+      "gmm_pred_LB": 0.42248287214587343,
+      "resistance_pred": {}
+    }
+  ],
+  "Unknown50-50DR": {},
+  "gmm_tb-profiler_MSE": 0.005959801272747496
+}

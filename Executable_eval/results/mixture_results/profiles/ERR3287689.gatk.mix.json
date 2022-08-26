@@ -1,0 +1,25 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.1.2.1",
+      "tb_pred": 0.5340442986054142,
+      "gmm_pred_UB": 0.5101394550065688,
+      "gmm_pred_LB": 0.5049385304313148,
+      "resistance_pred": {
+        "isoniazid": 0.9999999999967883
+      }
+    },
+    {
+      "lin": "lineage4.1.1",
+      "tb_pred": 0.48671808054841476,
+      "gmm_pred_UB": 0.4987247341600883,
+      "gmm_pred_LB": 0.4916530938858346,
+      "resistance_pred": {
+        "ofloxacin": 0.9969230177340208,
+        "para-aminosalicylic_acid": 0.9842556990669337
+      }
+    }
+  ],
+  "Unknown50-50DR": {},
+  "gmm_tb-profiler_MSE": 0.00038714312994448687
+}

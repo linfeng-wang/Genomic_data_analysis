@@ -28,8 +28,11 @@ import tb_profiler
 import gmm_model
 
 #%% testing
-# json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
-# vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
+json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
+vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
+graph_option = False
+output_path = None
+
 
 #%%
 output_path = None
@@ -41,6 +44,7 @@ parser.add_argument("-g", "--graph", help='alternative snp frequency histogram',
 parser.add_argument("-o", "--output", help='output path')
 
 
+
 args = parser.parse_args()
 
 graph_option = args.graph
@@ -50,7 +54,6 @@ output_path = args.output
 
 #%%
 tb_pred_result, failed = tb_profiler.tb_pred(json_file)
-dr_dict = tb_profiler.tb_dr(json_file)
 
 if failed == 1:
     sys.exit(f"Programme stoped, contamination! in {vcf_file}")
@@ -60,6 +63,8 @@ else:
     print("***********************")
     print(f"Programme continued, mixed infection detected in {vcf_file}")
     print("***********************")
+
+dr_dict = tb_profiler.tb_dr(json_file)
 
 gmm_pred_result, model = gmm_model.model_pred(vcf_file, tail_cutoff = list(tb_pred_result.values())[1], graph = graph_option, output_path=output_path)
 
@@ -81,22 +86,49 @@ strain1_bound = [m_mean[0]+m_covar[0], m_mean[0]-m_covar[0]] #1 std interval upp
 strain2_bound = [m_mean[1]+m_covar[1], m_mean[1]-m_covar[1]]
 
 #%%
+# strains = list(tb_pred_result.keys())
+# strains[0] = {}
+# strains[1] = {}
+# unknown = {}
+
+# for key, value in dr_dict.items(): #key is freqs value is dr
+#     prob = model.predict_proba(np.array(float(key)).reshape(-1,1))
+#     prob = prob[0] #the output from predict_proba is a list of a list
+#     if prob[0] > prob[1]:
+#         strains[0][value] = prob[0]
+#     elif prob[0] < prob[1]:
+#         strains[1][value] = prob[1]
+#     else:
+#         unknown[value] = prob
+
 strains = list(tb_pred_result.keys())
-strains[0] = {}
-strains[1] = {}
-unknown = {}
-for key, value in dr_dict.items(): #key is freqs value is dr
-    prob = model.predict_proba(np.array(float(key)).reshape(-1,1))
+strains[0] = []
+strains[1] = []
+unknown = []
+
+for element in dr_dict: #key is freqs value is dr
+    prob = model.predict_proba(np.array(element["freq"]).reshape(-1,1))
     prob = prob[0] #the output from predict_proba is a list of a list
     if prob[0] > prob[1]:
-        strains[0][value] = prob[0]
-    elif prob[0] < prob[1]:
-        strains[1][value] = prob[1]
-    else:
-        unknown[value] = prob
+        dict_ = {"prediction_confidence" : prob[0], 
+                 "info" : element}
+        strains[0].append(dict_)
 
-strains[0] = dict(sorted(strains[0].items(), key=lambda item: item[1], reverse=True))
-strains[1] = dict(sorted(strains[1].items(), key=lambda item: item[1], reverse=True))
+    elif prob[0] < prob[1]:
+        dict_ = {"prediction_confidence" : prob[1], 
+                 "info" : element}
+        strains[1].append(dict_)
+    
+    else:
+        dict_ = {"prediction_confidence" : prob, 
+                 "info" : element}
+        unknown.append(dict_)
+
+strains[0] = sorted(strains[0], key=lambda d: d['prediction_confidence']) 
+strains[1] = sorted(strains[1], key=lambda d: d['prediction_confidence']) 
+
+# strains[0] = dict(sorted(strains[0].items(), key=lambda item: item[1], reverse=True))
+# strains[1] = dict(sorted(strains[1].items(), key=lambda item: item[1], reverse=True))
 
 #%%
 dr_output = {"lineage": [
@@ -118,8 +150,9 @@ dr_output = {"lineage": [
             "Unknown50-50DR" : unknown,
             "gmm_tb-profiler_MSE": mse
 }
-        
-
+#%%
+print(dr_output)        
+#%%
             # list(tb_pred_result.keys())[1]:strains[1]}
 
 name = vcf_file.split('/')[-1].split('.vcf')[0]

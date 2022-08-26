@@ -1,0 +1,22 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.5011061946902655,
+      "gmm_pred_UB": 0.5095202050436717,
+      "gmm_pred_LB": 0.5055251396264103,
+      "resistance_pred": {}
+    },
+    {
+      "lin": "lineage4.4.1.1",
+      "tb_pred": 0.4883177570093458,
+      "gmm_pred_UB": 0.49938943717360823,
+      "gmm_pred_LB": 0.49260109085914067,
+      "resistance_pred": {
+        "rifampicin": 1.0
+      }
+    }
+  ],
+  "Unknown50-50DR": {},
+  "gmm_tb-profiler_MSE": 5.0057649604438626e-05
+}

@@ -1,0 +1,25 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage1.2.2.2",
+      "tb_pred": 0.594551282051282,
+      "gmm_pred_UB": 0.5902739235818698,
+      "gmm_pred_LB": 0.5546849825873296,
+      "resistance_pred": {}
+    },
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.3920265780730897,
+      "gmm_pred_UB": 0.4531957370555276,
+      "gmm_pred_LB": 0.4119318286187109,
+      "resistance_pred": {
+        "ethambutol": 0.9999999999999725,
+        "streptomycin": 0.9999999999403253,
+        "isoniazid": 0.9999998505257447,
+        "rifampicin": 0.999994598360124
+      }
+    }
+  ],
+  "Unknown50-50DR": {},
+  "gmm_tb-profiler_MSE": 0.0010652153020076695
+}

@@ -1,0 +1,24 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.3.3",
+      "tb_pred": 0.9661876584953508,
+      "gmm_pred_UB": 0.8746956691997726,
+      "gmm_pred_LB": 0.7052696835757085,
+      "resistance_pred": {}
+    },
+    {
+      "lin": "lineage3.1",
+      "tb_pred": 0.1016949152542373,
+      "gmm_pred_UB": 0.33368010374267054,
+      "gmm_pred_LB": 0.22386014074939223,
+      "resistance_pred": {
+        "ofloxacin": 1.0,
+        "isoniazid": 1.0,
+        "ethambutol": 1.0
+      }
+    }
+  ],
+  "Unknown50-50DR": {},
+  "gmm_tb-profiler_MSE": 0.031201912325364983
+}

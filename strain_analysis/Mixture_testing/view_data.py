@@ -1,6 +1,7 @@
 #this is to view the info and extract sublin info from the json file 
 #created - 08.08.2022
 #%%
+from re import sub
 from unittest import result
 from icecream import ic
 import numpy as np
@@ -33,24 +34,19 @@ with open(NAME_FILE, "r") as f:
 
 #%%
 def minorStrainFreq(json_results):
-    sublin = {}
+    sublin_dict = {}
     for x in json_results['lineage']:
-        lineage = x['lin'].split(".")[0]
-        if lineage in sublin.keys():
-            sublin[lineage].append(x['frac'])
-        else:
-            sublin[lineage] = []
-            sublin[lineage].append(x['frac'])
-
-    for key, value in sublin.items(): #key-lineage, value-frac
-        sublin[key] = mean(value)
-    sublin = dict(sorted(sublin.items(), key=lambda item: item[1], reverse=True)) #get decending order so that we can know which is which corresponding to the model prediction
+        if x['lin'] == sublin[0] or x['lin'] == sublin[1]:
+            lineage = x['lin']
+    #add lineage-frac to dictionary if the lineage don't exist, add it first
+            sublin_dict[lineage] = x['frac']
     # contamination = len(sublin) > 2 #report that there is likely contamination
-    return min(sublin.values())
+    return min(sublin_dict.values())
 
 # %% sublineage mixinfection data import from json files (tb-p output)
-sublineages = []
+# sublineages = []
 mixed_infection_sub = []
+single_infection_sub = []
 mixed_infection_count = 0
 minor_allele_freq = []
 for x in json_names:
@@ -58,23 +54,25 @@ for x in json_names:
     json_results = json.load(open(FILE_PATH))
     sublin = json_results["sublin"]
     sublin = sublin.split(';')
-    if len(sublin) > 1 and sublin[-1] != '':
+    if "" in sublin:
+        sublin.remove("")
+    if len(sublin) > 1:
         # print("=======Mix infection!=======")
         minor_allele_freq.append(minorStrainFreq(json_results))
         mixed_infection_count += 1
-        mixed_infection_sub.append(sublin)
+        mixed_infection_sub.append(sublin[0])
+        mixed_infection_sub.append(sublin[1])
 
-    sublineages.append(sublin[0])
+    if len(sublin) == 1:
+        single_infection_sub.append(sublin[0])
+
+    # sublineages.append(sublin[0])
 
 if mixed_infection_count > 0:
     print("Mixed infection identified")
 else:
     print("No mixed infection detected")
 
-
-#%% creating flat list so that number of each sublineage can be counted
-mixed_infection_sub
-flat_mixed_infection = [item for sublist in mixed_infection_sub for item in sublist]
 
 # %%
 def uniq_lin(lin_):
@@ -86,35 +84,77 @@ def uniq_lin(lin_):
     return lin_count, lin_unique
 
 
+
+
 # %% mainlineage mixinfection data import from json files (tb-p output)
-mix_infect = 0
-mixed_infection_main =[]
-main_lineages = []
-minor_allele_freq = []
+# mix_infect = 0
+# mixed_infection_main =[]
+# main_lineages = []
+# minor_allele_freq = []
 
-for x in json_names:
-    FILE_PATH = os.path.join(FOLDER_PATH, x)
-    json_results = json.load(open(FILE_PATH))
-    minor_allele_freq.append(minorStrainFreq(json_results))
-    mainlin = json_results["main_lin"]
-    mainlin = mainlin.split(';')
-    if len(mainlin) > 1 and mainlin[-1] != '':
-        print("=======Mix infection!=======")
-        mix_infect = 1
-        mixed_infection_main.append(mainlin)
-    main_lineages.append(mainlin)
+# for x in json_names:
+#     FILE_PATH = os.path.join(FOLDER_PATH, x)
+#     json_results = json.load(open(FILE_PATH))
+#     minor_allele_freq.append(minorStrainFreq(json_results))
+#     mainlin = json_results["main_lin"]
+#     mainlin = mainlin.split(';')
+#     if len(mainlin) > 1 and mainlin[-1] != '':
+#         print("=======Mix infection!=======")
+#         mix_infect = 1
+#         mixed_infection_main.append(mainlin)
+#     main_lineages.append(mainlin)
 
-print("mix_infect:",mix_infect)
+# print("mix_infect:",mix_infect)
 
 
-# %%
-mainlin_count, mainlin_unique = uniq_lin(list(np.concatenate(mixed_infection_main)))
-print(mainlin_count)
-
-sublin_count, sublin_unique = uniq_lin(list(np.concatenate(mixed_infection_sub)))
+#%% 
+sublin_count, sublin_unique = uniq_lin(mixed_infection_sub)
+single_sublin_count, single_sublin_unique = uniq_lin(single_infection_sub)
 
 #%%
-sublin_count
+duplicate_list = []
+
+for x in sublin_count.keys():
+    if x in single_sublin_count.keys():
+        duplicate_list.append(x)
+
+sublin_ratios = {}
+for x in duplicate_list:
+    sublin_ratios[x] = sublin_count[x] / (single_sublin_count[x] +sublin_count[x])
+
+lin_count = dict(sorted(sublin_ratios.items(), key=lambda item: item[1], reverse=True))
+
+lin_count = dict(itertools.islice(lin_count.items(), 20))
+
+
+
+
+#%%
+fig = go.Figure()
+fig.add_trace(go.Bar(x = np.arange(1,len(lin_count),1), y = list(lin_count.values())))
+# sublin_ratios.keys()
+# fig.update_traces(hoverinfo='label', textinfo='value', textfont_size=20,)
+fig.update_layout(
+    xaxis = dict(
+        tickmode = 'array',
+        tickvals = np.arange(1,len(lin_count),1),
+        ticktext = tuple(lin_count.keys()),
+        tickangle=45,
+        tickfont = dict(size=12)
+    ),
+    yaxis = dict(titlefont = dict(size = 5)),
+    title="Ratio of Sublineage involved in mixed infection",
+    xaxis_title="Sublineages",
+    yaxis_title="Proportion involved in mixed infection",
+    font=dict(
+        family="Courier New, monospace",
+        size=13,
+        color="RebeccaPurple"
+    )
+)
+fig.show()
+
+
 # %%
 def piechart(lin_count, highest=True):
     total = sum(lin_count.values())
@@ -140,7 +180,7 @@ def piechart(lin_count, highest=True):
 piechart(sublin_count)
 
 # %%
-piechart(mainlin_count)
+# piechart(mainlin_count)
 # %%
 def minorStrainHist(lin_count, highest=True):
     total = sum(lin_count.values())

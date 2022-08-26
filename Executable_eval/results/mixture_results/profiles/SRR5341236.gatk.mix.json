@@ -1,0 +1,23 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.5674418604651162,
+      "gmm_pred_UB": 0.5782592966738312,
+      "gmm_pred_LB": 0.5401425884620686,
+      "resistance_pred": {
+        "cycloserine": 1.0,
+        "kanamycin": 0.9999999999998268
+      }
+    },
+    {
+      "lin": "lineage4.9",
+      "tb_pred": 0.39732142857142855,
+      "gmm_pred_UB": 0.4933333839818679,
+      "gmm_pred_LB": 0.4445606671132307,
+      "resistance_pred": {}
+    }
+  ],
+  "Unknown50-50DR": {},
+  "gmm_tb-profiler_MSE": 0.002599069434986757
+}

@@ -11,7 +11,6 @@ from unittest import result
 #function that inputs get the lineage fraction info tb-profiler output json file
 def tb_pred(json_file):
     failed = 0
-    sublin = {}
     json_results = json.load(open(json_file))
     sublin = json_results["sublin"]
     sublin = sublin.split(';')
@@ -44,9 +43,10 @@ def tb_pred(json_file):
 def tb_dr(json_file):
     dr_dict = {}
     json_results = json.load(open(json_file))
-    for var in json_results['dr_variants']:
-        drug_info = var["drugs"][0] #get the list inside the list
-        dr_dict[var["freq"]] = drug_info["drug"]
-    return dr_dict
+    # for var in json_results['dr_variants']:
+    #     drug_info = var["drugs"][0] #get the list inside the list
+    #     dr_dict[var["freq"]] = drug_info["drug"]
+    # return dr_dict
+    return json_results['dr_variants']
 
 

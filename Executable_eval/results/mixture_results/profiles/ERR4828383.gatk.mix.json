@@ -1,0 +1,23 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.8087431693989071,
+      "gmm_pred_UB": 0.7616108476722145,
+      "gmm_pred_LB": 0.6165962995408045,
+      "resistance_pred": {
+        "pyrazinamide": 0.9999963369764169,
+        "streptomycin": 0.9999879230030705
+      }
+    },
+    {
+      "lin": "lineage2.2.2",
+      "tb_pred": 0.17475728155339806,
+      "gmm_pred_UB": 0.2910725930651054,
+      "gmm_pred_LB": 0.2172814387679362,
+      "resistance_pred": {}
+    }
+  ],
+  "Unknown50-50DR": {},
+  "gmm_tb-profiler_MSE": 0.010310563543838629
+}
