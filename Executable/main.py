@@ -28,10 +28,10 @@ import tb_profiler
 import gmm_model
 
 #%% testing
-json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
-vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
-graph_option = False
-output_path = None
+# json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
+# vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
+# graph_option = False
+# output_path = None
 
 
 #%%
@@ -70,22 +70,8 @@ gmm_pred_result, model = gmm_model.model_pred(vcf_file, tail_cutoff = list(tb_pr
 
 mse = gmm_model.mse_cal(tb_pred_result, gmm_pred_result)
 
-model_means_ = np.concatenate(model.means_)
-model_covariances_ = np.concatenate(np.concatenate(model.covariances_))
-model_covariances_ = np.sqrt(model_covariances_/2 ) #standard deviation
 
-if model_means_[0] >= model_means_[1]:
-    m_mean = model_means_
-    m_covar = model_covariances_
-else:
-    model_means_[0] < model_means_[1]
-    m_mean = [model_means_[1], model_means_[0]]
-    m_covar = [model_covariances_[1] ,model_covariances_[0]]  
-
-strain1_bound = [m_mean[0]+m_covar[0], m_mean[0]-m_covar[0]] #1 std interval upper and lower bound for model predicted proportion for both strains
-strain2_bound = [m_mean[1]+m_covar[1], m_mean[1]-m_covar[1]]
-
-#%%
+#%%###########################################################################
 # strains = list(tb_pred_result.keys())
 # strains[0] = {}
 # strains[1] = {}
@@ -101,9 +87,11 @@ strain2_bound = [m_mean[1]+m_covar[1], m_mean[1]-m_covar[1]]
 #     else:
 #         unknown[value] = prob
 
-strains = list(tb_pred_result.keys())
-strains[0] = []
-strains[1] = []
+# strains = list(tb_pred_result.keys())
+# strains[0] = []
+# strains[1] = []
+strains_0 = []
+strains_1 = []
 unknown = []
 
 for element in dr_dict: #key is freqs value is dr
@@ -112,44 +100,80 @@ for element in dr_dict: #key is freqs value is dr
     if prob[0] > prob[1]:
         dict_ = {"prediction_confidence" : prob[0], 
                  "info" : element}
-        strains[0].append(dict_)
+        strains_0.append(dict_)
 
     elif prob[0] < prob[1]:
         dict_ = {"prediction_confidence" : prob[1], 
                  "info" : element}
-        strains[1].append(dict_)
+        strains_1.append(dict_)
     
     else:
         dict_ = {"prediction_confidence" : prob, 
                  "info" : element}
         unknown.append(dict_)
 
-strains[0] = sorted(strains[0], key=lambda d: d['prediction_confidence']) 
-strains[1] = sorted(strains[1], key=lambda d: d['prediction_confidence']) 
+strains_0 = sorted(strains_0, key=lambda d: d['prediction_confidence']) 
+strains_1 = sorted(strains_1, key=lambda d: d['prediction_confidence']) 
 
 # strains[0] = dict(sorted(strains[0].items(), key=lambda item: item[1], reverse=True))
 # strains[1] = dict(sorted(strains[1].items(), key=lambda item: item[1], reverse=True))
 
+
+m_mean = np.concatenate(model.means_)
+model_covariances_ = np.concatenate(np.concatenate(model.covariances_))
+m_covar = np.sqrt(model_covariances_/2 ) #standard deviation
+
+strain0_bound = [m_mean[0]+m_covar[0], m_mean[0]-m_covar[0]] #1 std interval upper and lower bound for model predicted proportion for both strains
+strain1_bound = [m_mean[1]+m_covar[1], m_mean[1]-m_covar[1]]
+
+#So the order of out pred_prob output should be the same as model_pred results, hence which adjust the ordering of these two together
+#tb prediction results has already by adjusted to have the bigger value infront so it doesn't need to be adjusted this way.
 #%%
-dr_output = {"lineage": [
-                {
-                "lin" : list(tb_pred_result.keys())[0],
-                "tb_pred" : list(tb_pred_result.values())[0],
-                "gmm_pred_UB" : strain1_bound[0],
-                "gmm_pred_LB" : strain1_bound[1],
-                "resistance_pred" : strains[0]
-                },
-                {
-                "lin" : list(tb_pred_result.keys())[1],
-                "tb_pred" : list(tb_pred_result.values())[1],
-                "gmm_pred_UB" : strain2_bound[0],
-                "gmm_pred_LB" : strain2_bound[1],
-                "resistance_pred" : strains[1]
-                }
-],
-            "Unknown50-50DR" : unknown,
-            "gmm_tb-profiler_MSE": mse
-}
+if m_mean[0] >= m_mean[1]:
+
+    dr_output = {"lineage": [
+                    {
+                    "lin" : list(tb_pred_result.keys())[0],
+                    "tb_pred" : list(tb_pred_result.values())[0],
+                    "gmm_pred_UB" : strain0_bound[0],
+                    "gmm_pred_LB" : strain0_bound[1],
+                    "resistance_pred" : strains_0
+                    },
+                    {
+                    "lin" : list(tb_pred_result.keys())[1],
+                    "tb_pred" : list(tb_pred_result.values())[1],
+                    "gmm_pred_UB" : strain1_bound[0],
+                    "gmm_pred_LB" : strain1_bound[1],
+                    "resistance_pred" : strains_1
+                    }
+    ],
+                "Unknown50-50DR" : unknown,
+                "gmm_tb-profiler_MSE": mse
+    }
+
+else:
+
+    dr_output = {"lineage": [
+                    {
+                    "lin" : list(tb_pred_result.keys())[0],
+                    "tb_pred" : list(tb_pred_result.values())[0],
+                    "gmm_pred_UB" : strain1_bound[0],
+                    "gmm_pred_LB" : strain1_bound[1],
+                    "resistance_pred" : strains_1
+                    },
+                    {
+                    "lin" : list(tb_pred_result.keys())[1],
+                    "tb_pred" : list(tb_pred_result.values())[1],
+                    "gmm_pred_UB" : strain0_bound[0],
+                    "gmm_pred_LB" : strain0_bound[1],
+                    "resistance_pred" : strains_0
+                    }
+    ],
+                "Unknown50-50DR" : unknown,
+                "gmm_tb-profiler_MSE": mse
+    }
+
+
 #%%
 print(dr_output)        
 #%%
@@ -173,8 +197,6 @@ print("=======================================================================")
 print(name)
 print(dr_output)
 print("=======================================================================")
-
-
 
 
 # def tb_profiler_dr(json_file):

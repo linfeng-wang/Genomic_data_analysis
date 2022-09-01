@@ -31,7 +31,7 @@ from pathlib import Path
 
 #%% test
 # vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
-# vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR2864229.gatk.vcf.gz' #file used creating the model
+# vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR221662.gatk.vcf.gz' #file used creating the model
 
 #%%
 def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
@@ -54,7 +54,7 @@ def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
 
             row = line.strip().split()
             ads = [int(x) for x in row[4].split(",")]
-            afs = [x/sum(ads) for x in ads]
+            afs = [x/(sum(ads)+1e-14) for x in ads]
             if afs[1]>1-tail_cutoff or afs[1]<tail_cutoff: #apply cut off value
                 continue
             pos.append(int(row[0]))
@@ -139,7 +139,7 @@ def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
         return [mu1, mu0], gm
 
 #Test
-# model_pred(vcf_file, tail_cutoff=0, graph = True)
+# model_pred(vcf_file, tail_cutoff=0, graph = False)
 
 
 # %%
