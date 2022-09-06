@@ -34,7 +34,7 @@ from pathlib import Path
 # vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR221662.gatk.vcf.gz' #file used creating the model
 
 #%%
-def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
+def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None, mix_num = 2):
     cwd = os.path.dirname(__file__) #this is used to get the folder location of the script so that new_exculsion file can be accessed
 
     if not os.path.exists(f"{cwd}/temp"):
@@ -62,7 +62,7 @@ def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None):
             scatter.append(ads)
 
         # freqs = [[0.7],[0.6],[0.4]]    
-        gm = GaussianMixture(n_components=2, random_state=0).fit(np.array(freqs).reshape(-1, 1))
+        gm = GaussianMixture(n_components=mix_num, random_state=0).fit(np.array(freqs).reshape(-1, 1))
         mu0 = gm.means_[1][0]
         mu1 = gm.means_[0][0]
         

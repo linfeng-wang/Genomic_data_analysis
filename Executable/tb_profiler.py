@@ -24,9 +24,17 @@ def tb_pred(json_file):
 
         sublin_dict = dict(sorted(sublin_dict.items(), key=lambda item: item[1], reverse=True)) #get decending order so that we can know which is which corresponding to the model prediction
     
-    elif len(sublin) > 2:
+    elif len(sublin) > 2 and sublin[-1] != '':
         failed = 1 #report that there is likely contamination or single strain infection
         sublin_dict = {}
+        for y in sublin:
+            for x in json_results['lineage']:
+                if x['lin'] == y:
+                    lineage = x['lin']
+    #add lineage-frac to dictionary if the lineage don't exist, add it first
+                sublin_dict[lineage] = x['frac']
+
+        sublin_dict = dict(sorted(sublin_dict.items(), key=lambda item: item[1], reverse=True)) #get decending order so that we can know which is which corresponding to the model prediction
     else:
         failed = 2
         sublin_dict = {}
