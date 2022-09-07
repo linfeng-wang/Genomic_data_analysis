@@ -99,17 +99,17 @@ for element in dr_dict: #key is freqs value is dr
     prob = prob[0] #the output from predict_proba is a list of a list
     if prob[0] > prob[1]:
         dict_ = {"prediction_confidence" : prob[0], 
-                 "info" : element}
+                "info" : element}
         strains_0.append(dict_)
 
     elif prob[0] < prob[1]:
         dict_ = {"prediction_confidence" : prob[1], 
-                 "info" : element}
+                "info" : element}
         strains_1.append(dict_)
     
     else:
         dict_ = {"prediction_confidence" : prob, 
-                 "info" : element}
+                "info" : element}
         unknown.append(dict_)
 
 strains_0 = sorted(strains_0, key=lambda d: d['prediction_confidence']) 

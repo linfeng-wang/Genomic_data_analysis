@@ -1,6 +1,7 @@
 #must input mixed infection cells
 #%%
 import argparse
+from array import array
 from statistics import mode
 import numpy as np
 # import pathogenprofiler as pp
@@ -75,10 +76,10 @@ gmm_pred_result, model = gmm_model.model_pred(vcf_file,
 
 mse = gmm_model.mse_cal(tb_pred_result, gmm_pred_result)
 
-
 # %%
 
-# %%
+
+
 
 #%%###########################################################################
 # strains = list(tb_pred_result.keys())
@@ -99,98 +100,122 @@ mse = gmm_model.mse_cal(tb_pred_result, gmm_pred_result)
 # strains = list(tb_pred_result.keys())
 # strains[0] = []
 # strains[1] = []
-strains_0 = []
-strains_1 = []
+
+#%%
+strain_dict = {}
+
+for x in range(len(gmm_pred_result)):
+    strain_dict[f"s{x}"] = {}
+
+#%%
+strain_dict
+#%%
 unknown = []
 
+# assigning resistance to strain first this strain arrangement is the same as strain the output from gmm
 for element in dr_dict: #key is freqs value is dr
     prob = model.predict_proba(np.array(element["freq"]).reshape(-1,1))
     prob = prob[0] #the output from predict_proba is a list of a list
-    if prob[0] > prob[1]:
-        dict_ = {"prediction_confidence" : prob[0], 
-                 "info" : element}
-        strains_0.append(dict_)
-
-    elif prob[0] < prob[1]:
-        dict_ = {"prediction_confidence" : prob[1], 
-                 "info" : element}
-        strains_1.append(dict_)
+    ind_max_prob = np.argmax(prob)
+    dict_ = {"prediction_confidence" : prob[ind_max_prob], 
+            "info" : element}
+    strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"] = []
+    strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"].append(dict_)
     
-    else:
+    if all(elem == prob[0] for elem in prob):
         dict_ = {"prediction_confidence" : prob, 
-                 "info" : element}
+                "info" : element}
         unknown.append(dict_)
+#%%
+strain_dict
+#%% effort trying to sort the the dr pred in order of prediction_confidence - doesn't work now
+# for k, v in strain_dict.items():
+#     v['DR_pred'] = sorted(v["DR_pred"], key=lambda d: d[0]['prediction_confidence'], reverse=True) 
+    #print(v)
+    # print(v['DR_pred'])
+    # x["DR_pred"] = sorted(x["DR_pred"], key=lambda d: d['prediction_confidence']) 
 
-strains_0 = sorted(strains_0, key=lambda d: d['prediction_confidence']) 
-strains_1 = sorted(strains_1, key=lambda d: d['prediction_confidence']) 
-
-# strains[0] = dict(sorted(strains[0].items(), key=lambda item: item[1], reverse=True))
-# strains[1] = dict(sorted(strains[1].items(), key=lambda item: item[1], reverse=True))
 
 
 m_mean = np.concatenate(model.means_)
 model_covariances_ = np.concatenate(np.concatenate(model.covariances_))
 m_covar = np.sqrt(model_covariances_/2 ) #standard deviation
 
-strain0_bound = [m_mean[0]+m_covar[0], m_mean[0]-m_covar[0]] #1 std interval upper and lower bound for model predicted proportion for both strains
-strain1_bound = [m_mean[1]+m_covar[1], m_mean[1]-m_covar[1]]
+for x in range(len(gmm_pred_result)):
+    strain_dict[list(strain_dict.keys())[x]]["gmm_pred"] = m_mean[x]
+    strain_dict[list(strain_dict.keys())[x]]["gmm_UB"] = m_mean[x]+m_covar[x]
+    strain_dict[list(strain_dict.keys())[x]]["gmm_LB"] = m_mean[x]-m_covar[x]
 
+
+# m_covar
+#%%
+strain_dict = dict(sorted(strain_dict.items(), key=lambda item: item["gmm_pred"], reverse=True))
+
+#%%
 #So the order of out pred_prob output should be the same as model_pred results, hence which adjust the ordering of these two together
 #tb prediction results has already by adjusted to have the bigger value infront so it doesn't need to be adjusted this way.
+# %%
+# strains[0] = dict(sorted(strains[0].items(), key=lambda item: item[1], reverse=True))
+n = len(strain_dict)
+
+for i in range(0,n): #bubble sort to get the lineage list from high to low gmm predicted proportion wise
+    for j in range(i+1, n):
+        a = (strain_dict[f"s{i}"]["gmm_pred"])
+        b = (strain_dict[f"s{j}"]["gmm_pred"])
+        if a < b:
+            strain_dict[f"s{i}"], strain_dict[f"s{j}"] = strain_dict[f"s{j}"], strain_dict[f"s{i}"]
+
+for x in range(len(gmm_pred_result)):
+    strain_dict[list(strain_dict.keys())[x]]["lin"] = list(tb_pred_result.keys())[x]
+    strain_dict[list(strain_dict.keys())[x]]["tb_pred"] = list(tb_pred_result.values())[x]
+#%% 
+# #adjusting the order of the output presented
+strain_dict1 = {}
+for x in range(len(gmm_pred_result)):
+    strain_dict1[f"s{x}"] = {}
+    strain_dict1[f"s{x}"]["lin"] = strain_dict[f"s{x}"]["lin"]
+    strain_dict1[f"s{x}"]["tb_pred"] = strain_dict[f"s{x}"]["tb_pred"]
+    strain_dict1[f"s{x}"]["gmm_pred"] = strain_dict[f"s{x}"]["gmm_pred"]
+    strain_dict1[f"s{x}"]["gmm_UB"] = strain_dict[f"s{x}"]["gmm_UB"]
+    strain_dict1[f"s{x}"]["gmm_LB"] = strain_dict[f"s{x}"]["gmm_LB"]
+    strain_dict1[f"s{x}"]["DR_pred"] = strain_dict[f"s{x}"]["DR_pred"]
+
 #%%
-if m_mean[0] >= m_mean[1]:
+dr_output = {}
+dr_output["lineage"] = []
+for x in strain_dict1.values():
+    dr_output["lineage"].append(x)
 
-    dr_output = {"lineage": [
-                    {
-                    "lin" : list(tb_pred_result.keys())[0],
-                    "tb_pred" : list(tb_pred_result.values())[0],
-                    "gmm_pred" :  m_mean[0],
-                    "gmm_pred_UB" : strain0_bound[0],
-                    "gmm_pred_LB" : strain0_bound[1],
-                    "resistance_pred" : strains_0
-                    },
-                    {
-                    "lin" : list(tb_pred_result.keys())[1],
-                    "tb_pred" : list(tb_pred_result.values())[1],
-                    "gmm_pred" :  m_mean[1],
-                    "gmm_pred_UB" : strain1_bound[0],
-                    "gmm_pred_LB" : strain1_bound[1],
-                    "resistance_pred" : strains_1
-                    }
-    ],
-                "Unknown50-50DR" : unknown,
-                "gmm_tb-profiler_MSE": mse
-    }
+dr_output["Unknown50-50DR"] = unknown
+dr_output["gmm_tb-profiler_MSE"]: mse
 
-else:
-
-    dr_output = {"lineage": [
-                    {
-                    "lin" : list(tb_pred_result.keys())[0],
-                    "tb_pred" : list(tb_pred_result.values())[0],
-                    "gmm_pred" :  m_mean[1],
-                    "gmm_pred_UB" : strain1_bound[0],
-                    "gmm_pred_LB" : strain1_bound[1],
-                    "resistance_pred" : strains_1
-                    },
-                    {
-                    "lin" : list(tb_pred_result.keys())[1],
-                    "tb_pred" : list(tb_pred_result.values())[1],
-                    "gmm_pred" :  m_mean[0],
-                    "gmm_pred_UB" : strain0_bound[0],
-                    "gmm_pred_LB" : strain0_bound[1],
-                    "resistance_pred" : strains_0
-                    }
-    ],
-                "Unknown50-50DR" : unknown,
-                "gmm_tb-profiler_MSE": mse
-    }
+#Outputting result into below format
+    # dr_output = {"lineage": [
+    #                 {
+    #                 "lin" : list(tb_pred_result.keys())[0],
+    #                 "tb_pred" : list(tb_pred_result.values())[0],
+    #                 "gmm_pred" :  m_mean[0],
+    #                 "gmm_pred_UB" : strain0_bound[0],
+    #                 "gmm_pred_LB" : strain0_bound[1],
+    #                 "resistance_pred" : strains_0
+    #                 },
+    #                 {
+    #                 "lin" : list(tb_pred_result.keys())[1],
+    #                 "tb_pred" : list(tb_pred_result.values())[1],
+    #                 "gmm_pred" :  m_mean[1],
+    #                 "gmm_pred_UB" : strain1_bound[0],
+    #                 "gmm_pred_LB" : strain1_bound[1],
+    #                 "resistance_pred" : strains_1
+    #                 }
+    # ],
+    #             "Unknown50-50DR" : unknown,
+    #             "gmm_tb-profiler_MSE": mse
+    # }
 
 
 #%%
 print(dr_output)        
 #%%
-            # list(tb_pred_result.keys())[1]:strains[1]}
 
 name = vcf_file.split('/')[-1].split('.vcf')[0]
 

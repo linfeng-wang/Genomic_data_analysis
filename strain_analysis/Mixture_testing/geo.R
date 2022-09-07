@@ -1,9 +1,11 @@
 library(tidyverse)
 library(tmap)    # for static and interactive maps
+library(jsonlite)
+install.packages("jsonlite")
 library(leaflet) # for interactive maps
 
-install.packages('RCurl')
-install.packages("tidyverse")
-install.packages('tmap')
-install.packages('leaflet')
+data()
+BOD
 
+
+ggplot(data = BOD, mapping = aes(x = time, y= demand )) + geom_point()
