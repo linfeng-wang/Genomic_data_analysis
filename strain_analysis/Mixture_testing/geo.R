@@ -1,11 +1,8 @@
 library(tidyverse)
 library(tmap)    # for static and interactive maps
 library(jsonlite)
-install.packages("jsonlite")
 library(leaflet) # for interactive maps
 
-data()
-BOD
+cars <- c(1, 3, 6, 4, 9)
+plot(cars)
 
-
-ggplot(data = BOD, mapping = aes(x = time, y= demand )) + geom_point()
