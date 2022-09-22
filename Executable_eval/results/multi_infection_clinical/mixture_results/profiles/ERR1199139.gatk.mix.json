@@ -1,0 +1,49 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.6.1.1",
+      "tb_pred": 0.8795180722891566,
+      "gmm_pred": 0.8302955466182216,
+      "gmm_pred_UB": 0.8492682833123896,
+      "gmm_pred_LB": 0.8113228099240536,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage4.3.4.2",
+      "tb_pred": 0.13975155279503104,
+      "gmm_pred": 0.19211734224790056,
+      "gmm_pred_UB": 0.250458650086071,
+      "gmm_pred_LB": 0.13377603440973015,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2155168,
+            "ref": "C",
+            "alt": "G",
+            "freq": 0.09722222222222222,
+            "feature_id": "CCP44675",
+            "type": "missense_variant",
+            "nucleotide_change": "c.944G>C",
+            "protein_change": "p.Ser315Thr",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser315Thr",
+            "locus_tag": "Rv1908c",
+            "gene": "katG",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.002582516469224057
+}

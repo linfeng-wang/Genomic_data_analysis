@@ -1,0 +1,134 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.8485273492286115,
+      "gmm_pred": 0.8054456120338173,
+      "gmm_pred_UB": 0.8559170673340283,
+      "gmm_pred_LB": 0.7549741567336062,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 781687,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.9112903225806451,
+            "feature_id": "CCP43425",
+            "type": "missense_variant",
+            "nucleotide_change": "c.128A>G",
+            "protein_change": "p.Lys43Arg",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Lys43Arg",
+            "locus_tag": "Rv0682",
+            "gene": "rpsL",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1674048,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.8292682926829268,
+            "feature_id": "CCP44244",
+            "type": "upstream_gene_variant",
+            "nucleotide_change": "c.-154G>A",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.-154G>A",
+            "locus_tag": "Rv1484",
+            "gene": "inhA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              },
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2155169,
+            "ref": "T",
+            "alt": "C",
+            "freq": 0.891566265060241,
+            "feature_id": "CCP44675",
+            "type": "missense_variant",
+            "nucleotide_change": "c.943A>G",
+            "protein_change": "p.Ser315Gly",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser315Gly",
+            "locus_tag": "Rv1908c",
+            "gene": "katG",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4247429,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.8620689655172413,
+            "feature_id": "CCP46624",
+            "type": "missense_variant",
+            "nucleotide_change": "c.916A>G",
+            "protein_change": "p.Met306Val",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Met306Val",
+            "locus_tag": "Rv3795",
+            "gene": "embB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethambutol",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage1.1.1.1",
+      "tb_pred": 0.1374233128834356,
+      "gmm_pred": 0.181217918387356,
+      "gmm_pred_UB": 0.2106521950384902,
+      "gmm_pred_LB": 0.15178364173622177,
+      "resistance_pred": []
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.001887001775482666
+}

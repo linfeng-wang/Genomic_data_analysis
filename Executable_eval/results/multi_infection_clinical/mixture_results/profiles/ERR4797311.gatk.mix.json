@@ -1,0 +1,411 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage3",
+      "tb_pred": 0.5108038029386344,
+      "gmm_pred": 0.5136381618851076,
+      "gmm_pred_UB": 0.5208916851704053,
+      "gmm_pred_LB": 0.5063846385998099,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.684497825883918,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2289016,
+            "ref": "T",
+            "alt": "G",
+            "freq": 0.5,
+            "feature_id": "CCP44816",
+            "type": "missense_variant",
+            "nucleotide_change": "c.226A>C",
+            "protein_change": "p.Thr76Pro",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Thr76Pro",
+            "locus_tag": "Rv2043c",
+            "gene": "pncA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "pyrazinamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9998969667939668,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 761155,
+            "ref": "C",
+            "alt": "T",
+            "freq": 0.5245901639344263,
+            "feature_id": "CCP43410",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1349C>T",
+            "protein_change": "p.Ser450Leu",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser450Leu",
+            "locus_tag": "Rv0667",
+            "gene": "rpoB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "rifampicin",
+                "confers": "resistance",
+                "literature": "10.1128/AAC.01093-18"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 7582,
+            "ref": "A",
+            "alt": "G",
+            "freq": 1.0,
+            "feature_id": "CCP42728",
+            "type": "missense_variant",
+            "nucleotide_change": "c.281A>G",
+            "protein_change": "p.Asp94Gly",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Asp94Gly",
+            "locus_tag": "Rv0006",
+            "gene": "gyrA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ofloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "moxifloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "levofloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "fluoroquinolones",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "ciprofloxacin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2155168,
+            "ref": "C",
+            "alt": "G",
+            "freq": 1.0,
+            "feature_id": "CCP44675",
+            "type": "missense_variant",
+            "nucleotide_change": "c.944G>C",
+            "protein_change": "p.Ser315Thr",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser315Thr",
+            "locus_tag": "Rv1908c",
+            "gene": "katG",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4247431,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.64,
+            "feature_id": "CCP46624",
+            "type": "missense_variant",
+            "nucleotide_change": "c.918G>A",
+            "protein_change": "p.Met306Ile",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Met306Ile",
+            "locus_tag": "Rv3795",
+            "gene": "embB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethambutol",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4326321,
+            "ref": "C",
+            "alt": "CA",
+            "freq": 0.6129032258064516,
+            "feature_id": "CCP46683",
+            "type": "frameshift_variant",
+            "nucleotide_change": "c.1152dupT",
+            "protein_change": "p.Gly385fs",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.1152dupT",
+            "locus_tag": "Rv3854c",
+            "gene": "ethA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage2.2.1.1",
+      "tb_pred": 0.4703196347031963,
+      "gmm_pred": 0.4845136179036108,
+      "gmm_pred_UB": 0.4910106642377529,
+      "gmm_pred_LB": 0.4780165715694687,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9087021114106264,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 761110,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.4897959183673469,
+            "feature_id": "CCP43410",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1304A>G",
+            "protein_change": "p.Asp435Gly",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Asp435Gly",
+            "locus_tag": "Rv0667",
+            "gene": "rpoB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "rifampicin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9862750802719211,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 761095,
+            "ref": "T",
+            "alt": "C",
+            "freq": 0.4827586206896552,
+            "feature_id": "CCP43410",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1289T>C",
+            "protein_change": "p.Leu430Pro",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Leu430Pro",
+            "locus_tag": "Rv0667",
+            "gene": "rpoB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "rifampicin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9975644147833358,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1473246,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.47619047619047616,
+            "feature_id": "EBG00000313325-1",
+            "type": "non_coding_transcript_exon_variant",
+            "nucleotide_change": "n.1401A>G",
+            "protein_change": "",
+            "annotation": [
+              {
+                "type": "who_confidence",
+                "drug": "streptomycin",
+                "who_confidence": "Uncertain significance"
+              }
+            ],
+            "alternate_consequences": [],
+            "change": "n.1401A>G",
+            "locus_tag": "EBG00000313325",
+            "gene": "rrs",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "kanamycin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "capreomycin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "aminoglycosides",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "amikacin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9983859469024612,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 781687,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.4745762711864407,
+            "feature_id": "CCP43425",
+            "type": "missense_variant",
+            "nucleotide_change": "c.128A>G",
+            "protein_change": "p.Lys43Arg",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Lys43Arg",
+            "locus_tag": "Rv0682",
+            "gene": "rpsL",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9991048900470101,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4248003,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.4722222222222222,
+            "feature_id": "CCP46624",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1490A>G",
+            "protein_change": "p.Gln497Arg",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Gln497Arg",
+            "locus_tag": "Rv3795",
+            "gene": "embB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethambutol",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999999344161402,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4247513,
+            "ref": "T",
+            "alt": "C",
+            "freq": 0.3108108108108108,
+            "feature_id": "CCP46624",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1000T>C",
+            "protein_change": "p.Tyr334His",
+            "annotation": [
+              {
+                "type": "who_confidence",
+                "drug": "ethambutol",
+                "who_confidence": "Uncertain significance"
+              }
+            ],
+            "alternate_consequences": [],
+            "change": "p.Tyr334His",
+            "locus_tag": "Rv3795",
+            "gene": "embB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethambutol",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999999407522093,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2289206,
+            "ref": "G",
+            "alt": "C",
+            "freq": 0.42105263157894735,
+            "feature_id": "CCP44816",
+            "type": "missense_variant",
+            "nucleotide_change": "c.36C>G",
+            "protein_change": "p.Asp12Glu",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Asp12Glu",
+            "locus_tag": "Rv2043c",
+            "gene": "pncA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "pyrazinamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.00010475137486555067
+}

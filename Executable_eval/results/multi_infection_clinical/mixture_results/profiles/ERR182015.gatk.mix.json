@@ -1,0 +1,22 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.6.1.2",
+      "tb_pred": 0.8683510638297872,
+      "gmm_pred": 0.8405776976933728,
+      "gmm_pred_UB": 0.8669284675370971,
+      "gmm_pred_LB": 0.8142269278496485,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage4.3.4.2.1",
+      "tb_pred": 0.10638297872340426,
+      "gmm_pred": 0.22578777609141856,
+      "gmm_pred_UB": 0.2932748040646399,
+      "gmm_pred_LB": 0.15830074811819722,
+      "resistance_pred": []
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.007514432750521945
+}

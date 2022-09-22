@@ -1,0 +1,75 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.8087431693989071,
+      "gmm_pred": 0.6891035736065094,
+      "gmm_pred_UB": 0.7616108476722144,
+      "gmm_pred_LB": 0.6165962995408044,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage2.2.2",
+      "tb_pred": 0.17475728155339806,
+      "gmm_pred": 0.25417701591652075,
+      "gmm_pred_UB": 0.29107259306510536,
+      "gmm_pred_LB": 0.21728143876793615,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999879230030705,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 781822,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.2,
+            "feature_id": "CCP43425",
+            "type": "missense_variant",
+            "nucleotide_change": "c.263A>G",
+            "protein_change": "p.Lys88Arg",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Lys88Arg",
+            "locus_tag": "Rv0682",
+            "gene": "rpsL",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999963369764169,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2289213,
+            "ref": "T",
+            "alt": "G",
+            "freq": 0.13043478260869565,
+            "feature_id": "CCP44816",
+            "type": "missense_variant",
+            "nucleotide_change": "c.29A>C",
+            "protein_change": "p.Gln10Pro",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Gln10Pro",
+            "locus_tag": "Rv2043c",
+            "gene": "pncA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "pyrazinamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.010310563543838637
+}

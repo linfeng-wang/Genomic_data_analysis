@@ -1,0 +1,49 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1.1",
+      "tb_pred": 0.8913043478260869,
+      "gmm_pred": 0.8835583494411734,
+      "gmm_pred_UB": 0.9096551975310266,
+      "gmm_pred_LB": 0.8574615013513202,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage4",
+      "tb_pred": 0.08675534991324466,
+      "gmm_pred": 0.14391601106539656,
+      "gmm_pred_UB": 0.21852907373790362,
+      "gmm_pred_LB": 0.0693029483928895,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2288953,
+            "ref": "C",
+            "alt": "A",
+            "freq": 0.10382513661202186,
+            "feature_id": "CCP44816",
+            "type": "missense_variant",
+            "nucleotide_change": "c.289G>T",
+            "protein_change": "p.Gly97Cys",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Gly97Cys",
+            "locus_tag": "Rv2043c",
+            "gene": "pncA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "pyrazinamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.0016636708371651054
+}

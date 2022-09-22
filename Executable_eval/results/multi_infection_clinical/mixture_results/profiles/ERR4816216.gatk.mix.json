@@ -1,0 +1,49 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage1.1.2",
+      "tb_pred": 0.9266917293233082,
+      "gmm_pred": 0.8864567429570128,
+      "gmm_pred_UB": 0.9125132884594942,
+      "gmm_pred_LB": 0.8604001974545314,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage4.1",
+      "tb_pred": 0.06458333333333334,
+      "gmm_pred": 0.18925461753001424,
+      "gmm_pred_UB": 0.27065152608884246,
+      "gmm_pred_LB": 0.10785770897118602,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1472733,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.23076923076923078,
+            "feature_id": "EBG00000313325-1",
+            "type": "non_coding_transcript_exon_variant",
+            "nucleotide_change": "n.888G>A",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "n.888G>A",
+            "locus_tag": "EBG00000313325",
+            "gene": "rrs",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.008580891615572777
+}

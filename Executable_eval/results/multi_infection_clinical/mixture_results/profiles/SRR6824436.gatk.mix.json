@@ -1,0 +1,69 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.5",
+      "tb_pred": 0.8584474885844748,
+      "gmm_pred": 0.8264306396248144,
+      "gmm_pred_UB": 0.8693269337857656,
+      "gmm_pred_LB": 0.7835343454638632,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage2.2.1.1",
+      "tb_pred": 0.08296943231441048,
+      "gmm_pred": 0.20512161130693168,
+      "gmm_pred_UB": 0.25681512533210366,
+      "gmm_pred_LB": 0.1534280972817597,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 7582,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.1,
+            "feature_id": "CCP42728",
+            "type": "missense_variant",
+            "nucleotide_change": "c.281A>G",
+            "protein_change": "p.Asp94Gly",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Asp94Gly",
+            "locus_tag": "Rv0006",
+            "gene": "gyrA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ofloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "moxifloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "levofloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "fluoroquinolones",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "ciprofloxacin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.007973116724963323
+}

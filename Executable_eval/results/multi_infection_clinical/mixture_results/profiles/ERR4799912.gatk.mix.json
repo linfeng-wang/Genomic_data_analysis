@@ -1,0 +1,200 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage1.2.2.2",
+      "tb_pred": 0.6536964980544747,
+      "gmm_pred": 0.6338166033083373,
+      "gmm_pred_UB": 0.6736656827689724,
+      "gmm_pred_LB": 0.5939675238477022,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage3.1.2",
+      "tb_pred": 0.26824817518248173,
+      "gmm_pred": 0.3546945975891885,
+      "gmm_pred_UB": 0.3918216269096747,
+      "gmm_pred_LB": 0.31756756826870225,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9830297795393566,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2155168,
+            "ref": "C",
+            "alt": "G",
+            "freq": 0.4393939393939394,
+            "feature_id": "CCP44675",
+            "type": "missense_variant",
+            "nucleotide_change": "c.944G>C",
+            "protein_change": "p.Ser315Thr",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser315Thr",
+            "locus_tag": "Rv1908c",
+            "gene": "katG",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9982833725935266,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4247431,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.41414141414141414,
+            "feature_id": "CCP46624",
+            "type": "missense_variant",
+            "nucleotide_change": "c.918G>A",
+            "protein_change": "p.Met306Ile",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Met306Ile",
+            "locus_tag": "Rv3795",
+            "gene": "embB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethambutol",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9998552668839311,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 7581,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.38666666666666666,
+            "feature_id": "CCP42728",
+            "type": "missense_variant",
+            "nucleotide_change": "c.280G>A",
+            "protein_change": "p.Asp94Asn",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Asp94Asn",
+            "locus_tag": "Rv0006",
+            "gene": "gyrA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ofloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "moxifloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "levofloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "fluoroquinolones",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "ciprofloxacin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999368994628444,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 761155,
+            "ref": "C",
+            "alt": "G",
+            "freq": 0.37735849056603776,
+            "feature_id": "CCP43410",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1349C>G",
+            "protein_change": "p.Ser450Trp",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser450Trp",
+            "locus_tag": "Rv0667",
+            "gene": "rpoB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "rifampicin",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999813024957862,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 781687,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.36363636363636365,
+            "feature_id": "CCP43425",
+            "type": "missense_variant",
+            "nucleotide_change": "c.128A>G",
+            "protein_change": "p.Lys43Arg",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Lys43Arg",
+            "locus_tag": "Rv0682",
+            "gene": "rpsL",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999884142315382,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2288720,
+            "ref": "C",
+            "alt": "CA",
+            "freq": 0.3582089552238806,
+            "feature_id": "CCP44816",
+            "type": "frameshift_variant",
+            "nucleotide_change": "c.521_522insT",
+            "protein_change": "p.Glu174fs",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.521_522insT",
+            "locus_tag": "Rv2043c",
+            "gene": "pncA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "pyrazinamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.003934097081018135
+}

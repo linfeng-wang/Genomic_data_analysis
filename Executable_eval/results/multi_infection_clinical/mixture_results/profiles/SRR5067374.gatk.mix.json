@@ -1,0 +1,82 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.2",
+      "tb_pred": 0.9049919484702094,
+      "gmm_pred": 0.8942727290583675,
+      "gmm_pred_UB": 0.919564677406124,
+      "gmm_pred_LB": 0.868980780710611,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999999993687858,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2155360,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.8888888888888888,
+            "feature_id": "CCP44675",
+            "type": "missense_variant",
+            "nucleotide_change": "c.752C>T",
+            "protein_change": "p.Thr251Met",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Thr251Met",
+            "locus_tag": "Rv1908c",
+            "gene": "katG",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999999999321045,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1674048,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.9428571428571428,
+            "feature_id": "CCP44244",
+            "type": "upstream_gene_variant",
+            "nucleotide_change": "c.-154G>A",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.-154G>A",
+            "locus_tag": "Rv1484",
+            "gene": "inhA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              },
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.0531496062992126,
+      "gmm_pred": 0.1714511147880608,
+      "gmm_pred_UB": 0.25142348566330913,
+      "gmm_pred_LB": 0.09147874391281245,
+      "resistance_pred": []
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.007055074287768115
+}

@@ -1,0 +1,54 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.1.2.1",
+      "tb_pred": 0.6439628482972136,
+      "gmm_pred": 0.5740106929808783,
+      "gmm_pred_UB": 0.6044841156243687,
+      "gmm_pred_LB": 0.5435372703373879,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage4.3.4.1",
+      "tb_pred": 0.35626535626535627,
+      "gmm_pred": 0.4193421027568793,
+      "gmm_pred_UB": 0.44782246085791355,
+      "gmm_pred_LB": 0.390861744655845,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999999995198596,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1673425,
+            "ref": "C",
+            "alt": "T",
+            "freq": 0.21951219512195122,
+            "feature_id": "CCP44243",
+            "type": "upstream_gene_variant",
+            "nucleotide_change": "c.-15C>T",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.-15C>T",
+            "locus_tag": "Rv1483",
+            "gene": "fabG1",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.004435989990678283
+}

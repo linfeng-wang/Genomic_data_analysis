@@ -1,0 +1,55 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.2",
+      "tb_pred": 0.9039039039039038,
+      "gmm_pred": 0.8963410651665465,
+      "gmm_pred_UB": 0.9287904901932853,
+      "gmm_pred_LB": 0.8638916401398078,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999951134113918,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4326333,
+            "ref": "C",
+            "alt": "G",
+            "freq": 0.8301886792452831,
+            "feature_id": "CCP46683",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1141G>C",
+            "protein_change": "p.Ala381Pro",
+            "annotation": [
+              {
+                "type": "who_confidence",
+                "drug": "ethionamide",
+                "who_confidence": "Uncertain significance"
+              }
+            ],
+            "alternate_consequences": [],
+            "change": "p.Ala381Pro",
+            "locus_tag": "Rv3854c",
+            "gene": "ethA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.05,
+      "gmm_pred": 0.21947582581598507,
+      "gmm_pred_UB": 0.3083966684154137,
+      "gmm_pred_LB": 0.13055498321655648,
+      "resistance_pred": []
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.014389626032888693
+}

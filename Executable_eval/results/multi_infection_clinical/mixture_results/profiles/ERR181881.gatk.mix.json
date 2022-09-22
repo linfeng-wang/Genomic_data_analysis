@@ -1,0 +1,75 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.3.4.2.1",
+      "tb_pred": 0.8640595903165735,
+      "gmm_pred": 0.8250227002012562,
+      "gmm_pred_UB": 0.8639137810177933,
+      "gmm_pred_LB": 0.7861316193847192,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage3.1.1",
+      "tb_pred": 0.10866141732283464,
+      "gmm_pred": 0.19775416449345917,
+      "gmm_pred_UB": 0.2548350520008306,
+      "gmm_pred_LB": 0.14067327698608773,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1472122,
+            "ref": "G",
+            "alt": "C",
+            "freq": 0.14893617021276595,
+            "feature_id": "EBG00000313325-1",
+            "type": "non_coding_transcript_exon_variant",
+            "nucleotide_change": "n.277G>C",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "n.277G>C",
+            "locus_tag": "EBG00000313325",
+            "gene": "rrs",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1472733,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.13043478260869565,
+            "feature_id": "EBG00000313325-1",
+            "type": "non_coding_transcript_exon_variant",
+            "nucleotide_change": "n.888G>A",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "n.888G>A",
+            "locus_tag": "EBG00000313325",
+            "gene": "rrs",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.004730698194142091
+}

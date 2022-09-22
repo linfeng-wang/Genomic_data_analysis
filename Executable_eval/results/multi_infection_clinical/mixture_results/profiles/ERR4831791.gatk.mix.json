@@ -1,0 +1,101 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.7775175644028103,
+      "gmm_pred": 0.7606718176975176,
+      "gmm_pred_UB": 0.8086850590366624,
+      "gmm_pred_LB": 0.7126585763583727,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 781687,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.8137931034482758,
+            "feature_id": "CCP43425",
+            "type": "missense_variant",
+            "nucleotide_change": "c.128A>G",
+            "protein_change": "p.Lys43Arg",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Lys43Arg",
+            "locus_tag": "Rv0682",
+            "gene": "rpsL",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2155168,
+            "ref": "C",
+            "alt": "G",
+            "freq": 0.7982456140350878,
+            "feature_id": "CCP44675",
+            "type": "missense_variant",
+            "nucleotide_change": "c.944G>C",
+            "protein_change": "p.Ser315Thr",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser315Thr",
+            "locus_tag": "Rv1908c",
+            "gene": "katG",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2747151,
+            "ref": "T",
+            "alt": "C",
+            "freq": 0.7844827586206896,
+            "feature_id": "CCP45240",
+            "type": "missense_variant",
+            "nucleotide_change": "c.448A>G",
+            "protein_change": "p.Ser150Gly",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser150Gly",
+            "locus_tag": "Rv2447c",
+            "gene": "folC",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "para-aminosalicylic_acid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage1.1.1",
+      "tb_pred": 0.1761467889908257,
+      "gmm_pred": 0.22498619714913,
+      "gmm_pred_UB": 0.2506369720125289,
+      "gmm_pred_LB": 0.19933542228573115,
+      "resistance_pred": []
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.001334533485656161
+}

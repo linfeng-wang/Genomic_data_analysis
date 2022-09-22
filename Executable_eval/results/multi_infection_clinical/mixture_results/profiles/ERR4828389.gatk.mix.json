@@ -1,0 +1,76 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage1.1.1",
+      "tb_pred": 0.5976331360946746,
+      "gmm_pred": 0.5422443080029218,
+      "gmm_pred_UB": 0.5601862610551623,
+      "gmm_pred_LB": 0.5243023549506812,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage2.2.1.2",
+      "tb_pred": 0.41630901287553645,
+      "gmm_pred": 0.46143344972146544,
+      "gmm_pred_UB": 0.48149292470384875,
+      "gmm_pred_LB": 0.44137397473908213,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9988130309534088,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4326439,
+            "ref": "GT",
+            "alt": "G",
+            "freq": 0.44680851063829785,
+            "feature_id": "CCP46683",
+            "type": "frameshift_variant",
+            "nucleotide_change": "c.1034delA",
+            "protein_change": "p.Asn345fs",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.1034delA",
+            "locus_tag": "Rv3854c",
+            "gene": "ethA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999999999999254,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 781687,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.29411764705882354,
+            "feature_id": "CCP43425",
+            "type": "missense_variant",
+            "nucleotide_change": "c.128A>G",
+            "protein_change": "p.Lys43Arg",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Lys43Arg",
+            "locus_tag": "Rv0682",
+            "gene": "rpsL",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.0025520685390199903
+}

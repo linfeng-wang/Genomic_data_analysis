@@ -1,0 +1,50 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.7751552795031056,
+      "gmm_pred": 0.7255149324481278,
+      "gmm_pred_UB": 0.7545335647323107,
+      "gmm_pred_LB": 0.6964963001639449,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage4.3.3",
+      "tb_pred": 0.22818791946308725,
+      "gmm_pred": 0.2812835667324453,
+      "gmm_pred_UB": 0.3180696902433652,
+      "gmm_pred_LB": 0.24449744322152545,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4407883,
+            "ref": "T",
+            "alt": "TC",
+            "freq": 0.2127659574468085,
+            "feature_id": "CCP46748",
+            "type": "frameshift_variant",
+            "nucleotide_change": "c.319dupG",
+            "protein_change": "p.Asp107fs",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.319dupG",
+            "locus_tag": "Rv3919c",
+            "gene": "gid",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.002641655907345365
+}

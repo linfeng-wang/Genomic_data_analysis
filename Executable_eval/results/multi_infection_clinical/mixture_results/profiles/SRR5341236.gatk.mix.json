@@ -1,0 +1,90 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.5674418604651162,
+      "gmm_pred": 0.5592009425679502,
+      "gmm_pred_UB": 0.5782592966738315,
+      "gmm_pred_LB": 0.5401425884620689,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage4.9",
+      "tb_pred": 0.39732142857142855,
+      "gmm_pred": 0.46894702554754947,
+      "gmm_pred_UB": 0.4933333839818681,
+      "gmm_pred_LB": 0.44456066711323083,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999999999998268,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1473246,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.32,
+            "feature_id": "EBG00000313325-1",
+            "type": "non_coding_transcript_exon_variant",
+            "nucleotide_change": "n.1401A>G",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "n.1401A>G",
+            "locus_tag": "EBG00000313325",
+            "gene": "rrs",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "kanamycin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "capreomycin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "aminoglycosides",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "amikacin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 3841411,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.2909090909090909,
+            "feature_id": "CCP46245",
+            "type": "missense_variant",
+            "nucleotide_change": "c.10T>C",
+            "protein_change": "p.Phe4Leu",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Phe4Leu",
+            "locus_tag": "Rv3423c",
+            "gene": "alr",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "cycloserine",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.0025990694349867674
+}

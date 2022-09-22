@@ -1,0 +1,103 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage3",
+      "tb_pred": 0.9050086355785838,
+      "gmm_pred": 0.8926422258179751,
+      "gmm_pred_UB": 0.9206423795162333,
+      "gmm_pred_LB": 0.864642072119717,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999827946527252,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4407992,
+            "ref": "C",
+            "alt": "A",
+            "freq": 0.803921568627451,
+            "feature_id": "CCP46748",
+            "type": "stop_gained",
+            "nucleotide_change": "c.211G>T",
+            "protein_change": "p.Gly71*",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Gly71*",
+            "locus_tag": "Rv3919c",
+            "gene": "gid",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage4.6.5",
+      "tb_pred": 0.05200945626477541,
+      "gmm_pred": 0.22324512152234433,
+      "gmm_pred_UB": 0.3106703165719131,
+      "gmm_pred_LB": 0.13581992647277558,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1918647,
+            "ref": "T",
+            "alt": "G",
+            "freq": 0.15254237288135594,
+            "feature_id": "CCP44459",
+            "type": "missense_variant",
+            "nucleotide_change": "c.708T>G",
+            "protein_change": "p.Asn236Lys",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Asn236Lys",
+            "locus_tag": "Rv1694",
+            "gene": "tlyA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "capreomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4247451,
+            "ref": "C",
+            "alt": "T",
+            "freq": 0.15384615384615385,
+            "feature_id": "CCP46624",
+            "type": "missense_variant",
+            "nucleotide_change": "c.938C>T",
+            "protein_change": "p.Ala313Val",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ala313Val",
+            "locus_tag": "Rv3795",
+            "gene": "embB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethambutol",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.014737290573284736
+}

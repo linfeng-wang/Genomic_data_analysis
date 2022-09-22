@@ -3,7 +3,7 @@
 import argparse
 from array import array
 from statistics import mode
-import numpy as np
+import numpy as np #numpy version 1.22 needed
 # import pathogenprofiler as pp
 from sklearn.mixture import GaussianMixture
 from sklearn.metrics import mean_squared_error, confusion_matrix, f1_score
@@ -28,10 +28,14 @@ import tb_profiler
 import gmm_model
 
 #%% testing
-json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
-vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
-graph_option = False
-output_path = None
+#json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
+#vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
+
+# vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR221637.gatk.vcf.gz'
+# json_file='/mnt/storage7/jody/tb_ena/tbprofiler/latest/results/ERR221637.results.json'
+
+# graph_option = False
+# output_path = None
 
 
 #%% #Input commands don't run in test
@@ -58,8 +62,8 @@ if failed == 1:
     print(f"Programme continued, 2+ strain mixture found in {vcf_file}")
     print("=======================")
 
-#     sys.exit(f"Programme stoped, contamination! in {vcf_file}")
-if failed == 2:
+#sys.exit(f"Programme stoped, contamination! in {vcf_file}")
+elif failed == 2:
     sys.exit(f"Programme stoped, no mixed infection in {vcf_file}")
 else:
     print("***********************")
@@ -68,6 +72,7 @@ else:
 
 dr_dict = tb_profiler.tb_dr(json_file)
 
+#%%
 gmm_pred_result, model = gmm_model.model_pred(vcf_file, 
                                             tail_cutoff = list(tb_pred_result.values())[1], 
                                             graph = graph_option, 
@@ -75,10 +80,6 @@ gmm_pred_result, model = gmm_model.model_pred(vcf_file,
                                             mix_num=len(tb_pred_result))
 
 mse = gmm_model.mse_cal(tb_pred_result, gmm_pred_result)
-
-# %%
-
-
 
 
 #%%###########################################################################
@@ -106,12 +107,10 @@ strain_dict = {}
 
 for x in range(len(gmm_pred_result)):
     strain_dict[f"s{x}"] = {}
-
-#%%
-strain_dict
-#%%
 unknown = []
 
+for x in list(strain_dict.keys()):
+    strain_dict[x]["DR_pred"] = []
 # assigning resistance to strain first this strain arrangement is the same as strain the output from gmm
 for element in dr_dict: #key is freqs value is dr
     prob = model.predict_proba(np.array(element["freq"]).reshape(-1,1))
@@ -119,22 +118,20 @@ for element in dr_dict: #key is freqs value is dr
     ind_max_prob = np.argmax(prob)
     dict_ = {"prediction_confidence" : prob[ind_max_prob], 
             "info" : element}
-    strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"] = []
+    # strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"] = []
     strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"].append(dict_)
     
     if all(elem == prob[0] for elem in prob):
         dict_ = {"prediction_confidence" : prob, 
                 "info" : element}
         unknown.append(dict_)
-#%%
-strain_dict
+
 #%% effort trying to sort the the dr pred in order of prediction_confidence - doesn't work now
 # for k, v in strain_dict.items():
 #     v['DR_pred'] = sorted(v["DR_pred"], key=lambda d: d[0]['prediction_confidence'], reverse=True) 
     #print(v)
     # print(v['DR_pred'])
     # x["DR_pred"] = sorted(x["DR_pred"], key=lambda d: d['prediction_confidence']) 
-
 
 
 m_mean = np.concatenate(model.means_)
@@ -147,15 +144,15 @@ for x in range(len(gmm_pred_result)):
     strain_dict[list(strain_dict.keys())[x]]["gmm_LB"] = m_mean[x]-m_covar[x]
 
 
-# m_covar
-#%%
-strain_dict = dict(sorted(strain_dict.items(), key=lambda item: item["gmm_pred"], reverse=True))
+#%% failed attempt to order by gmm pred
+# strain_dict = dict(sorted(strain_dict.items(), key=lambda item: item["gmm_pred"], reverse=True))
+# strains[0] = dict(sorted(strains[0].items(), key=lambda item: item[1], reverse=True))
 
-#%%
+
 #So the order of out pred_prob output should be the same as model_pred results, hence which adjust the ordering of these two together
 #tb prediction results has already by adjusted to have the bigger value infront so it doesn't need to be adjusted this way.
-# %%
-# strains[0] = dict(sorted(strains[0].items(), key=lambda item: item[1], reverse=True))
+
+#%% using bubble sort to order by gmm pred
 n = len(strain_dict)
 
 for i in range(0,n): #bubble sort to get the lineage list from high to low gmm predicted proportion wise
@@ -168,6 +165,7 @@ for i in range(0,n): #bubble sort to get the lineage list from high to low gmm p
 for x in range(len(gmm_pred_result)):
     strain_dict[list(strain_dict.keys())[x]]["lin"] = list(tb_pred_result.keys())[x]
     strain_dict[list(strain_dict.keys())[x]]["tb_pred"] = list(tb_pred_result.values())[x]
+
 #%% 
 # #adjusting the order of the output presented
 strain_dict1 = {}
@@ -214,9 +212,6 @@ dr_output["gmm_tb-profiler_MSE"]: mse
 
 
 #%%
-print(dr_output)        
-#%%
-
 name = vcf_file.split('/')[-1].split('.vcf')[0]
 
 if output_path == None:
@@ -261,10 +256,6 @@ print("=======================================================================")
 #         return pred[0], probs[0][pred][0]
 #     else:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 #         return None, pred[0], probs[0][pred][0]
-
-
-
-
 
 
 # %%

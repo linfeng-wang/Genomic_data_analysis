@@ -10,7 +10,7 @@ from unittest import result
 #%%
 #function that inputs get the lineage fraction info tb-profiler output json file
 def tb_pred(json_file):
-    failed = 0
+    output_status = 0
     json_results = json.load(open(json_file))
     sublin = json_results["sublin"]
     sublin = sublin.split(';')
@@ -25,7 +25,7 @@ def tb_pred(json_file):
         sublin_dict = dict(sorted(sublin_dict.items(), key=lambda item: item[1], reverse=True)) #get decending order so that we can know which is which corresponding to the model prediction
     
     elif len(sublin) > 2 and sublin[-1] != '':
-        failed = 1 #report that there is likely contamination or single strain infection
+        output_status = 1 #report that there is likely contamination or single strain infection
         sublin_dict = {}
         for y in sublin:
             for x in json_results['lineage']:
@@ -36,14 +36,14 @@ def tb_pred(json_file):
 
         sublin_dict = dict(sorted(sublin_dict.items(), key=lambda item: item[1], reverse=True)) #get decending order so that we can know which is which corresponding to the model prediction
     else:
-        failed = 2
+        output_status = 2
         sublin_dict = {}
 
-    return sublin_dict, failed
+    return sublin_dict, output_status
 
-# result, failed = tb_pred(json_file)
+# result, output_status = tb_pred(json_file)
 # # #%%
-# print(result, failed)
+# print(result, output_status)
 
 # %%
 #function that get the drug resistance info tb-profiler output json file

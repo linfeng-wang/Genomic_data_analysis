@@ -1,0 +1,149 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage1.1.1.1",
+      "tb_pred": 0.6666666666666666,
+      "gmm_pred": 0.6964967796470176,
+      "gmm_pred_UB": 0.7275340678377388,
+      "gmm_pred_LB": 0.6654594914562965,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999999999950164,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4407731,
+            "ref": "GC",
+            "alt": "G",
+            "freq": 0.7636363636363637,
+            "feature_id": "CCP46748",
+            "type": "frameshift_variant",
+            "nucleotide_change": "c.471delG",
+            "protein_change": "p.Arg158fs",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.471delG",
+            "locus_tag": "Rv3919c",
+            "gene": "gid",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.24678837052062205,
+      "gmm_pred": 0.3067558404590255,
+      "gmm_pred_UB": 0.3515734059971019,
+      "gmm_pred_LB": 0.26193827492094907,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 6579,
+            "ref": "C",
+            "alt": "T",
+            "freq": 0.13559322033898305,
+            "feature_id": "CCP42727",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1340C>T",
+            "protein_change": "p.Ser447Phe",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser447Phe",
+            "locus_tag": "Rv0005",
+            "gene": "gyrB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ofloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "moxifloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "levofloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "fluoroquinolones",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "ciprofloxacin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2155168,
+            "ref": "C",
+            "alt": "G",
+            "freq": 0.10434782608695652,
+            "feature_id": "CCP44675",
+            "type": "missense_variant",
+            "nucleotide_change": "c.944G>C",
+            "protein_change": "p.Ser315Thr",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser315Thr",
+            "locus_tag": "Rv1908c",
+            "gene": "katG",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4326439,
+            "ref": "GT",
+            "alt": "G",
+            "freq": 0.12087912087912088,
+            "feature_id": "CCP46683",
+            "type": "frameshift_variant",
+            "nucleotide_change": "c.1034delA",
+            "protein_change": "p.Asn345fs",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.1034delA",
+            "locus_tag": "Rv3854c",
+            "gene": "ethA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.0022429665456169118
+}

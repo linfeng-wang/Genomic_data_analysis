@@ -1,0 +1,49 @@
+{
+  "lineage": [
+    {
+      "lin": "La1.2.BCG",
+      "tb_pred": 0.49851632047477745,
+      "gmm_pred": 0.5305973584647697,
+      "gmm_pred_UB": 0.5417712831256369,
+      "gmm_pred_LB": 0.5194234338039025,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999403493494647,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2289073,
+            "ref": "G",
+            "alt": "C",
+            "freq": 0.6030534351145038,
+            "feature_id": "CCP44816",
+            "type": "missense_variant",
+            "nucleotide_change": "c.169C>G",
+            "protein_change": "p.His57Asp",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.His57Asp",
+            "locus_tag": "Rv2043c",
+            "gene": "pncA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "pyrazinamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage4",
+      "tb_pred": 0.4447004608294931,
+      "gmm_pred": 0.4824150165707049,
+      "gmm_pred_UB": 0.495931858393774,
+      "gmm_pred_LB": 0.4688981747476358,
+      "resistance_pred": []
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.0012257903566361501
+}

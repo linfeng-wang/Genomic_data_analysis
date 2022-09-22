@@ -1,0 +1,49 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.7",
+      "tb_pred": 0.526829268292683,
+      "gmm_pred": 0.5179355702750935,
+      "gmm_pred_UB": 0.5256453347316454,
+      "gmm_pred_LB": 0.5102258058185416,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage4.1.2.1",
+      "tb_pred": 0.46488052136133234,
+      "gmm_pred": 0.48366643797247016,
+      "gmm_pred_UB": 0.4920008509056264,
+      "gmm_pred_LB": 0.47533202503931393,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9549637482057574,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4247431,
+            "ref": "G",
+            "alt": "C",
+            "freq": 0.4915254237288136,
+            "feature_id": "CCP46624",
+            "type": "missense_variant",
+            "nucleotide_change": "c.918G>C",
+            "protein_change": "p.Met306Ile",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Met306Ile",
+            "locus_tag": "Rv3795",
+            "gene": "embB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethambutol",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.00021600426367434907
+}

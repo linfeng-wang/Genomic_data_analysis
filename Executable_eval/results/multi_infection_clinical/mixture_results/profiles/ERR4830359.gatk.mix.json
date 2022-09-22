@@ -1,0 +1,76 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.821917808219178,
+      "gmm_pred": 0.7719078537659878,
+      "gmm_pred_UB": 0.829425873258365,
+      "gmm_pred_LB": 0.7143898342736106,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1472359,
+            "ref": "A",
+            "alt": "C",
+            "freq": 0.7903225806451613,
+            "feature_id": "EBG00000313325-1",
+            "type": "non_coding_transcript_exon_variant",
+            "nucleotide_change": "n.514A>C",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "n.514A>C",
+            "locus_tag": "EBG00000313325",
+            "gene": "rrs",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage1.1.1.1",
+      "tb_pred": 0.15121951219512195,
+      "gmm_pred": 0.20507327822721771,
+      "gmm_pred_UB": 0.23289087120553192,
+      "gmm_pred_LB": 0.1772556852489035,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999999999999276,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1472750,
+            "ref": "C",
+            "alt": "G",
+            "freq": 0.13636363636363635,
+            "feature_id": "EBG00000313325-1",
+            "type": "non_coding_transcript_exon_variant",
+            "nucleotide_change": "n.905C>G",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "n.905C>G",
+            "locus_tag": "EBG00000313325",
+            "gene": "rrs",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.0027006118301249366
+}

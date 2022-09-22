@@ -1,0 +1,81 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.9392436453812771,
+      "gmm_pred": 0.9168368433523748,
+      "gmm_pred_UB": 0.9314749923118028,
+      "gmm_pred_LB": 0.9021986943929469,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999943144883219,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 781687,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.948051948051948,
+            "feature_id": "CCP43425",
+            "type": "missense_variant",
+            "nucleotide_change": "c.128A>G",
+            "protein_change": "p.Lys43Arg",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Lys43Arg",
+            "locus_tag": "Rv0682",
+            "gene": "rpsL",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999965182170434,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2154973,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.9271523178807947,
+            "feature_id": "CCP44675",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1139C>T",
+            "protein_change": "p.Thr380Ile",
+            "annotation": [
+              {
+                "type": "who_confidence",
+                "drug": "isoniazid",
+                "who_confidence": "Uncertain significance"
+              }
+            ],
+            "alternate_consequences": [],
+            "change": "p.Thr380Ile",
+            "locus_tag": "Rv1908c",
+            "gene": "katG",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage4",
+      "tb_pred": 0.061690314620604564,
+      "gmm_pred": 0.20815812724063554,
+      "gmm_pred_UB": 0.32896393209878994,
+      "gmm_pred_LB": 0.08735232238248114,
+      "resistance_pred": []
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.010977442455429464
+}

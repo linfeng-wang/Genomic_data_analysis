@@ -1,0 +1,82 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4",
+      "tb_pred": 0.5620655412115194,
+      "gmm_pred": 0.5284402689967538,
+      "gmm_pred_UB": 0.5531195718351617,
+      "gmm_pred_LB": 0.5037609661583459,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999714713557285,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4407796,
+            "ref": "G",
+            "alt": "C",
+            "freq": 0.11827956989247312,
+            "feature_id": "CCP46748",
+            "type": "stop_gained",
+            "nucleotide_change": "c.407C>G",
+            "protein_change": "p.Ser136*",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser136*",
+            "locus_tag": "Rv3919c",
+            "gene": "gid",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999976839318061,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2726418,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.5789473684210527,
+            "feature_id": "CCP45220",
+            "type": "missense_variant",
+            "nucleotide_change": "c.226G>A",
+            "protein_change": "p.Glu76Lys",
+            "annotation": [
+              {
+                "type": "who_confidence",
+                "drug": "isoniazid",
+                "who_confidence": "Uncertain significance"
+              }
+            ],
+            "alternate_consequences": [],
+            "change": "p.Glu76Lys",
+            "locus_tag": "Rv2428",
+            "gene": "ahpC",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage1.2.2.2",
+      "tb_pred": 0.40169332079021636,
+      "gmm_pred": 0.4404449120218321,
+      "gmm_pred_UB": 0.458415866802609,
+      "gmm_pred_LB": 0.42247395724105524,
+      "resistance_pred": []
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.0013161723772496645
+}

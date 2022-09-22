@@ -1,0 +1,49 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.1.2",
+      "tb_pred": 0.5997458703939009,
+      "gmm_pred": 0.5926880956370012,
+      "gmm_pred_UB": 0.611574902388903,
+      "gmm_pred_LB": 0.5738012888850994,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.999999999503302,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4327876,
+            "ref": "T",
+            "alt": "C",
+            "freq": 0.6150943396226415,
+            "feature_id": "CCP46684",
+            "type": "missense_variant",
+            "nucleotide_change": "c.328T>C",
+            "protein_change": "p.Phe110Leu",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Phe110Leu",
+            "locus_tag": "Rv3855",
+            "gene": "ethR",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage4.1.1.1",
+      "tb_pred": 0.36262760763426544,
+      "gmm_pred": 0.4091345523271945,
+      "gmm_pred_UB": 0.43125009703508166,
+      "gmm_pred_LB": 0.3870190076193073,
+      "resistance_pred": []
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.0011063540445951459
+}

@@ -1,0 +1,76 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.8256929637526652,
+      "gmm_pred": 0.8498241600266108,
+      "gmm_pred_UB": 0.8822522212927021,
+      "gmm_pred_LB": 0.8173960987605194,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 761139,
+            "ref": "C",
+            "alt": "T",
+            "freq": 0.9325842696629213,
+            "feature_id": "CCP43410",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1333C>T",
+            "protein_change": "p.His445Tyr",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.His445Tyr",
+            "locus_tag": "Rv0667",
+            "gene": "rpoB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "rifampicin",
+                "confers": "resistance",
+                "literature": "10.1128/AAC.01343-16"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2726141,
+            "ref": "C",
+            "alt": "T",
+            "freq": 0.9680851063829787,
+            "feature_id": "CCP45220",
+            "type": "upstream_gene_variant",
+            "nucleotide_change": "c.-52C>T",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.-52C>T",
+            "locus_tag": "Rv2428",
+            "gene": "ahpC",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage4.5",
+      "tb_pred": 0.08160983789826719,
+      "gmm_pred": 0.15297258108682785,
+      "gmm_pred_UB": 0.18525021906175135,
+      "gmm_pred_LB": 0.12069494311190435,
+      "resistance_pred": []
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.002837477874504072
+}

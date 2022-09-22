@@ -1,0 +1,91 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.8",
+      "tb_pred": 0.6111111111111112,
+      "gmm_pred": 0.5283485421018085,
+      "gmm_pred_UB": 0.5543340522327832,
+      "gmm_pred_LB": 0.5023630319708338,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999947618493635,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1473247,
+            "ref": "C",
+            "alt": "A",
+            "freq": 0.2,
+            "feature_id": "EBG00000313325-1",
+            "type": "non_coding_transcript_exon_variant",
+            "nucleotide_change": "n.1402C>A",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "n.1402C>A",
+            "locus_tag": "EBG00000313325",
+            "gene": "rrs",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "kanamycin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "capreomycin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "aminoglycosides",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "amikacin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage3",
+      "tb_pred": 0.4010327022375215,
+      "gmm_pred": 0.43822177429355474,
+      "gmm_pred_UB": 0.45464430675701506,
+      "gmm_pred_LB": 0.42179924183009443,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9772273999524449,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1472733,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.43478260869565216,
+            "feature_id": "EBG00000313325-1",
+            "type": "non_coding_transcript_exon_variant",
+            "nucleotide_change": "n.888G>A",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "n.888G>A",
+            "locus_tag": "EBG00000313325",
+            "gene": "rrs",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.004116334954704209
+}

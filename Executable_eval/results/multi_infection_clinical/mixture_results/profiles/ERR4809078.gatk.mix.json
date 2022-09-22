@@ -1,0 +1,198 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage1.2.2.2",
+      "tb_pred": 0.9409221902017291,
+      "gmm_pred": 0.9036895550688212,
+      "gmm_pred_UB": 0.921275460514673,
+      "gmm_pred_LB": 0.8861036496229694,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999983246373115,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2288952,
+            "ref": "C",
+            "alt": "T",
+            "freq": 0.8596491228070176,
+            "feature_id": "CCP44816",
+            "type": "missense_variant",
+            "nucleotide_change": "c.290G>A",
+            "protein_change": "p.Gly97Asp",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Gly97Asp",
+            "locus_tag": "Rv2043c",
+            "gene": "pncA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "pyrazinamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999995300240802,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1674048,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.8727272727272727,
+            "feature_id": "CCP44244",
+            "type": "upstream_gene_variant",
+            "nucleotide_change": "c.-154G>A",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.-154G>A",
+            "locus_tag": "Rv1484",
+            "gene": "inhA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              },
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999999183713262,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1674782,
+            "ref": "T",
+            "alt": "C",
+            "freq": 0.8990825688073395,
+            "feature_id": "CCP44244",
+            "type": "missense_variant",
+            "nucleotide_change": "c.581T>C",
+            "protein_change": "p.Ile194Thr",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ile194Thr",
+            "locus_tag": "Rv1484",
+            "gene": "inhA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999999559849232,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4247429,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.92,
+            "feature_id": "CCP46624",
+            "type": "missense_variant",
+            "nucleotide_change": "c.916A>G",
+            "protein_change": "p.Met306Val",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Met306Val",
+            "locus_tag": "Rv3795",
+            "gene": "embB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethambutol",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999999572033367,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1472362,
+            "ref": "C",
+            "alt": "T",
+            "freq": 0.9344262295081968,
+            "feature_id": "EBG00000313325-1",
+            "type": "non_coding_transcript_exon_variant",
+            "nucleotide_change": "n.517C>T",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "n.517C>T",
+            "locus_tag": "EBG00000313325",
+            "gene": "rrs",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999999575971772,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 761155,
+            "ref": "C",
+            "alt": "T",
+            "freq": 0.9333333333333333,
+            "feature_id": "CCP43410",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1349C>T",
+            "protein_change": "p.Ser450Leu",
+            "annotation": [
+              {
+                "type": "resistance_association_confidence",
+                "drug": "rifampicin",
+                "confidence": "high"
+              }
+            ],
+            "alternate_consequences": [],
+            "change": "p.Ser450Leu",
+            "locus_tag": "Rv0667",
+            "gene": "rpoB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "rifampicin",
+                "confers": "resistance",
+                "literature": "10.1128/AAC.01093-18"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage4",
+      "tb_pred": 0.06621621621621622,
+      "gmm_pred": 0.21270555298590837,
+      "gmm_pred_UB": 0.3072380326211009,
+      "gmm_pred_LB": 0.11817307335071585,
+      "resistance_pred": []
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.011422697453082265
+}

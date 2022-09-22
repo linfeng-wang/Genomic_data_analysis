@@ -1,0 +1,76 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.4.1",
+      "tb_pred": 0.7592732778198334,
+      "gmm_pred": 0.7461639547854879,
+      "gmm_pred_UB": 0.7680826245418123,
+      "gmm_pred_LB": 0.7242452850291635,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage4.1.2.1",
+      "tb_pred": 0.21328671328671328,
+      "gmm_pred": 0.26402808583703213,
+      "gmm_pred_UB": 0.29333152032948046,
+      "gmm_pred_LB": 0.2347246513445838,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2289252,
+            "ref": "T",
+            "alt": "C",
+            "freq": 0.10828025477707007,
+            "feature_id": "CCP44816",
+            "type": "upstream_gene_variant",
+            "nucleotide_change": "c.-11A>G",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.-11A>G",
+            "locus_tag": "Rv2043c",
+            "gene": "pncA",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "pyrazinamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4407830,
+            "ref": "G",
+            "alt": "A",
+            "freq": 0.2233502538071066,
+            "feature_id": "CCP46748",
+            "type": "stop_gained",
+            "nucleotide_change": "c.373C>T",
+            "protein_change": "p.Gln125*",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Gln125*",
+            "locus_tag": "Rv3919c",
+            "gene": "gid",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.001373270619354537
+}

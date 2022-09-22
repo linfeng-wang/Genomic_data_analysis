@@ -1,0 +1,49 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.4.1.1",
+      "tb_pred": 0.7093023255813954,
+      "gmm_pred": 0.6850048099994119,
+      "gmm_pred_UB": 0.7257289055496534,
+      "gmm_pred_LB": 0.6442807144491705,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.2523489932885906,
+      "gmm_pred": 0.2975880576518187,
+      "gmm_pred_UB": 0.32473396471919397,
+      "gmm_pred_LB": 0.2704421505844435,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999999999998179,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 761095,
+            "ref": "T",
+            "alt": "C",
+            "freq": 0.2463768115942029,
+            "feature_id": "CCP43410",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1289T>C",
+            "protein_change": "p.Leu430Pro",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Leu430Pro",
+            "locus_tag": "Rv0667",
+            "gene": "rpoB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "rifampicin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.0013184711039585123
+}

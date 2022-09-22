@@ -1,0 +1,96 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage2.2.1",
+      "tb_pred": 0.7543859649122807,
+      "gmm_pred": 0.680231582840866,
+      "gmm_pred_UB": 0.7236178336589649,
+      "gmm_pred_LB": 0.6368453320227672,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9999999999980924,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 6621,
+            "ref": "A",
+            "alt": "C",
+            "freq": 0.7586206896551724,
+            "feature_id": "CCP42727",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1382A>C",
+            "protein_change": "p.Asp461Ala",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Asp461Ala",
+            "locus_tag": "Rv0005",
+            "gene": "gyrB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ofloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "moxifloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "levofloxacin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "fluoroquinolones",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "ciprofloxacin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage1.1.1.1",
+      "tb_pred": 0.242152466367713,
+      "gmm_pred": 0.31281619134914207,
+      "gmm_pred_UB": 0.35474926128423095,
+      "gmm_pred_LB": 0.2708831214140532,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 1.0,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 781687,
+            "ref": "A",
+            "alt": "G",
+            "freq": 0.11764705882352941,
+            "feature_id": "CCP43425",
+            "type": "missense_variant",
+            "nucleotide_change": "c.128A>G",
+            "protein_change": "p.Lys43Arg",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Lys43Arg",
+            "locus_tag": "Rv0682",
+            "gene": "rpsL",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.0052461172043221935
+}

@@ -1,0 +1,219 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage3",
+      "tb_pred": 0.7001703577512777,
+      "gmm_pred": 0.6494137361679847,
+      "gmm_pred_UB": 0.691316361293955,
+      "gmm_pred_LB": 0.6075111110420144,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9616102101789659,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 761139,
+            "ref": "C",
+            "alt": "A",
+            "freq": 0.5172413793103449,
+            "feature_id": "CCP43410",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1333C>A",
+            "protein_change": "p.His445Asn",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.His445Asn",
+            "locus_tag": "Rv0667",
+            "gene": "rpoB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "rifampicin",
+                "confers": "resistance",
+                "literature": "https://www.who.int/publications/i/item/9789240028173"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.999203512359781,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 779181,
+            "ref": "C",
+            "alt": "CG",
+            "freq": 0.5581395348837209,
+            "feature_id": "CCP43421",
+            "type": "frameshift_variant",
+            "nucleotide_change": "c.198dupG",
+            "protein_change": "p.Ile67fs",
+            "annotation": [
+              {
+                "type": "who_confidence",
+                "drug": "clofazimine",
+                "who_confidence": "Uncertain significance"
+              },
+              {
+                "type": "who_confidence",
+                "drug": "bedaquiline",
+                "who_confidence": "Uncertain significance"
+              }
+            ],
+            "alternate_consequences": [],
+            "change": "c.198dupG",
+            "locus_tag": "Rv0678",
+            "gene": "mmpR5",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "clofazimine",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "bedaquiline",
+                "confers": "resistance",
+                "literature": "10.1371/journal.pone.0102135"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "lin": "lineage4.5",
+      "tb_pred": 0.2744755244755245,
+      "gmm_pred": 0.34407762181299323,
+      "gmm_pred_UB": 0.38300676137408624,
+      "gmm_pred_LB": 0.3051484822519002,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9998384429664626,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 761128,
+            "ref": "C",
+            "alt": "T",
+            "freq": 0.3870967741935484,
+            "feature_id": "CCP43410",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1322C>T",
+            "protein_change": "p.Ser441Leu",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser441Leu",
+            "locus_tag": "Rv0667",
+            "gene": "rpoB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "rifampicin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999894410894322,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 4247574,
+            "ref": "A",
+            "alt": "C",
+            "freq": 0.3561643835616438,
+            "feature_id": "CCP46624",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1061A>C",
+            "protein_change": "p.Asp354Ala",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Asp354Ala",
+            "locus_tag": "Rv3795",
+            "gene": "embB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "ethambutol",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999996798019124,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2155168,
+            "ref": "C",
+            "alt": "G",
+            "freq": 0.3157894736842105,
+            "feature_id": "CCP44675",
+            "type": "missense_variant",
+            "nucleotide_change": "c.944G>C",
+            "protein_change": "p.Ser315Thr",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "p.Ser315Thr",
+            "locus_tag": "Rv1908c",
+            "gene": "katG",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999997990296048,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1472359,
+            "ref": "A",
+            "alt": "T",
+            "freq": 0.3103448275862069,
+            "feature_id": "EBG00000313325-1",
+            "type": "non_coding_transcript_exon_variant",
+            "nucleotide_change": "n.514A>T",
+            "protein_change": "",
+            "annotation": [
+              {
+                "type": "who_confidence",
+                "drug": "streptomycin",
+                "who_confidence": "Uncertain significance"
+              },
+              {
+                "type": "who_confidence",
+                "drug": "capreomycin",
+                "who_confidence": "Uncertain significance"
+              },
+              {
+                "type": "who_confidence",
+                "drug": "kanamycin",
+                "who_confidence": "Uncertain significance"
+              },
+              {
+                "type": "who_confidence",
+                "drug": "amikacin",
+                "who_confidence": "Uncertain significance"
+              }
+            ],
+            "alternate_consequences": [],
+            "change": "n.514A>T",
+            "locus_tag": "EBG00000313325",
+            "gene": "rrs",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "streptomycin",
+                "confers": "resistance"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.003710343294162038
+}

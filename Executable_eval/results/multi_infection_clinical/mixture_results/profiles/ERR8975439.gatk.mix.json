@@ -1,0 +1,86 @@
+{
+  "lineage": [
+    {
+      "lin": "lineage4.4.1.1",
+      "tb_pred": 0.645655877342419,
+      "gmm_pred": 0.6038630360493752,
+      "gmm_pred_UB": 0.6408888108589823,
+      "gmm_pred_LB": 0.5668372612397681,
+      "resistance_pred": []
+    },
+    {
+      "lin": "lineage4.3.4.1",
+      "tb_pred": 0.32059800664451826,
+      "gmm_pred": 0.3843654645017051,
+      "gmm_pred_UB": 0.4144413715921742,
+      "gmm_pred_LB": 0.354289557411236,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.999997951540968,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1673425,
+            "ref": "C",
+            "alt": "T",
+            "freq": 0.3333333333333333,
+            "feature_id": "CCP44243",
+            "type": "upstream_gene_variant",
+            "nucleotide_change": "c.-15C>T",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.-15C>T",
+            "locus_tag": "Rv1483",
+            "gene": "fabG1",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance"
+              }
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999999889095298,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 2715345,
+            "ref": "T",
+            "alt": "C",
+            "freq": 0.25,
+            "feature_id": "CCP45207",
+            "type": "upstream_gene_variant",
+            "nucleotide_change": "c.-13A>G",
+            "protein_change": "",
+            "annotation": [],
+            "alternate_consequences": [],
+            "change": "c.-13A>G",
+            "locus_tag": "Rv2416c",
+            "gene": "eis",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "kanamycin",
+                "confers": "resistance"
+              },
+              {
+                "type": "drug",
+                "drug": "kanamycin",
+                "confers": "resistance",
+                "literature": "10.1073/pnas.0907925106"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Unknown50-50DR": [],
+  "gmm_tb-profiler_MSE": 0.0029064651324568255
+}

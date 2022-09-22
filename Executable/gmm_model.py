@@ -110,12 +110,12 @@ def model_pred(vcf_file, tail_cutoff=0, graph = False, output_path = None, mix_n
         )
     
         fig.add_vrect(x0=strain1_bound[0], x1=strain1_bound[1], row="all", col=1,
-              annotation_text="", annotation_position="top left",
-              fillcolor="green", opacity=0.25, line_width=0)
+            annotation_text="", annotation_position="top left",
+            fillcolor="green", opacity=0.25, line_width=0)
 
         fig.add_vrect(x0=strain2_bound[0], x1=strain2_bound[1], row="all", col=1,
-              annotation_text="", annotation_position="top left",
-              fillcolor="green", opacity=0.25, line_width=0)
+            annotation_text="", annotation_position="top left",
+            fillcolor="green", opacity=0.25, line_width=0)
 
         name = vcf_file.split('/')[-1].split('.vcf')[0]
         output_file = "".join([name, ".gmm_fig.png"])

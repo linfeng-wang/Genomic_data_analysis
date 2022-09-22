@@ -24,4 +24,5 @@ cd $PROCESSED
 
 #running parallel tb-profiler on bam files of samples
 echo "***Running gmm model on sample files***"
-cat invitro_mix_name.csv | parallel --bar -j 40 "python $PIPELINE/main.py -vcf $VCF/{}.gatk.vcf.gz -json $JSON/{}.results.json" -g -o $PROCESSED/results/in_vitro_mix
+#cat invitro_mix_name.csv | parallel --bar -j 50 "python $PIPELINE/main.py -vcf $VCF/{}.gatk.vcf.gz -json $JSON/{}.results.json" -g -o $PROCESSED/results/2mix_infection
+cat clinical_sample_name.txt | parallel --bar -j 50 "python $PIPELINE/main.py -vcf $VCF/{}.gatk.vcf.gz -json $JSON/{}.results.json" -g -o $PROCESSED/results/multi_infection-clinical
