@@ -179,7 +179,7 @@ else:
 
 
 #%%
-print(dr_output)        
+# print(dr_output)        
 #%%
             # list(tb_pred_result.keys())[1]:strains[1]}
 

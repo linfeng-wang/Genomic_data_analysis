@@ -4,7 +4,7 @@ set -u
 set -o pipefail
 
 #this file is used to parallel run mix model pipeline
-#local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe
+#local path: cd ~/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable_eval
 
 VCF='/mnt/storage7/jody/tb_ena/per_sample'
 JSON='/mnt/storage7/jody/tb_ena/tbprofiler/latest/results/'

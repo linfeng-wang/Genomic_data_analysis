@@ -14,7 +14,7 @@ def tb_pred(json_file):
     json_results = json.load(open(json_file))
     sublin = json_results["sublin"]
     sublin = sublin.split(';')
-    if len(sublin) == 2 and sublin[-1] != '':
+    if len(sublin) == 2 and sublin[-1] != '': #there is 2 mixed strain infection output_status = 0
         sublin_dict = {}
         for x in json_results['lineage']:
             if x['lin'] == sublin[0] or x['lin'] == sublin[1]:
@@ -25,7 +25,7 @@ def tb_pred(json_file):
         sublin_dict = dict(sorted(sublin_dict.items(), key=lambda item: item[1], reverse=True)) #get decending order so that we can know which is which corresponding to the model prediction
     
     elif len(sublin) > 2 and sublin[-1] != '':
-        output_status = 1 #report that there is likely contamination or single strain infection
+        output_status = 1 #report that there is is more than 1 strain detected
         sublin_dict = {}
         for y in sublin:
             for x in json_results['lineage']:
@@ -36,7 +36,7 @@ def tb_pred(json_file):
 
         sublin_dict = dict(sorted(sublin_dict.items(), key=lambda item: item[1], reverse=True)) #get decending order so that we can know which is which corresponding to the model prediction
     else:
-        output_status = 2
+        output_status = 2  #when there is only single strain
         sublin_dict = {}
 
     return sublin_dict, output_status

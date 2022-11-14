@@ -19,7 +19,7 @@ from statistics import mean
 with open('tb-json_names.csv', 'w') as f:
     subprocess.run("cd /mnt/storage7//jody/tb_ena/tbprofiler/latest/results/; ls", shell=True, stdout=f, text=True)
 
-
+#! remove file name that ends with .txt
 #%%
 NAME_FILE='tb-json_names.csv'
 FOLDER_PATH = "/mnt/storage7//jody/tb_ena/tbprofiler/latest/results"
@@ -49,6 +49,7 @@ mixed_infection_sub = []
 single_infection_sub = []
 mixed_infection_count = 0
 minor_allele_freq = []
+#%%
 for x in json_names:
     FILE_PATH = os.path.join(FOLDER_PATH, x)
     json_results = json.load(open(FILE_PATH))
@@ -57,6 +58,7 @@ for x in json_names:
     if "" in sublin:
         sublin.remove("")
     if len(sublin) > 1:
+        print(sublin)
         # print("=======Mix infection!=======")
         minor_allele_freq.append(minorStrainFreq(json_results))
         mixed_infection_count += 1
@@ -67,7 +69,7 @@ for x in json_names:
         single_infection_sub.append(sublin[0])
 
     # sublineages.append(sublin[0])
-
+#%%
 if mixed_infection_count > 0:
     print("Mixed infection identified")
 else:
@@ -83,8 +85,23 @@ def uniq_lin(lin_):
 
     return lin_count, lin_unique
 
+#%%
+import plotly.express as px
 
+fig = px.histogram(minor_allele_freq)
 
+fig.update_layout(bargap=0.2)
+fig.update_layout(
+title="Histogram of Minor Allele Frequency of mixed-infectinon sample",
+    xaxis_title="Minor Allel Frequency",
+    yaxis_title="Sample Count"
+)
+
+fig.show()
+#%%
+
+len(minor_allele_freq)
+len(json_names)
 
 # %% mainlineage mixinfection data import from json files (tb-p output)
 # mix_infect = 0
@@ -203,7 +220,8 @@ def minorStrainHist(lin_count, highest=True):
     fig.show()
 
 
-
+#%%
+minorStrainHist(lin_count)
 
 # %%
 def minorAFreq_graph(freqs):

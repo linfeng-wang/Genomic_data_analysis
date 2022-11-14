@@ -40,10 +40,12 @@ import gmm_model
 
 #%% #Input commands don't run in test
 output_path = None
+multi = False
 
 parser = argparse.ArgumentParser(description='Mixed_infection_GMM',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("-vcf", "--vcf", help='VCF (gatk) file')
 parser.add_argument("-json", "--json", help='tb-profiler output json file')
+parser.add_argument("-m", "--multi_infection_detection", help='consider 2+ strain mixed infection as well', action='store_true')
 parser.add_argument("-g", "--graph", help='alternative snp frequency histogram', action='store_true')
 parser.add_argument("-o", "--output", help='output path')
 
@@ -53,17 +55,22 @@ graph_option = args.graph
 json_file = args.json
 vcf_file = args.vcf
 output_path = args.output
+multi = args.multi_infection_detection
 
 #%%
-tb_pred_result, failed = tb_profiler.tb_pred(json_file)
+tb_pred_result, output_status = tb_profiler.tb_pred(json_file)
 
-if failed == 1:
+if output_status == 1 and multi == True:
     print("=======================")
     print(f"Programme continued, 2+ strain mixture found in {vcf_file}")
     print("=======================")
-
-#sys.exit(f"Programme stoped, contamination! in {vcf_file}")
-elif failed == 2:
+    
+elif output_status == 1 and multi == False:
+    print("=======================")
+    sys.exit(f"Programme stoped, contamination! in {vcf_file}")
+    print("=======================")
+    
+elif output_status == 2:
     sys.exit(f"Programme stoped, no mixed infection in {vcf_file}")
 else:
     print("***********************")
