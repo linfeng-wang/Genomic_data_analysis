@@ -2,107 +2,20 @@
   "lineage": [
     {
       "lin": "lineage1.2.1.2.1",
-      "tb_pred": 0.6378091872791519,
-      "gmm_pred": 0.5822142339343072,
-      "gmm_pred_UB": 0.604656755240313,
-      "gmm_pred_LB": 0.5597717126283013,
+      "tb_pred": 0.5290663534938345,
+      "gmm_pred": 0.5113736886725706,
+      "gmm_pred_UB": 0.5175748875682996,
+      "gmm_pred_LB": 0.5051724897768416,
       "resistance_pred": [
         {
-          "prediction_confidence": 0.9832048024618201,
-          "info": {
-            "chrom": "Chromosome",
-            "genome_pos": 1673425,
-            "ref": "C",
-            "alt": "T",
-            "depth": 112,
-            "freq": 0.5267857142857143,
-            "feature_id": "CCP44243",
-            "type": "upstream_gene_variant",
-            "nucleotide_change": "c.-15C>T",
-            "protein_change": "",
-            "annotation": [
-              {
-                "type": "who_confidence",
-                "drug": "isoniazid",
-                "who_confidence": "Assoc w R"
-              },
-              {
-                "type": "who_confidence",
-                "drug": "ethionamide",
-                "who_confidence": "Assoc w R"
-              }
-            ],
-            "alternate_consequences": [],
-            "change": "c.-15C>T",
-            "locus_tag": "Rv1483",
-            "gene": "fabG1",
-            "drugs": [
-              {
-                "type": "drug",
-                "drug": "isoniazid",
-                "confers": "resistance",
-                "who confidence": "Assoc w R"
-              },
-              {
-                "type": "drug",
-                "drug": "ethionamide",
-                "confers": "resistance",
-                "who confidence": "Assoc w R"
-              }
-            ],
-            "gene_associated_drugs": [
-              "ethionamide",
-              "isoniazid"
-            ]
-          }
-        },
-        {
-          "prediction_confidence": 0.9955668012038641,
-          "info": {
-            "chrom": "Chromosome",
-            "genome_pos": 761140,
-            "ref": "A",
-            "alt": "T",
-            "depth": 121,
-            "freq": 0.5371900826446281,
-            "feature_id": "CCP43410",
-            "type": "missense_variant",
-            "nucleotide_change": "c.1334A>T",
-            "protein_change": "p.His445Leu",
-            "annotation": [
-              {
-                "type": "who_confidence",
-                "drug": "rifampicin",
-                "who_confidence": "Assoc w R"
-              }
-            ],
-            "alternate_consequences": [],
-            "change": "p.His445Leu",
-            "locus_tag": "Rv0667",
-            "gene": "rpoB",
-            "drugs": [
-              {
-                "type": "drug",
-                "drug": "rifampicin",
-                "literature": "10.1128/JCM.01599-17",
-                "confers": "resistance",
-                "who confidence": "Assoc w R"
-              }
-            ],
-            "gene_associated_drugs": [
-              "rifampicin"
-            ]
-          }
-        },
-        {
-          "prediction_confidence": 0.9999999910631899,
+          "prediction_confidence": 0.882314874433527,
           "info": {
             "chrom": "Chromosome",
             "genome_pos": 1472359,
             "ref": "A",
             "alt": "T",
-            "depth": 116,
-            "freq": 0.6551724137931034,
+            "depth": 123,
+            "freq": 0.5040650406504065,
             "feature_id": "EBG00000313325-1",
             "type": "non_coding_transcript_exon_variant",
             "nucleotide_change": "n.514A>T",
@@ -155,25 +68,16 @@
               "streptomycin"
             ]
           }
-        }
-      ]
-    },
-    {
-      "lin": "lineage4.3.4.2",
-      "tb_pred": 0.3721846846846847,
-      "gmm_pred": 0.4205086237468785,
-      "gmm_pred_UB": 0.44701067263019134,
-      "gmm_pred_LB": 0.3940065748635656,
-      "resistance_pred": [
+        },
         {
-          "prediction_confidence": 0.521612502531058,
+          "prediction_confidence": 1.0,
           "info": {
             "chrom": "Chromosome",
             "genome_pos": 761155,
             "ref": "C",
             "alt": "T",
-            "depth": 125,
-            "freq": 0.496,
+            "depth": 129,
+            "freq": 0.5658914728682171,
             "feature_id": "CCP43410",
             "type": "missense_variant",
             "nucleotide_change": "c.1349C>T",
@@ -202,16 +106,63 @@
               "rifampicin"
             ]
           }
+        }
+      ]
+    },
+    {
+      "lin": "lineage4.3.4.2",
+      "tb_pred": 0.47587354409317806,
+      "gmm_pred": 0.48805787423590813,
+      "gmm_pred_UB": 0.49328282157157133,
+      "gmm_pred_LB": 0.48283292690024493,
+      "resistance_pred": [
+        {
+          "prediction_confidence": 0.9984676558152915,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 761140,
+            "ref": "A",
+            "alt": "T",
+            "depth": 132,
+            "freq": 0.4772727272727273,
+            "feature_id": "CCP43410",
+            "type": "missense_variant",
+            "nucleotide_change": "c.1334A>T",
+            "protein_change": "p.His445Leu",
+            "annotation": [
+              {
+                "type": "who_confidence",
+                "drug": "rifampicin",
+                "who_confidence": "Assoc w R"
+              }
+            ],
+            "alternate_consequences": [],
+            "change": "p.His445Leu",
+            "locus_tag": "Rv0667",
+            "gene": "rpoB",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "rifampicin",
+                "literature": "10.1128/JCM.01599-17",
+                "confers": "resistance",
+                "who confidence": "Assoc w R"
+              }
+            ],
+            "gene_associated_drugs": [
+              "rifampicin"
+            ]
+          }
         },
         {
-          "prediction_confidence": 0.9999999261322797,
+          "prediction_confidence": 0.9994843946807404,
           "info": {
             "chrom": "Chromosome",
             "genome_pos": 2155168,
             "ref": "C",
             "alt": "G",
-            "depth": 141,
-            "freq": 0.3900709219858156,
+            "depth": 146,
+            "freq": 0.4726027397260274,
             "feature_id": "CCP44675",
             "type": "missense_variant",
             "nucleotide_change": "c.944G>C",
@@ -241,14 +192,63 @@
           }
         },
         {
-          "prediction_confidence": 0.9999999999967939,
+          "prediction_confidence": 0.9998870899410138,
+          "info": {
+            "chrom": "Chromosome",
+            "genome_pos": 1673425,
+            "ref": "C",
+            "alt": "T",
+            "depth": 131,
+            "freq": 0.3969465648854962,
+            "feature_id": "CCP44243",
+            "type": "upstream_gene_variant",
+            "nucleotide_change": "c.-15C>T",
+            "protein_change": "",
+            "annotation": [
+              {
+                "type": "who_confidence",
+                "drug": "isoniazid",
+                "who_confidence": "Assoc w R"
+              },
+              {
+                "type": "who_confidence",
+                "drug": "ethionamide",
+                "who_confidence": "Assoc w R"
+              }
+            ],
+            "alternate_consequences": [],
+            "change": "c.-15C>T",
+            "locus_tag": "Rv1483",
+            "gene": "fabG1",
+            "drugs": [
+              {
+                "type": "drug",
+                "drug": "isoniazid",
+                "confers": "resistance",
+                "who confidence": "Assoc w R"
+              },
+              {
+                "type": "drug",
+                "drug": "ethionamide",
+                "confers": "resistance",
+                "who confidence": "Assoc w R"
+              }
+            ],
+            "gene_associated_drugs": [
+              "ethionamide",
+              "isoniazid"
+            ]
+          }
+        },
+        {
+          "prediction_confidence": 0.9999947317324893,
           "info": {
             "chrom": "Chromosome",
             "genome_pos": 4247429,
             "ref": "A",
             "alt": "G",
-            "depth": 123,
-            "freq": 0.3333333333333333,
+            "depth": 120,
+            "freq": 0.43333333333333335,
             "feature_id": "CCP46624",
             "type": "missense_variant",
             "nucleotide_change": "c.916A>G",
@@ -281,5 +281,5 @@
     }
   ],
   "Unknown50-50DR": [],
-  "gmm_tb-profiler_MSE": 0.0027130009619510424
+  "gmm_tb-profiler_MSE": 0.00023074414475231415
 }

@@ -7,7 +7,7 @@ set -o pipefail
 #local path: cd /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable_eval
 
 VCF='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF'
-JSON='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/results'
+JSON='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/new_tbp_results/results'
 PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable_eval'
 PIPELINE='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable'
 
