@@ -3,20 +3,23 @@
 
 
 #paths
-RAW='../../../data/raw_fastq'
-PROCESSED='../../../data/processed'
+# RAW='../../../data/raw_fastq'
+# PROCESSED='../../../data/processed'
+# REFGENOME='../../../refgenome/MTB-h37rv_asm19595v2-eg18.fa'
+# PIPELINE='~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe'
+
+RAW='/mnt/storage7/lwang/trial_tb_philippines/data/insilico_mix_mix'
+PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/data/insilico_mix_bam'
 REFGENOME='../../../refgenome/MTB-h37rv_asm19595v2-eg18.fa'
-PIPELINE='~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe'
-
-
+PIPELINE='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe/'
 
 ##Mapping
 eval "$(conda shell.bash hook)"
 conda activate mapping
 echo =======Mapping=======
-mkdir cd $PROCESSED/sep/$1
-cd $PROCESSED/sep/$1
-
+# mkdir cd $PROCESSED/sep/$1
+# cd $PROCESSED/sep/$1
+cd $PROCESSED
 #Sample File found
 echo sample file: $1
 #trimming
@@ -61,7 +64,7 @@ echo ***Obtaining a high quality set of variants in VCF format***
 cat $1.raw.vcf | vcfutils.pl varFilter -d 10 -D 2000 > $1.filt.vcf
 #cat ERR6634978.raw.vcf | vcfutils.pl varFilter -d 10 -D 2000 > ERR6634978.filt.vcf
 #variant calling
-cd $PROCESSED/sep/$1
+# cd $PROCESSED/sep/$1
 gatk HaplotypeCaller -R $REFGENOME -I $PROCESSED/sep/$1/$1.bam -O $1.gatk.raw.vcf -ploidy 1
 # gatk HaplotypeCaller -R $REFGENOME -I data/trial/processed/sep/ERR6634978/ERR6634978.bam -O ERR6634978.gatk.raw.vcf -ploidy 1
 
@@ -85,5 +88,5 @@ tabix -p vcf $1.delly.vcf.gz
 
 #End of process for this file
 echo ======End of process for $1======
-cp $PROCESSED/sep/$1/* $PROCESSED/pool
-conda activate base
+# cp $PROCESSED/sep/$1/* $PROCESSED/pool
+# conda activate base

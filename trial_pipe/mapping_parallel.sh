@@ -2,12 +2,10 @@
 #local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe
 
 
-RAW='../../../data/raw_fastq'
-PROCESSED='../../../data/processed'
+RAW='/mnt/storage7/lwang/trial_tb_philippines/data/insilico_mix_mix'
+PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/data/insilico_mix_bam'
 REFGENOME='../../../refgenome/MTB-h37rv_asm19595v2-eg18.fa'
-PIPELINE='trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe'
-
-
+PIPELINE='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe/'
 
 #activating environment
 eval "$(conda shell.bash hook)"
@@ -24,7 +22,7 @@ ls | grep -E '_1' | cut -f 1 -d "_" > sample_name.txt
 eval "$(conda shell.bash hook)"
 conda activate base
 
-cd ~/$PIPELINE
+cd ~/$PROCESSED
 
 cat $RAW/sample_name.txt | parallel -j 5 "$PIPELINE/mapping.sh {}"
 

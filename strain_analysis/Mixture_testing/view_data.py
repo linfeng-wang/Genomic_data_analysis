@@ -14,15 +14,17 @@ import json
 import subprocess
 import itertools
 from statistics import mean
+from tqdm import tqdm
 
 #%% extract file names
-with open('tb-json_names.csv', 'w') as f:
-    subprocess.run("cd /mnt/storage7//jody/tb_ena/tbprofiler/latest/results/; ls", shell=True, stdout=f, text=True)
+# with open('tb-json_names.csv', 'w') as f:
+#     subprocess.run("cd /mnt/storage7//jody/tb_ena/tbprofiler/latest/results/; ls", shell=True, stdout=f, text=True)
 
-#! remove file name that ends with .txt
+#! remove file name that ends with .txt in tb-json_names.csv - otherwise JSONDecodeError: Expecting value: line 2 column 1 (char 1)
 #%%
 NAME_FILE='tb-json_names.csv'
 FOLDER_PATH = "/mnt/storage7//jody/tb_ena/tbprofiler/latest/results"
+
 
 #%% get the names of the samples
 with open(NAME_FILE, "r") as f:
@@ -30,7 +32,6 @@ with open(NAME_FILE, "r") as f:
     for line in f:
         data_line = line.rstrip().split('\n')
         json_names.append(data_line[0])
-
 
 #%%
 def minorStrainFreq(json_results):
@@ -49,27 +50,53 @@ mixed_infection_sub = []
 single_infection_sub = []
 mixed_infection_count = 0
 minor_allele_freq = []
-#%%
-for x in json_names:
+mixed_infection_id = []
+mixed_major_strain = {}
+mixed_minor_strain = {}
+
+for x in tqdm(json_names):
     FILE_PATH = os.path.join(FOLDER_PATH, x)
     json_results = json.load(open(FILE_PATH))
+    id = json_results['id']
     sublin = json_results["sublin"]
     sublin = sublin.split(';')
     if "" in sublin:
         sublin.remove("")
     if len(sublin) > 1:
-        print(sublin)
+        # print(sublin)
         # print("=======Mix infection!=======")
         minor_allele_freq.append(minorStrainFreq(json_results))
         mixed_infection_count += 1
         mixed_infection_sub.append(sublin[0])
         mixed_infection_sub.append(sublin[1])
-
+        mixed_infection_id.append(id)
+        sublineages = {}
+        for lin in json_results['lineage']:
+            if lin['lin']== sublin[0] or lin['lin']== sublin[1]:
+                sublineages[lin["lin"]] = lin["frac"]
+        
+        
+        #     mixed_minor_strain[list(sublineages.keys())[1]] = list(sublineages.values())[1]
+        if list(sublineages.values())[0] > list(sublineages.values())[1]:
+            mixed_major_strain[id] = [list(sublineages.keys())[0], list(sublineages.values())[0]]
+            mixed_minor_strain[id] = [list(sublineages.keys())[1], list(sublineages.values())[1]]
+            
+        else:            
+            mixed_major_strain[id] = [list(sublineages.keys())[1], list(sublineages.values())[1]]
+            mixed_minor_strain[id] = [list(sublineages.keys())[0], list(sublineages.values())[0]]
+        
     if len(sublin) == 1:
         single_infection_sub.append(sublin[0])
 
     # sublineages.append(sublin[0])
 #%%
+sublin_MSI_df =pd.DataFrame()
+sublin_MSI_df['id'] = mixed_major_strain.keys()
+sublin_MSI_df['Major_sublin'] = mixed_major_strain.values()
+sublin_MSI_df['Minor_sublin'] = mixed_minor_strain.values()
+sublin_MSI_df.to_csv('sublin_MSI_df.csv')
+#%%
+
 if mixed_infection_count > 0:
     print("Mixed infection identified")
 else:
@@ -103,6 +130,7 @@ fig.show()
 len(minor_allele_freq)
 len(json_names)
 
+#adding a table - accession number - major strain name(sublineage name) - minor strain name(sublineage name)  - major frequency 
 # %% mainlineage mixinfection data import from json files (tb-p output)
 # mix_infect = 0
 # mixed_infection_main =[]
@@ -130,27 +158,55 @@ single_sublin_count, single_sublin_unique = uniq_lin(single_infection_sub)
 
 #%%
 duplicate_list = []
-
+total_count = []
 for x in sublin_count.keys():
     if x in single_sublin_count.keys():
         duplicate_list.append(x)
 
 sublin_ratios = {}
 for x in duplicate_list:
-    sublin_ratios[x] = sublin_count[x] / (single_sublin_count[x] +sublin_count[x])
-
+    # sublin_ratios[x] = sublin_count[x] / (single_sublin_count[x] +sublin_count[x])
+    sublin_ratios[x] = []
+    sublin_ratios[x].append(sublin_count[x] / (single_sublin_count[x] +sublin_count[x]))
+    sublin_ratios[x].append(single_sublin_count[x] +sublin_count[x])
+    
 lin_count = dict(sorted(sublin_ratios.items(), key=lambda item: item[1], reverse=True))
 
 lin_count = dict(itertools.islice(lin_count.items(), 20))
 
-
-
-
 #%%
+count_ = []
+for x,y in zip(percent, total):
+    count_.append(x*y)
+    
+    
+percent = []
+total = []
+for k, v in lin_count.items():
+    percent.append(v[0])
+    total.append(v[1])
+
+
+colors = {'A':'#1f77b4',
+          'B':'firebrick'}
+
 fig = go.Figure()
-fig.add_trace(go.Bar(x = np.arange(1,len(lin_count),1), y = list(lin_count.values())))
+fig.add_trace(go.Bar(x = np.arange(1,len(lin_count),1), y = percent,  text=count_, textposition="outside"))
 # sublin_ratios.keys()
 # fig.update_traces(hoverinfo='label', textinfo='value', textfont_size=20,)
+fig.add_trace(go.Bar(x = np.arange(1,len(lin_count),1), y = np.zeros([len(lin_count)])
+,  text=total, textposition="outside", marker_color=colors['A'], textfont_color= 'white'))
+# sublin_ratios.keys()
+# fig.update_traces(hoverinfo='label', textinfo='value', textfont_size=20,)
+# fig.update_layout(
+#     xaxis = dict(
+#         tickmode = 'array',
+#         tickvals = np.arange(1,len(lin_count),1),
+#         ticktext = tuple(lin_count.keys()),
+#         tickangle=45,
+#         tickfont = dict(size=12)
+fig.update_yaxes(range=[0, 0.68])
+
 fig.update_layout(
     xaxis = dict(
         tickmode = 'array',
@@ -162,14 +218,17 @@ fig.update_layout(
     yaxis = dict(titlefont = dict(size = 5)),
     title="Ratio of Sublineage involved in mixed infection",
     xaxis_title="Sublineages",
-    yaxis_title="Proportion involved in mixed infection",
+    yaxis_title="Fraction involved in MSI",
     font=dict(
         family="Courier New, monospace",
         size=13,
         color="RebeccaPurple"
-    )
+    ),
+    barmode='overlay',
+    showlegend=False
 )
 fig.show()
+
 
 
 # %%
@@ -190,7 +249,7 @@ def piechart(lin_count, highest=True):
 
     fig = go.Figure(data=[go.Pie(labels=labels,
                                 values=sizes)])
-    fig.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,)
+    fig.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20)
     fig.show()
 
 # %%

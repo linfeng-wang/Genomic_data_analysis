@@ -1,8 +1,12 @@
+#!/bin/bash
+set -e
+set -u
+set -o pipefail
 
-declare sample1_name='ERR6634978'
-declare sample2_name='ERR6635032'
+declare sample1_name= $2
+declare sample2_name= $3
 
-declare proportion='9505' #change output file name
+declare proportion= $1 #change output file name
 
 declare i num_read_sample1=3610000 #change number of reads to get from sample1
 declare i num_read_sample2=190000 #change number of reads to get from sample2

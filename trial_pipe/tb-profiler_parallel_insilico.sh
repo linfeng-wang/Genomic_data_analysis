@@ -5,13 +5,13 @@ set -o pipefail
 
 #local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe
 echo start
-RAW='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/'
-PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/new_tbp_results'
+RAW='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk_new'
+PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk_new/tb-profiler'
 REFGENOME='../../../refgenome/MTB-h37rv_asm19595v2-eg18.fa'
 PIPELINE='~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe'
 
 cd $RAW
-ls | grep -E '.mkdup.bam$' | cut -f 1 -d "." > $PROCESSED/sample_name.txt
+ls | grep -E '.bam$' | cut -f 1 -d "." > $PROCESSED/sample_name.txt
 
 ##activating enviroment
 # echo "===activating tb-profiler enviroment==="
@@ -22,9 +22,10 @@ ls | grep -E '.mkdup.bam$' | cut -f 1 -d "." > $PROCESSED/sample_name.txt
 cd $PROCESSED
 
 #running parallel tb-profiler on bam files of samples
-echo "***Running tb-profiler on sample .bam files***"
+echo "***Running tb-profiler on sample files***"
 # cat $PROCESSED/tb_profiler/Sobkowiak_2018/sample_name.txt | parallel --bar -j 5 "tb-profiler profile -a $RAW/{}.bqsr.cram -p {}"
-cat $PROCESSED/sample_name.txt | parallel --bar -j 5 "tb-profiler profile -a $RAW/{}.mkdup.bam -p {}"
+# cat $PROCESSED/sample_name.txt | parallel --bar -j 5 "tb-profiler profile -a $RAW/{}.bam -p {}"
+cat $PROCESSED/sample_name.txt | parallel --bar -j 5 "tb-profiler profile --vcf $RAW/{}.vcf.gz -p {}"
 
 #Collating results files
 echo "***Collating results files***"
