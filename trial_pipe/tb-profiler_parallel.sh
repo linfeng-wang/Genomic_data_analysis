@@ -32,3 +32,9 @@ tb-profiler collate
 
 
 # tb-profiler profile -a /mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/ERR6634978-ERR6635032-5050.mkdup.bam -p ERR6634978-ERR6635032-5050_new.json
+
+# tb-profiler profile -a ERR4796347.bqsr.cram -p ERR4796347
+
+# tb-profiler profile -a ERR4829977.bqsr.cram -p ERR4829977
+
+# tb-profiler profile -a ERR5897084.bqsr.cram -p ERR5897084

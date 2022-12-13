@@ -4,8 +4,7 @@ from statistics import mean
 from unittest import result
 
 #%% test files
-# json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
-
+json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
 
 #%%
 #function that inputs get the lineage fraction info tb-profiler output json file
@@ -41,9 +40,9 @@ def tb_pred(json_file):
 
     return sublin_dict, output_status
 
-# result, output_status = tb_pred(json_file)
-# # #%%
-# print(result, output_status)
+# # #%% test
+result, output_status = tb_pred(json_file)
+print(result, output_status)
 
 # %%
 #function that get the drug resistance info tb-profiler output json file
@@ -57,4 +56,4 @@ def tb_dr(json_file):
     # return dr_dict
     return json_results['dr_variants']
 
-
+# %%

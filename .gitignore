@@ -8,3 +8,4 @@ strain_analysis/Strain_calling_models/read_pos.csv
 *.png
 *.fastq
 *.csv
+# find . -type f -size +99M

@@ -17,7 +17,7 @@ def main(args):
     run_cmd(f"bwa mem -t {args.threads} -R \"@RG\\tID:{args.out}\\tSM:{args.out}\\tPL:Illumina\" {args.ref} {args.R1} {args.R2} | samtools sort -n -l 0 --threads {args.threads} -m 2000M | samtools fixmate -m --threads {args.threads} - - | samtools sort -l 0 --threads {args.threads} -m 2000M | samtools markdup --threads {args.threads} -r -s - {args.out}.bam")
 
     # Indexing
-    run_cmd(f"samtools index --threads {args.threads} {args.out}.bam")
+    run_cmd(f"samtools index -@ {args.threads} {args.out}.bam")
 
     # Calling variants
     run_cmd(f"fasta_generate_regions.py {args.ref}.fai 20000 | freebayes-parallel - {args.threads} -f {args.ref} {args.out}.bam > {args.out}.vcf")
@@ -39,3 +39,6 @@ args.func(args)
 
 #test
 #python variant_calling_from_fastq.py -1 /mnt/storage7/lwang/trial_tb_philippines/data/insilico_mix_mix/ERR752118-ERR2864232-595_1.fastq.gz -2 /mnt/storage7/lwang/trial_tb_philippines/data/insilico_mix_mix/ERR752118-ERR2864232-595_2.fastq.gz -r ../../../refgenome/MTB-h37rv_asm19595v2-eg18.fa -o test.vcf.gz
+
+# fasta_generate_regions.py ../../../refgenome/MTB-h37rv_asm19595v2-eg18.fa.fai 20000 | freebayes-parallel - 5 -f ../../../refgenome/MTB-h37rv_asm19595v2-eg18.fa /mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk_new/ERR752118-ERR2864232-595.bam > test.vcf
+# samtools index -@ 5 /mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk_new/ERR752118-ERR2864232-595.bam
