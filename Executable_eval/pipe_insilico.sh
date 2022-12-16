@@ -6,7 +6,7 @@ set -o pipefail
 #this file is used to parallel run mix model pipeline
 #local path: cd /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable_eval
 
-VCF='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk_new_vcf'
+VCF='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk_new'
 JSON='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk_new/tb-profiler/results'
 PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable_eval'
 PIPELINE='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable'

@@ -68,8 +68,8 @@ dr_dict = tb_profiler.tb_dr(json_file)
 
 gmm_pred_result, model = gmm_model.model_pred(vcf_file, tail_cutoff = list(tb_pred_result.values())[1], graph = graph_option, output_path=output_path)
 
-if sum(gmm_pred_result) < 0.9: #adding threshold if the sum of the fraction lower than 0.9, then rejected
-    sys.exit(f"Programme stoped, low prediction confidence in {vcf_file}")
+# if sum(gmm_pred_result) < 0.9: #adding threshold if the sum of the fraction lower than 0.9, then rejected
+#     sys.exit(f"Programme stoped, low prediction confidence in {vcf_file}")
 
 mse = gmm_model.mse_cal(tb_pred_result, gmm_pred_result)
 
@@ -99,7 +99,16 @@ unknown = []
 for element in dr_dict: #key is freqs value is dr
     prob = model.predict_proba(np.array(element["freq"]).reshape(-1,1))
     prob = prob[0] #the output from predict_proba is a list of a list
-    if prob[0] > prob[1]:
+    if np.array(element["freq"]) > 0.99: # if frequency is very high then the same mutation may be in both lineages
+        dict_ = {"prediction_confidence" : np.max(prob), 
+                "info" : element}
+        strains_0.append(dict_)
+        
+        dict_ = {"prediction_confidence" : np.max(prob), 
+                "info" : element}
+        strains_1.append(dict_)
+        
+    elif prob[0] > prob[1]:
         dict_ = {"prediction_confidence" : prob[0], 
                 "info" : element}
         strains_0.append(dict_)

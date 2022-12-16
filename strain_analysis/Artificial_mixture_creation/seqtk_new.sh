@@ -27,13 +27,16 @@ SAMPLE2_READ1=$RAW/${sample2_name}_1.fastq.gz
 SAMPLE2_READ2=$RAW/${sample2_name}_2.fastq.gz
 
 
-echo '====get depth====='
+# echo '====get depth====='
 
-depth1=`gunzip -c $SAMPLE1_READ1 | wc -l`
-depth2=`gunzip -c $SAMPLE2_READ1 | wc -l`
+# depth1=`gunzip -c $SAMPLE1_READ1 | wc -l`
+# depth2=`gunzip -c $SAMPLE2_READ1 | wc -l`
 
-let num_read_sample1=$depth1/100*$1 #change number of reads to get from sample1
-let num_read_sample2=$depth2/100*$2 #change number of reads to get from sample2
+# let num_read_sample1=$depth1/100*$1 #change number of reads to get from sample1
+# let num_read_sample2=$depth2/100*$2 #change number of reads to get from sample2
+
+let num_read_sample1=3300000/100*$1 #change number of reads to get from sample1
+let num_read_sample2=3300000/100*$2 #change number of reads to get from sample2
 
 #activating fast2matrix enviroment
 # echo "===activating variant_detection enviroment==="
