@@ -38,3 +38,6 @@ tb-profiler collate
 # tb-profiler profile -a ERR4829977.bqsr.cram -p ERR4829977
 
 # tb-profiler profile -a ERR5897084.bqsr.cram -p ERR5897084
+
+
+# tb profiler profiler -a /mnt/storage7/jody/tb_ena/per_sample/ERR5897084.bqsr.cram -p 

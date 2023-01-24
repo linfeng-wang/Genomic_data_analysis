@@ -1,3 +1,4 @@
+
 #this is to view the info and extract sublin info from the json file 
 #created - 08.08.2022
 #%%
@@ -24,14 +25,23 @@ from tqdm import tqdm
 #%%
 NAME_FILE='tb-json_names.csv'
 FOLDER_PATH = "/mnt/storage7//jody/tb_ena/tbprofiler/latest/results"
+NAME_FILE='clinical_sample_name.txt'
 
 
-#%% get the names of the samples
+#%% get the names of the samples - tb-json_names.csv
+# with open(NAME_FILE, "r") as f:
+#     json_names = []
+#     for line in f:
+#         data_line = line.rstrip().split('\n')
+#         json_names.append(data_line[0])
+
+# get the names of the samples - tb-json_names.csv
 with open(NAME_FILE, "r") as f:
     json_names = []
     for line in f:
         data_line = line.rstrip().split('\n')
-        json_names.append(data_line[0])
+        name = data_line[0]+'.results.json'
+        json_names.append(name)
 
 #%%
 def minorStrainFreq(json_results):
@@ -53,12 +63,16 @@ minor_allele_freq = []
 mixed_infection_id = []
 mixed_major_strain = {}
 mixed_minor_strain = {}
+mixed_infection_comb = []
+multi_infection = []
+
 
 for x in tqdm(json_names):
     FILE_PATH = os.path.join(FOLDER_PATH, x)
     json_results = json.load(open(FILE_PATH))
     id = json_results['id']
     sublin = json_results["sublin"]
+    comb = sublin
     sublin = sublin.split(';')
     if "" in sublin:
         sublin.remove("")
@@ -70,6 +84,7 @@ for x in tqdm(json_names):
         mixed_infection_sub.append(sublin[0])
         mixed_infection_sub.append(sublin[1])
         mixed_infection_id.append(id)
+        mixed_infection_comb.append(comb)
         sublineages = {}
         for lin in json_results['lineage']:
             if lin['lin']== sublin[0] or lin['lin']== sublin[1]:
@@ -84,6 +99,8 @@ for x in tqdm(json_names):
         else:            
             mixed_major_strain[id] = [list(sublineages.keys())[1], list(sublineages.values())[1]]
             mixed_minor_strain[id] = [list(sublineages.keys())[0], list(sublineages.values())[0]]
+    elif len(sublin) > 2:
+        multi_infection.append(f'{id}+{sublin}')
         
     if len(sublin) == 1:
         single_infection_sub.append(sublin[0])
@@ -102,6 +119,24 @@ if mixed_infection_count > 0:
 else:
     print("No mixed infection detected")
 
+#%%
+mixed_infection_comb_main = []
+for x in mixed_infection_comb:
+    mix = x.split(';')
+    mix_out = []
+    for x in mix:
+        mix_out.append(x.split('.')[0])
+    mix_out = ';'.join(mix_out)
+    mixed_infection_comb_main.append(mix_out)
+#%%
+def top_count(input_list):
+    rank = {}
+    for x in np.unique(input_list):
+        rank[x] = input_list.count(x)
+    rank = dict(sorted(rank.items(), key=lambda item: item[1]))
+    return rank
+
+rank = top_count(mixed_infection_comb_main)
 
 # %%
 def uniq_lin(lin_):
@@ -300,5 +335,3 @@ def minorAFreq_graph(freqs):
     fig.show()
 # %%
 minorAFreq_graph(minor_allele_freq)# %%
-
-# %%

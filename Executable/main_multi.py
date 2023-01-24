@@ -28,8 +28,8 @@ import tb_profiler
 import gmm_model
 
 #%% testing
-#json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
-#vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
+# json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
+# vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
 
 # vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR221637.gatk.vcf.gz'
 # json_file='/mnt/storage7/jody/tb_ena/tbprofiler/latest/results/ERR221637.results.json'
@@ -86,8 +86,11 @@ gmm_pred_result, model = gmm_model.model_pred(vcf_file,
                                             output_path=output_path, 
                                             mix_num=len(tb_pred_result))
 
-mse = gmm_model.mse_cal(tb_pred_result, gmm_pred_result)
+if sum(gmm_pred_result) < 0.9: #adding threshold if the sum of the fraction lower than 0.9, then rejected
+    sys.exit(f"Programme stoped, low prediction confidence in {vcf_file}")
 
+
+mse = gmm_model.mse_cal(tb_pred_result, gmm_pred_result)
 
 #%%###########################################################################
 # strains = list(tb_pred_result.keys())
@@ -124,14 +127,18 @@ for element in dr_dict: #key is freqs value is dr
     prob = prob[0] #the output from predict_proba is a list of a list
     ind_max_prob = np.argmax(prob)
     dict_ = {"prediction_confidence" : prob[ind_max_prob], 
-            "info" : element}
-    # strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"] = []
-    strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"].append(dict_)
-    
-    if all(elem == prob[0] for elem in prob):
-        dict_ = {"prediction_confidence" : prob, 
                 "info" : element}
-        unknown.append(dict_)
+    if np.array(element["freq"]) > 0.99:
+        for k,v in strain_dict.items():
+            strain_dict[k].append(dict_)
+    else: 
+        # strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"] = []
+        strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"].append(dict_)
+        
+        if all(elem == prob[0] for elem in prob):
+            dict_ = {"prediction_confidence" : prob, 
+                    "info" : element}
+            unknown.append(dict_)
 
 #%% effort trying to sort the the dr pred in order of prediction_confidence - doesn't work now
 # for k, v in strain_dict.items():
@@ -192,7 +199,7 @@ for x in strain_dict1.values():
     dr_output["lineage"].append(x)
 
 dr_output["Unknown50-50DR"] = unknown
-dr_output["gmm_tb-profiler_MSE"]: mse
+dr_output["gmm_tb-profiler_MSE"]= mse
 
 #Outputting result into below format
     # dr_output = {"lineage": [
