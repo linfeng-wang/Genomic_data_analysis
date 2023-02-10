@@ -30,6 +30,8 @@ def tb_pred(json_file):
             for x in json_results['lineage']:
                 if x['lin'] == y:
                     lineage = x['lin']
+                else:
+                    continue
     #add lineage-frac to dictionary if the lineage don't exist, add it first
                 sublin_dict[lineage] = x['frac']
 

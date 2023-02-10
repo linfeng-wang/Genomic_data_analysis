@@ -25,7 +25,7 @@ import sys
 from pathlib import Path
 
 import tb_profiler 
-import gmm_model
+import gmm_model_multi as gmm_model
 
 #%% testing
 # json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
@@ -85,6 +85,8 @@ gmm_pred_result, model = gmm_model.model_pred(vcf_file,
                                             graph = graph_option, 
                                             output_path=output_path, 
                                             mix_num=len(tb_pred_result))
+print('mix_num:',len(tb_pred_result))
+print('gmm_pred_result:',gmm_pred_result)
 
 if sum(gmm_pred_result) < 0.9: #adding threshold if the sum of the fraction lower than 0.9, then rejected
     sys.exit(f"Programme stoped, low prediction confidence in {vcf_file}")
@@ -275,7 +277,6 @@ print("=======================================================================")
 # %%
 #command to run
 # python /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable/main.py -vcf /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz -json /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json -g -o /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable_eval
-
 
 # python /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable/main.py -vcf /mnt/storage7//jody/tb_ena/per_sample/ERR2864229.gatk.vcf.gz -json /mnt/storage7/jody/tb_ena/tbprofiler/latest/results/ERR2864229.results.json -g -o /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable_eval
 
