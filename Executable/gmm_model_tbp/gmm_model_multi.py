@@ -30,9 +30,8 @@ from pathlib import Path
 #this model outputs the strain info depending if one value is still larger than the threshold after substracting the other prob value from it - not as good as not using it
 
 #%% test
-# vcf_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-2080.vcf.gz' #file used creating the model
 # vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR221662.gatk.vcf.gz' #file used creating the model
-# vcf_file = '/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/ERR6634978-ERR6635032-3070.vcf.gz'
+vcf_file = '/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/ERR6634978-ERR6635032-3070.vcf.gz'
 #%%
 def model_pred(vcf_file, tail_cutoff=0.07, graph = False, output_path = None, mix_num = 2):
     cwd = os.path.dirname(__file__) #this is used to get the folder location of the script so that new_exculsion file can be accessed
@@ -63,6 +62,9 @@ def model_pred(vcf_file, tail_cutoff=0.07, graph = False, output_path = None, mi
 
         # freqs = [[0.7],[0.6],[0.4]]    
         mu = []
+        # print(freqs)
+        # print(np.array(freqs).reshape(-1, 1))
+        
         gm = GaussianMixture(n_components=mix_num, random_state=0).fit(np.array(freqs).reshape(-1, 1))
         for x in gm.means_:
             mu.append(x[0])
@@ -137,6 +139,8 @@ def model_pred(vcf_file, tail_cutoff=0.07, graph = False, output_path = None, mi
     # else:
     #     return [mu1, mu0], gm
     return mu, gm
+
+#%%
 #Test
 # model_pred(vcf_file, tail_cutoff=0, graph = False)
 

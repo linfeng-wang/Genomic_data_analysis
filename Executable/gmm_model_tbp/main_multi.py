@@ -26,6 +26,8 @@ from pathlib import Path
 
 import tb_profiler 
 import gmm_model_multi as gmm_model
+import pprint
+
 
 #%% testing
 # json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
@@ -34,8 +36,8 @@ vcf_file = '/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_anal
 # vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR221637.gatk.vcf.gz'
 # json_file='/mnt/storage7/jody/tb_ena/tbprofiler/latest/results/ERR221637.results.json'
 
-# graph_option = False
-# output_path = None
+graph_option = False
+output_path = '/mnt/storage7/lwang/Projects/Philipine_tb_report/test'
 output_name = 'test1'
 
 #%% #Input commands don't run in test
@@ -67,13 +69,16 @@ fq1_file = args.fastq1
 fq2_file = args.fastq2
 #%%
 if vcf_file != None:
-    subprocess.run(f"tb-profiler profile --vcf {vcf_file} -p {output_name} --dir temp/", shell=True)
+    subprocess.run(f"mkdir -p {output_path}/temp", shell=True)
+    subprocess.run(f"tb-profiler profile --vcf {vcf_file} --dir {output_path}/temp/ -p {output_name}", shell=True)
+    
+    # subprocess.run(f"tb-profiler profile --vcf {vcf_file} -p {output_name} --dir {output_path}/temp/", shell=True)
 
 # if fq1_file != None and fq2_file != None:
 #     subprocess.run("python variant_calling_from_fastq.py -1 {fq1_file} -2 {fq2_file} -r $REFGENOME -o temp/{output_name}", shell=True)
 #     subprocess.run(f"tb-profiler profile --vcf temp/{output_name}.vcf.gz -p temp/{output_name}",  shell=True)
 #%%    
-json_file = f'temp/results/{output_name}.results.json'
+json_file = f'{output_path}/temp/results/{output_name}.results.json'
 
 #%%
 tb_pred_result, output_status = tb_profiler.tb_pred(json_file)
@@ -90,13 +95,17 @@ elif output_status == 1 and multi == False:
     
 elif output_status == 2:
     sys.exit(f"Programme stoped, no mixed infection in {vcf_file}")
+    
+elif vcf_file == None and (fq1_file == None or fq2_file == None):
+    sys.exit(f"Programme stoped, no input file indicated")
+
 else:
     print("***********************")
     print(f"Programme continued, mixed infection detected in {vcf_file}")
     print("***********************")
 
 dr_dict = tb_profiler.tb_dr(json_file)
-subprocess.run(f"rm -r temp/*", shell=True)
+subprocess.run(f"rm -r {output_path}/temp/", shell=True)
 
 #%%
 gmm_pred_result, model = gmm_model.model_pred(vcf_file, 
@@ -258,10 +267,11 @@ else:
 with open(output_file, 'w') as f:
     json.dump(dr_output, f, indent=2)
 
+#%%
 print("=======================================================================")
 print(name)
-prinr("*************************")
-print(dr_output)
+print("*************************")
+pprint.pprint(dr_output)
 print("=======================================================================")
 
 

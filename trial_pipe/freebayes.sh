@@ -1,9 +1,10 @@
 #freebayes bam to vcf conversion
 #local path: cd ~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe
 
-RAW='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk_new'
-PROCESSED='/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk_new_vcf'
-REFGENOME='../../../refgenome/MTB-h37rv_asm19595v2-eg18.fa'
+
+RAW='/mnt/storage7/jody/philippines/renamed'
+PROCESSED='/mnt/storage7/lwang/Projects/Philipine_tb_report/vcf/freebayesVCF_new'
+REFGENOME='/mnt/storage7/lwang/trial_tb_philippines/refgenome/MTB-h37rv_asm19595v2-eg18.fa'
 PIPELINE='~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe'
 
 
@@ -17,7 +18,7 @@ PIPELINE='~/trial_tb_philippines/pipelines/Genomic_data_analysis/trial_pipe'
 
 #Converting bam to vcf file
 echo 'converting .bam to .vcf for sample' $1 
-freebayes -f $REFGENOME $RAW/$1.bam > $PROCESSED/$1.vcf
+freebayes -f $REFGENOME $RAW/$1.bqsr.cram > $PROCESSED/$1.vcf
 
 bgzip -c $PROCESSED/$1.vcf > $PROCESSED/$1.vcf.gz
 tabix -p vcf $PROCESSED/$1.vcf.gz

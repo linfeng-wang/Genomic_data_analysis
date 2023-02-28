@@ -1,0 +1,3 @@
+sample, refname, totscore, relabundance, depth
+ERR757161-ERR751848-2080_1,OFXR-32,0.535,0.775,70.785
+ERR757161-ERR751848-2080_1,410,0.485,0.225,20.505

@@ -1,0 +1,2 @@
+sample, refname, totscore, relabundance, depth
+ERR752118-ERR2864232-595_1,UT0087,0.452,1.0,93.122

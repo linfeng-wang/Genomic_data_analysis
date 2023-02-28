@@ -1,0 +1,3 @@
+sample, refname, totscore, relabundance, depth
+ERR038260-ERR757161-1090_1,410,0.523,0.933,82.689
+ERR038260-ERR757161-1090_1,H2101,0.295,0.067,5.958

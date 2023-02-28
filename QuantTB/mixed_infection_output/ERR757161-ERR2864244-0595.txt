@@ -1,0 +1,2 @@
+sample, refname, totscore, relabundance, depth
+ERR757161-ERR2864244-595_1,BTB06-340,0.544,1.0,112.579

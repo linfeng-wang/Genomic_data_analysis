@@ -9,3 +9,7 @@ gunzip /mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk_new/ERR0382
 gunzip /mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk_new/ERR038260-ERR751848-4060.vcf.gz
 
 quanttb quant -v ERR2864288-ERR2864235-4060.vcf.gz -o output3/myresults.txt
+
+
+quanttb quant -f /mnt/storage7/lwang/trial_tb_philippines/data/insilico_mix_mix/ERR038260-ERR751848-5050_1.fastq.gz /mnt/storage7/lwang/trial_tb_philippines/data/insilico_mix_mix/ERR038260-ERR751848-5050_2.fastq.gz -o output1/myresults111.txt
+
