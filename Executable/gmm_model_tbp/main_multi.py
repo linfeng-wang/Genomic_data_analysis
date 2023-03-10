@@ -105,7 +105,7 @@ else:
     print("***********************")
 
 dr_dict = tb_profiler.tb_dr(json_file)
-subprocess.run(f"rm -r {output_path}/temp/", shell=True)
+# subprocess.run(f"rm -r {output_path}/temp/", shell=True)
 
 #%%
 gmm_pred_result, model = gmm_model.model_pred(vcf_file, 
@@ -160,7 +160,7 @@ for element in dr_dict: #key is freqs value is dr
                 "info" : element}
     if np.array(element["freq"]) > 0.99:
         for k,v in strain_dict.items():
-            strain_dict[k].append(dict_)
+            strain_dict[k]["DR_pred"].append(dict_)
     else: 
         # strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"] = []
         strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"].append(dict_)
@@ -221,6 +221,7 @@ for x in range(len(gmm_pred_result)):
 
 #%%
 dr_output = {}
+dr_output["sample_name"] = output_name
 dr_output["lineage"] = []
 for x in strain_dict1.values():
     dr_output["lineage"].append(x)

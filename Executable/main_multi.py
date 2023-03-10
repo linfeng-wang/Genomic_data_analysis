@@ -132,7 +132,7 @@ for element in dr_dict: #key is freqs value is dr
                 "info" : element}
     if np.array(element["freq"]) > 0.99:
         for k,v in strain_dict.items():
-            strain_dict[k].append(dict_)
+            strain_dict[k]["DR_pred"].append(dict_)
     else: 
         # strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"] = []
         strain_dict[list(strain_dict.keys())[ind_max_prob]]["DR_pred"].append(dict_)
