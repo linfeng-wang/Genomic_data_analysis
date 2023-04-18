@@ -31,14 +31,14 @@ import pprint
 
 #%% testing
 # json_file = '../strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
-vcf_file = '/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
+# vcf_file = '/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis/test_data/ERR6634978-ERR6635032-3070.vcf.gz' #file used creating the model
 
 # vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR221637.gatk.vcf.gz'
 # json_file='/mnt/storage7/jody/tb_ena/tbprofiler/latest/results/ERR221637.results.json'
 
-graph_option = False
-output_path = '/mnt/storage7/lwang/Projects/Philipine_tb_report/test'
-output_name = 'test1'
+# graph_option = False
+# output_path = '/mnt/storage7/lwang/Projects/Philipine_tb_report/test'
+# output_name = 'test1'
 
 #%% #Input commands don't run in test
 output_path = None
@@ -68,8 +68,10 @@ multi = args.multi_infection_detection
 fq1_file = args.fastq1
 fq2_file = args.fastq2
 #%%
+subprocess.run(f"mkdir -p {output_path}/temp", shell=True)
+
 if vcf_file != None:
-    subprocess.run(f"mkdir -p {output_path}/temp", shell=True)
+    # subprocess.run(f"mkdir -p {output_path}/temp", shell=True)
     subprocess.run(f"tb-profiler profile --vcf {vcf_file} --dir {output_path}/temp/ -p {output_name}", shell=True)
     
     # subprocess.run(f"tb-profiler profile --vcf {vcf_file} -p {output_name} --dir {output_path}/temp/", shell=True)
@@ -110,15 +112,21 @@ dr_dict = tb_profiler.tb_dr(json_file)
 #%%
 gmm_pred_result, model = gmm_model.model_pred(vcf_file, 
                                             tail_cutoff = list(tb_pred_result.values())[1], 
-                                            graph = graph_option, 
+                                            graph = False, 
                                             output_path=output_path, 
                                             mix_num=len(tb_pred_result))
+
 print('mix_num:',len(tb_pred_result))
 print('gmm_pred_result:',gmm_pred_result)
 
 if sum(gmm_pred_result) < 0.9: #adding threshold if the sum of the fraction lower than 0.9, then rejected
     sys.exit(f"Programme stoped, low prediction confidence in {vcf_file}")
 
+gmm_pred_result, model = gmm_model.model_pred(vcf_file, 
+                                            tail_cutoff = list(tb_pred_result.values())[1], 
+                                            graph = graph_option, 
+                                            output_path=output_path, 
+                                            mix_num=len(tb_pred_result))
 
 mse = gmm_model.mse_cal(tb_pred_result, gmm_pred_result)
 

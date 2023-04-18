@@ -31,7 +31,7 @@ from pathlib import Path
 
 #%% test
 # vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR221662.gatk.vcf.gz' #file used creating the model
-vcf_file = '/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/ERR6634978-ERR6635032-3070.vcf.gz'
+# vcf_file = '/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/ERR6634978-ERR6635032-3070.vcf.gz'
 #%%
 def model_pred(vcf_file, tail_cutoff=0.07, graph = False, output_path = None, mix_num = 2):
     cwd = os.path.dirname(__file__) #this is used to get the folder location of the script so that new_exculsion file can be accessed

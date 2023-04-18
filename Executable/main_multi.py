@@ -82,7 +82,7 @@ dr_dict = tb_profiler.tb_dr(json_file)
 #%%
 gmm_pred_result, model = gmm_model.model_pred(vcf_file, 
                                             tail_cutoff = list(tb_pred_result.values())[1], 
-                                            graph = graph_option, 
+                                            graph = False, 
                                             output_path=output_path, 
                                             mix_num=len(tb_pred_result))
 print('mix_num:',len(tb_pred_result))
@@ -91,6 +91,11 @@ print('gmm_pred_result:',gmm_pred_result)
 if sum(gmm_pred_result) < 0.9: #adding threshold if the sum of the fraction lower than 0.9, then rejected
     sys.exit(f"Programme stoped, low prediction confidence in {vcf_file}")
 
+gmm_pred_result, model = gmm_model.model_pred(vcf_file, 
+                                            tail_cutoff = list(tb_pred_result.values())[1], 
+                                            graph = graph_option, 
+                                            output_path=output_path, 
+                                            mix_num=len(tb_pred_result))
 
 mse = gmm_model.mse_cal(tb_pred_result, gmm_pred_result)
 

@@ -26,6 +26,8 @@ cd $PROCESSED
 echo "***Running gmm model on sample files***"
 #cat invitro_mix_name.csv | parallel --bar -j 50 "python $PIPELINE/main.py -vcf $VCF/{}.gatk.vcf.gz -json $JSON/{}.results.json" -m -g -o $PROCESSED/results/2mix_infection
 # cat three_mix.txt | parallel --bar -j 50 "python $PIPELINE/main_multi.py -vcf $VCF/{}.gatk.vcf.gz -json $JSON/{}.results.json" -m -g -o $PROCESSED/three_mixes
-cat clinical_sample_name.txt | parallel --bar -j 10 "python $PIPELINE/main_multi.py -vcf $VCF/{}.gatk.vcf.gz" -g -m -o {} -op $PROCESSED/clinical_mix_multi_vcf
+# cat extra_samples.txt | parallel --bar -j 20 "python $PIPELINE/main_multi.py -vcf $VCF/{}.gatk.vcf.gz" -g -m -o {} -op $PROCESSED/clinical_mix_multi_vcf_extra
 
 # python /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable/gmm_model_tbp/main_multi.py -vcf /mnt/storage7/jody/tb_ena/per_sample/DRR184902.gatk.vcf.gz -g -m -o DRR184902 -op /mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/Executable_eval/test
+
+python $PIPELINE/main_multi.py -vcf $VCF/ERR4796347.gatk.vcf.gz -g -m -o ERR4796347 -op $PROCESSED/clinical_mix_multi_vcf_test
