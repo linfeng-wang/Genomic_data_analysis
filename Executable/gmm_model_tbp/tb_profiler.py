@@ -5,7 +5,7 @@ from unittest import result
 
 #%% test files
 # json_file = '/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/strain_analysis/test_data/ERR6634978-ERR6635032-3070.results.json' #file used for targeting and error checking
-
+# json_file = '/mnt/storage7/jody/philippines/projects/all_philippines/tbprofiler_new/results/ERR6635386.results.json'
 #%%
 #function that inputs get the lineage fraction info tb-profiler output json file
 def tb_pred(json_file):
