@@ -55,9 +55,10 @@ python **<Path>**/main_multi.py -json <Path_to_json.json> -g -m -o <output_name>
 **-op**: output path
 
 
+*example output: Executable_eval/results/insilico_mix_new/mixture_results*
 
 ## Model function
-![model_funciton]('img/gmm_process.png')
+![model_funciton](img/gmm_process.png)
 
 The Gaussian Mixture Models (GMMs) can accommodate any number of mixtures through the 'multi' option. The results for each sample encompass various parameters, such as the count of mixtures, their attributes (mean and standard deviation (SD)), confidence intervals around the mixtures (±1 SD from the mean), and the proportions in which they are mixed. Each Single Nucleotide Polymorphism (SNP) is allocated within these Gaussian distributions, allowing for deductions about the assigned strain (component) and its associated confidence, typically represented as a probability. This process aids in the identification of individual strains and their corresponding drug resistance patterns.
 

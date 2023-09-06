@@ -5,11 +5,12 @@ strain_analysis/Strain_calling_models/read_pos.csv
 *.vcf
 *.cram
 *.json
-*.png
+# *.png
 *.fastq
 *.fastq.gz
 *.csv
 *.txt
 *.vcf.gz
 *.vcf.gz.tbi
+*.bam
 # find . -type f -size +99M

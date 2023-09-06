@@ -1,7 +1,7 @@
 
 # mixed_samples='/mnt/storage7/lwang/trial_tb_philippines/data/insilico_mix_mix'
 # VCF='/mnt/storage7/jody/tb_ena/per_sample'
-# fastq='/mnt/storage7/lwang/trial_tb_philippines/data/raw_fastq'
+# fastq='/mnt/storage7/lwang/trial_tb_philippines/datwwa/raw_fastq'
 fastq='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/QuantTB/in_vitro_samples/fastq'
 # output='/mnt/storage7/lwang/Projects/Philipine_tb_report/gmm'
 # output='/mnt/storage7/lwang/trial_tb_philippines/pipelines/Genomic_data_analysis/QuantTB/mixed_clinical_rerun'
