@@ -6,9 +6,6 @@ import numpy as np
 # import pathogenprofiler as pp
 from sklearn.mixture import GaussianMixture
 from sklearn.metrics import mean_squared_error, confusion_matrix, f1_score
-from sklearn.metrics import make_scorer
-from sklearn.model_selection import cross_val_score
-
 # import fastq2matrix as fm
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -28,16 +25,13 @@ import gc
 from uuid import uuid4
 from pathlib import Path
 
+
 #%%
 #this model outputs the strain info depending if one value is still larger than the threshold after substracting the other prob value from it - not as good as not using it
 
-# #%% test
+#%% test
 # vcf_file = '/mnt/storage7/jody/tb_ena/per_sample/ERR221662.gatk.vcf.gz' #file used creating the model
 # vcf_file = '/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/ERR6634978-ERR6635032-3070.vcf.gz'
-# vcf_file = '/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/ERR6634978-ERR6635032-5050.vcf.gz'
-# vcf_file = '/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/ERR6634978-ERR6635032-1000.vcf.gz'
-# vcf_file = '/mnt/storage7/lwang/trial_tb_philippines/data/processed/seqtk/freebayesVCF/ERR6634978-ERR6635032-9505.vcf.gz'
-
 #%%
 def model_pred(vcf_file, tail_cutoff=0.07, graph = False, output_path = None, mix_num = 2):
     cwd = os.path.dirname(__file__) #this is used to get the folder location of the script so that new_exculsion file can be accessed
@@ -70,7 +64,7 @@ def model_pred(vcf_file, tail_cutoff=0.07, graph = False, output_path = None, mi
         mu = []
         # print(freqs)
         # print(np.array(freqs).reshape(-1, 1))
-        # print("freqs", freqs)
+        
         gm = GaussianMixture(n_components=mix_num, random_state=0).fit(np.array(freqs).reshape(-1, 1))
         for x in gm.means_:
             mu.append(x[0])
@@ -78,6 +72,7 @@ def model_pred(vcf_file, tail_cutoff=0.07, graph = False, output_path = None, mi
         
         # mu0_ = len(labels[labels==0])/len(labels)
         # mu1_ = len(labels[labels==1])/len(labels)
+                
         
         # anchored_array = np.concatenate((scatter, labels.reshape(-1,1)), axis=1) 
         # lin1_ = anchored_array[anchored_array[:,2]==1]

@@ -61,7 +61,7 @@ parser.add_argument("-fq1", "--fastq1", help='Fastq forward read file')
 parser.add_argument("-fq2", "--fastq2", help='Fastq backward read file')
 # parser.add_argument("-json", "--json", help='tb-profiler output json file')
 parser.add_argument("-m", "--multi_infection_detection", help='consider 2+ strain mixed infection as well', action='store_true')
-parser.add_argument("-g", "--graph", help='alternative snp frequency histogram', action='store_true')
+parser.add_argument("-g", "--graph", help='alternative snp frequency histogram', action='store_true',default=False)
 parser.add_argument("-o", "--output_name", help='output name')
 parser.add_argument("-op", "--output_path", help='output path')
 
@@ -91,8 +91,7 @@ elif json_file1 != None:
 #     subprocess.run("python variant_calling_from_fastq.py -1 {fq1_file} -2 {fq2_file} -r $REFGENOME -o temp/{output_name}", shell=True)
 #     subprocess.run(f"tb-profiler profile --vcf temp/{output_name}.vcf.gz -p temp/{output_name}",  shell=True)
 #%%    
-print(112321321321)
-print(json_file)
+# print(json_file)
 #%%
 tb_pred_result, output_status = tb_profiler.tb_pred(json_file)
 

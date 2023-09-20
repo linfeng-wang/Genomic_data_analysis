@@ -15,12 +15,13 @@ Furthermore, GMM's ability to unravel these lineages provides a critical advanta
 *
 required package: 
 - tb-profiler(https://github.com/jodyphelan/TBProfiler)
-- sckilearn
+- sckitlearn
 - scipy
 - uuid
 - pathlib
 - numpy
 - pandas
+- plotly
   
 Python 3.10.0  
 
@@ -56,6 +57,34 @@ python **<Path>**/main_multi.py -json <Path_to_json.json> -g -m -o <output_name>
 
 
 *example output: Executable_eval/results/insilico_mix_new/mixture_results*
+
+## Stand alone prediction method
+A stand alone prediction method script has also been produced to predict for any mixed infections or gene reads not only limited for use in TB.
+`Genomic_data_analysis/Executable/gmm_model_tbp/stand_alone.py`
+Here a input the for of the example file can be used `Executable/gmm_model_tbp/cache/stand_alone_test.txt`
+in the form of:
+
+SNP_Name, Alt allele Fraction
+rs1001,0.25
+rs1001,0.25
+rs1002,0.32
+rs1002,0.32
+rs1003,0.23
+
+No specific column names are needed.
+
+Use example 
+python stand_alone.py -i <input.csv> -c <number of mixes expected> -o <ouput file path> -g <graphic output>
+
+Example output file: `Genomic_data_analysis/Executable/gmm_model_tbp/cache/stand_alone_test_out.csv`
+SNP_Name,Fraction,cluster_no
+rs1009,0.26,1
+rs1010,0.31,1
+rs1010,0.31,1
+rs1011,0.74,2
+rs1011,0.74,2
+
+Exampe output graphics:`Executable/gmm_model_tbp/cache/stand_alone_test_out_gmm_fig.png`
 
 ## Model function
 ![model_funciton](img/gmm_process.png)

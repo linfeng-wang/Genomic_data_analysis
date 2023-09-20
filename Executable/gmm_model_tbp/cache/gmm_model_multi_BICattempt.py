@@ -82,7 +82,54 @@ def model_pred(vcf_file, tail_cutoff=0.07, graph = False, output_path = None, mi
         # anchored_array = np.concatenate((scatter, labels.reshape(-1,1)), axis=1) 
         # lin1_ = anchored_array[anchored_array[:,2]==1]
         # lin4_ = anchored_array[anchored_array[:,2]==0]
+        # ##################################################
+        # # Define a custom BIC function with adjustable punishments
+        # def custom_bic(gmm, X, k):
+        #     n_samples, _ = X.shape
+        #     log_likelihood = gmm.score(X)
+        #     n_params = gmm.n_components #* (gmm.n_features * 2 + 1)  # BIC formula
+        #     bic = -2 * log_likelihood + k * n_params * np.log(n_samples)
+        #     return bic
 
+        # n_components_range = range(1, 5)
+        # print(np.array(freqs).reshape(-1, 1).shape)
+        # # Calculate custom BIC scores
+        # bic_scores = []
+
+        # for n_components in n_components_range:
+        #     gmm = GaussianMixture(n_components=n_components, random_state=0)
+        #     gmm.fit(np.array(freqs).reshape(-1, 1))
+        #     bic = custom_bic(gmm, np.array(freqs).reshape(-1, 1),0.1)
+
+        #     # Apply adjustable punishment here if needed
+        #     # For example, you can increase 'n_params' to penalize complexity
+        #     # bic += adjustable_punishment * n_params
+
+        #     bic_scores.append(bic)
+
+        # # Find the best number of components
+        # best_n_components = n_components_range[np.argmin(bic_scores)]
+        # print("Best number of components:", best_n_components)
+
+        #============================
+        # from sklearn.mixture import BayesianGaussianMixture
+
+        # # Generate some example data (replace this with your own dataset)
+        # data = np.random.randn(100, 2)
+
+        # # Create a Bayesian Gaussian Mixture Model
+        # # Set the maximum number of components you want to consider
+        # n_components_max = 5
+        # bgm = BayesianGaussianMixture(n_components=n_components_max, random_state=0)
+
+        # # Fit the model to your data
+        # bgm.fit(np.array(freqs).reshape(-1, 1))
+
+        # # Find the optimal number of components (clusters)
+        # optimal_n_components = bgm.n_components
+
+        # print("Optimal number of components:", optimal_n_components)
+        # # ##################################################
     if graph:
 
         # flat_freqs = list(np.concatenate(freqs))
@@ -147,7 +194,7 @@ def model_pred(vcf_file, tail_cutoff=0.07, graph = False, output_path = None, mi
 
 #%%
 #Test
-# model_pred(vcf_file, tail_cutoff=0, graph = False)
+model_pred(vcf_file, tail_cutoff=0, graph = False)
 
 
 # %%
