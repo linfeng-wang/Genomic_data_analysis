@@ -64,6 +64,7 @@ mixed_infection_id = []
 mixed_major_strain = {}
 mixed_minor_strain = {}
 mixed_infection_comb = []
+mixed_infection_sub_comb = []
 multi_infection = []
 
 
@@ -79,6 +80,10 @@ for x in tqdm(json_names):
     if len(sublin) > 1:
         # print(sublin)
         # print("=======Mix infection!=======")
+        if 'lineage4.3.2' in sublin or 'lineage4.3.2.1' in sublin:
+            print(id)
+            print(sublin)
+        mixed_infection_sub_comb.append(sublin)
         minor_allele_freq.append(minorStrainFreq(json_results))
         mixed_infection_count += 1
         mixed_infection_sub.append(sublin[0])
@@ -107,13 +112,19 @@ for x in tqdm(json_names):
 
     # sublineages.append(sublin[0])
 #%%
+for x in mixed_infection_sub_comb:
+    if 'lineage4.3.2' in x or 'lineage4.3.2.1' in x:
+        print(x)
+    
+
+
+#%%
 sublin_MSI_df =pd.DataFrame()
 sublin_MSI_df['id'] = mixed_major_strain.keys()
 sublin_MSI_df['Major_sublin'] = mixed_major_strain.values()
 sublin_MSI_df['Minor_sublin'] = mixed_minor_strain.values()
 sublin_MSI_df.to_csv('sublin_MSI_df.csv')
 #%%
-
 if mixed_infection_count > 0:
     print("Mixed infection identified")
 else:
